@@ -339,7 +339,7 @@ body::before{
 .empty{font-size:11.5px;color:var(--muted2);padding:14px 4px;text-align:center}
 /* ---------- responsive ---------- */
 @media (min-width:1081px){
-  #scene{max-height:min(70vh,720px)}
+  #scene,#sceneCp{max-height:min(70vh,720px)}
 }
 @media (max-width:1080px){
   .layout{grid-template-columns:1fr}
@@ -366,6 +366,122 @@ body::before{
 @media (prefers-reduced-motion:reduce){
   *{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important}
 }
+
+/* ========== 🚀 쿠파스팀 전용 방 ========== */
+/* ---------- 방 전환 탭 (본부 / 쿠파스팀) ---------- */
+.stage[hidden],.panel[hidden]{display:none !important}
+.rooms{
+  display:flex;gap:5px;padding:5px;margin:0 0 12px;width:fit-content;max-width:100%;
+  border-radius:999px;background:rgba(255,255,255,.9);border:1px solid var(--line);
+  box-shadow:var(--shadow-s);overflow-x:auto;scrollbar-width:none;
+}
+.rooms::-webkit-scrollbar{display:none}
+.room-tab{
+  appearance:none;border:0;background:transparent;color:var(--muted);font:inherit;
+  font-size:13px;font-weight:800;padding:8px 15px;border-radius:999px;cursor:pointer;
+  display:inline-flex;align-items:center;gap:7px;white-space:nowrap;
+  transition:background .18s,color .18s,box-shadow .18s;
+}
+.room-tab:hover{color:var(--ink);background:rgba(240,169,63,.14)}
+.room-tab[aria-selected="true"]{background:linear-gradient(180deg,#ffc46b,#e79a2c);color:#3d2405;box-shadow:0 3px 10px rgba(217,143,52,.35)}
+.room-tab .rt-ic{font-size:15px;line-height:1}
+.room-tab .rt-new{font-size:9.5px;font-weight:900;letter-spacing:.4px;background:#ffe1b0;color:#a3651a;border-radius:5px;padding:2px 5px}
+.room-tab[aria-selected="true"] .rt-new{background:#4a2c05;color:#ffd9a0}
+
+/* ---------- 🚀 쿠파스팀 전용 방 ---------- */
+#sceneCp{display:block;width:100%;height:auto;touch-action:manipulation}
+.cp-legend{display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end;max-width:100%}
+.cp-legend span{
+  font-size:10.5px;font-weight:800;padding:4px 8px;border-radius:8px;white-space:nowrap;
+  background:#fff;border:1px solid var(--line2);color:var(--muted);
+  display:inline-flex;align-items:center;gap:4px;
+}
+.cp-stage-foot .ticker-track{font-size:11.5px}
+#sceneCp .cp-person{cursor:pointer}
+#sceneCp .cp-person:hover .pix,#sceneCp .cp-person:focus-visible .pix{filter:brightness(1.06) drop-shadow(0 0 3px rgba(255,210,120,.9))}
+#sceneCp .cp-stamp{opacity:0;transform-box:fill-box;transform-origin:center}
+#sceneCp .cp-stamp.on{animation:cpStamp 3.4s ease-in-out infinite}
+@keyframes cpStamp{0%,68%,100%{opacity:.0;transform:scale(1.5) rotate(-14deg)}74%{opacity:.95;transform:scale(1) rotate(-12deg)}86%{opacity:.95;transform:scale(1) rotate(-12deg)}93%{opacity:0;transform:scale(.92) rotate(-12deg)}}
+
+/* ---------- 워크벤치 패널 ---------- */
+.cp-flow{display:flex;align-items:flex-start;padding:10px 2px 4px;overflow-x:auto;scrollbar-width:none}
+.cp-flow::-webkit-scrollbar{display:none}
+.cp-node{flex:1 1 0;min-width:54px;display:flex;flex-direction:column;align-items:center;gap:5px;position:relative}
+.cp-node::before{content:"";position:absolute;top:9px;left:-50%;width:100%;height:2px;background:rgba(180,140,90,.26)}
+.cp-node:first-child::before{display:none}
+.cp-node .c{
+  position:relative;z-index:1;width:20px;height:20px;border-radius:50%;display:grid;place-items:center;
+  font-size:10px;font-weight:900;background:#f1e8d8;color:#9a8768;
+  border:2px solid #fff;box-shadow:0 0 0 1px rgba(180,140,90,.25);
+}
+.cp-node .l{font-size:10px;font-weight:800;color:var(--muted);white-space:nowrap}
+.cp-node.done::before{background:rgba(47,169,111,.5)}
+.cp-node.done .c{background:#2fa96f;color:#fff}
+.cp-node.done .l{color:#227a53}
+.cp-node.run .c{background:#f0a93f;color:#fff;animation:cpPulse 1.9s infinite}
+.cp-node.run .l{color:#a3651a}
+@keyframes cpPulse{
+  0%,100%{box-shadow:0 0 0 1px rgba(240,169,63,.4),0 0 0 0 rgba(240,169,63,.45)}
+  50%{box-shadow:0 0 0 1px rgba(240,169,63,.4),0 0 0 8px rgba(240,169,63,0)}
+}
+.cp-note-row{font-size:10.5px;color:var(--muted);line-height:1.5;padding:6px 2px 0;display:flex;gap:6px}
+.cp-note-row b{color:#a3651a;flex:0 0 auto;font-weight:800}
+.cp-goal{border-radius:14px;padding:11px 12px;background:linear-gradient(120deg,rgba(46,176,141,.15),rgba(255,236,200,.6));border:1px solid rgba(46,176,141,.34);margin:9px 0 6px}
+.cp-goal .cp-goal-top{display:flex;align-items:baseline;justify-content:space-between;gap:8px}
+.cp-goal b{font-size:12px;font-weight:800;color:#1d6f5b}
+.cp-goal .num{font-size:12.5px;font-weight:900;color:#1d6f5b;font-variant-numeric:tabular-nums}
+.cp-goal .num i{font-style:normal;color:rgba(29,111,91,.45);margin:0 2px}
+.cp-goal .lv{font-size:10px;font-weight:900;color:#fff;background:#2eb08d;border-radius:6px;padding:2px 6px;margin-left:5px;vertical-align:1px}
+.cp-goal .bar{height:11px;border-radius:99px;background:rgba(255,255,255,.85);border:1px solid rgba(46,176,141,.3);overflow:hidden;margin:8px 0 6px}
+.cp-goal .bar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,#3fc79f,#7ee0a8)}
+.cp-goal .sub{font-size:10.5px;color:#4b7a6c;line-height:1.45}
+
+.pick{border-radius:14px;background:#fff;border:1px solid var(--line2);box-shadow:var(--shadow-s);margin-bottom:10px;overflow:hidden}
+.pick-top{display:flex;gap:9px;align-items:flex-start;padding:10px 11px 8px}
+.pick-ic{
+  width:34px;height:34px;border-radius:10px;flex:0 0 auto;display:grid;place-items:center;font-size:16px;
+  background:linear-gradient(160deg,#fff4dc,#ffe2b0);border:1px solid var(--line);
+}
+.pick-main{flex:1 1 auto;min-width:0}
+.pick-main .nm{display:block;font-size:12.5px;font-weight:800;line-height:1.35;letter-spacing:-.2px;color:#433326}
+.pick-meta{display:flex;gap:5px;flex-wrap:wrap;align-items:center;margin-top:5px}
+.pick-price{font-size:13px;font-weight:900;color:#c0392b;font-variant-numeric:tabular-nums}
+.pick-off{font-size:10px;font-weight:900;color:#fff;background:#e2564a;border-radius:5px;padding:1.5px 5px}
+.pick-rocket{font-size:10px;font-weight:800;color:#1a5fb4;background:#e6f0ff;border-radius:5px;padding:1.5px 5px}
+.pick-appr{font-size:10px;font-weight:900;color:#fff;background:#2fa96f;border-radius:5px;padding:1.5px 5px}
+.pick-pub{font-size:10px;font-weight:800;color:#8a6b3c;background:#f6ecdb;border-radius:5px;padding:1.5px 5px}
+.pick-body{padding:0 11px 11px}
+.script-lab{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:6px 0 5px}
+.script-lab .t{font-size:10.5px;font-weight:900;color:var(--muted);letter-spacing:.2px}
+.script{
+  margin:0 0 8px;padding:9px 10px;border-radius:10px;background:#fdf8ef;
+  border:1px dashed rgba(180,140,90,.42);font-family:inherit;font-size:11.5px;line-height:1.62;
+  color:#5c4a3a;white-space:pre-wrap;word-break:keep-all;overflow-wrap:anywhere;
+}
+.script.cm{background:#f3f8ff;border-color:rgba(120,160,200,.45);color:#3d5568}
+.cp-copy{
+  appearance:none;border:1px solid rgba(46,176,141,.5);flex:0 0 auto;
+  background:linear-gradient(180deg,#f4fffb,#dcf6ea);color:#1d6f5b;font:inherit;
+  font-size:11px;font-weight:900;padding:6px 11px;border-radius:9px;cursor:pointer;
+  display:inline-flex;align-items:center;gap:4px;transition:transform .14s,background .16s;
+}
+.cp-copy:hover{background:linear-gradient(180deg,#eafff7,#c9f2e0);transform:translateY(-1px)}
+.cp-copy:active{transform:none}
+.cp-copy.copied{background:linear-gradient(180deg,#cdf5de,#a9e9c3);border-color:#2fa96f;color:#14663f}
+.cp-copy.failed{background:#fff1ef;border-color:#e2735f;color:#b03a2b}
+.cp-link{display:inline-block;margin:0 0 2px;font-size:10.5px;color:#3b7ea1;word-break:break-all;text-decoration:none;border-bottom:1px dotted rgba(59,126,161,.55)}
+.cp-link:hover{color:#225b78}
+.cp-foot-note{font-size:10px;color:var(--muted2);line-height:1.55;margin-top:2px}
+
+/* ---------- 쿠파스팀 방 반응형 ---------- */
+@media (max-width:640px){
+  .rooms{width:100%;justify-content:center}
+  .room-tab{flex:1 1 0;justify-content:center;padding:9px 8px;font-size:12.5px}
+  .cp-legend{display:none}
+  .cp-copy{padding:8px 12px;font-size:11.5px}
+  .script{font-size:11.5px}
+}
+
 </style>
 </head>
 <body>
@@ -381,8 +497,17 @@ body::before{
     <div class="clockline"><span class="pulse-dot"></span>LIVE · <b id="clockNow">--:--</b> KST</div>
   </header>
 
+  <nav class="rooms" id="rooms" role="tablist" aria-label="방 선택">
+    <button class="room-tab" type="button" role="tab" data-room-tab="office" aria-selected="true" aria-controls="stage">
+      <span class="rt-ic" aria-hidden="true">🏢</span>본부 사무실
+    </button>
+    <button class="room-tab" type="button" role="tab" data-room-tab="coupang" aria-selected="false" aria-controls="stageCp">
+      <span class="rt-ic" aria-hidden="true">🚀</span>쿠파스팀 방<span class="rt-new">NEW</span>
+    </button>
+  </nav>
+
   <main class="layout">
-    <section class="stage" id="stage" aria-label="AI 사무실 본부 오피스 뷰">
+    <section class="stage" id="stage" data-room-pane="office" aria-label="AI 사무실 본부 오피스 뷰">
       <div class="stage-head">
         <div class="stage-id">
           <div class="glyph" aria-hidden="true">▦</div>
@@ -405,7 +530,35 @@ body::before{
       </div>
     </section>
 
-    <aside class="panel" id="panel" aria-label="AI 사무실 본부 LIVE 패널">
+
+    <section class="stage cp-stage" id="stageCp" data-room-pane="coupang" hidden aria-label="쿠파스팀 전용 방 스튜디오 뷰">
+      <div class="stage-head">
+        <div class="stage-id">
+          <div class="glyph" aria-hidden="true">🚀</div>
+          <div>
+            <h2>쿠파스팀 스튜디오</h2>
+            <p>탐색 → 기획 → 집필 → 체리 팀장 승인 → 발행</p>
+          </div>
+        </div>
+        <div class="cp-legend" aria-label="쿠파스팀 역할">
+          <span>🔍 트렌드 탐색가</span>
+          <span>🧠 콘텐츠 기획자</span>
+          <span>✍️ 스레드 작가</span>
+          <span>🍒 체리 팀장</span>
+        </div>
+      </div>
+      <div class="canvas-wrap">
+        <svg id="sceneCp" viewBox="0 0 1330 1182" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="cpSceneTitle">
+          <title id="cpSceneTitle">쿠파스팀 전용 스튜디오 — 트렌드 탐색가, 콘텐츠 기획자, 스레드 작가, 체리 팀장이 자리·회의 테이블·보드 사이를 움직이며 협업하는 모습</title>
+        </svg>
+      </div>
+      <div class="stage-foot cp-stage-foot">
+        <span class="live-pill"><i></i>LIVE</span>
+        <div class="ticker"><div class="ticker-track" id="cpTicker"></div></div>
+        <span class="foot-hint">캐릭터를 눌러 역할 보기</span>
+      </div>
+    </section>
+    <aside class="panel" id="panel" data-room-pane="office" aria-label="AI 사무실 본부 LIVE 패널">
       <div class="panel-head">
         <div>
           <h2>AI 사무실 본부 <span class="live-tag">LIVE</span></h2>
@@ -427,6 +580,17 @@ body::before{
         <span id="dataBadge">데이터 · status.json</span>
         <span id="updatedAt">--:-- 갱신</span>
       </div>
+    </aside>
+    <aside class="panel" id="panelCp" data-room-pane="coupang" hidden aria-label="쿠파스팀 워크벤치">
+      <div class="panel-head">
+        <div>
+          <h2>🚀 쿠파스팀 워크벤치 <span class="live-tag">LIVE</span></h2>
+          <p id="cpSub">오늘의 3종 · --:-- 기준</p>
+        </div>
+        <button class="icon-btn" id="cpRefresh" title="현황 새로고침" aria-label="현황 새로고침">⟳</button>
+      </div>
+      <div class="panes" id="cpBody" role="region" aria-label="쿠파스팀 현황"></div>
+      <div class="panel-foot" id="cpFoot"><span>데이터 · status.json</span><span>--:-- 갱신</span></div>
     </aside>
   </main>
 </div>
@@ -1956,7 +2120,7 @@ function mergeDeep(base, patch){
 }
 
 /* ---------------- 상태 ---------------- */
-const STATE = { data:null, tab:"office", timeMode:"auto", source:"fallback", loaded:false };
+const STATE = { data:null, tab:"office", room:"office", timeMode:"auto", source:"fallback", loaded:false };
 
 async function loadData(){
   try{
@@ -2013,6 +2177,11 @@ function applyLight(){
   if(v){
     v.setAttribute("fill", veil);
     v.setAttribute("opacity", String(veilA));
+  }
+  const v2 = document.querySelector("#sceneCp .scene-veil");
+  if(v2){
+    v2.setAttribute("fill", veil);
+    v2.setAttribute("opacity", String(veilA));
   }
   const lbl = document.getElementById("lightLabel");
   const t = nowKST();
@@ -2791,8 +2960,11 @@ function bindEvents(){
     if(e.key === "Escape" && !document.getElementById("sheet").hidden) closeSheet();
   });
   document.addEventListener("visibilitychange", function(){
-    if(document.hidden){ stopMotion(); }
-    else if(STATE.loaded && !(REDUCE && REDUCE.matches)){ startMotion(); }
+    if(document.hidden){ stopMotion(); cpStop(); }
+    else if(STATE.loaded){
+      if(STATE.room === "coupang") cpStart();
+      else if(!(REDUCE && REDUCE.matches)) startMotion();
+    }
   });
   document.getElementById("refreshBtn").addEventListener("click", async e=>{
     const btn = e.currentTarget;
@@ -2804,6 +2976,1059 @@ function bindEvents(){
   });
 }
 
+/* =======================================================================
+   🚀 쿠파스팀 전용 방 — 쿠파스 스튜디오
+   기존 본부 사무실(8명)은 그대로 두고, 이 방만 따로 그립니다.
+   ======================================================================= */
+const CP_SRC = {
+  "title": "🚀 쿠파스팀 워크벤치",
+  "subtitle": "탐색 → 기획 → 집필 → 체리 팀장 승인 → 발행",
+  "today": "2026-11-15",
+  "today_label": "11월 15일 발행분",
+  "updated_label": "11월 15일 23:55 기준",
+  "level": 1,
+  "goal": {
+    "label": "최종 승인 목표",
+    "current": 0,
+    "target": 150000,
+    "unit": "원",
+    "stage": "Lv.1 세팅 완료",
+    "note": "쿠팡 파트너스 승인 기준 · 대표님 승인 0원에서 시작"
+  },
+  "pipeline": [
+    {
+      "id": "scan",
+      "short": "탐색",
+      "name": "트렌드 탐색",
+      "who": "🔍 트렌드 탐색가",
+      "state": "done",
+      "note": "오늘 날씨·실시간 이슈·로켓 할인을 훑어 3종을 골랐어요."
+    },
+    {
+      "id": "plan",
+      "short": "기획",
+      "name": "콘텐츠 기획",
+      "who": "🧠 콘텐츠 기획자",
+      "state": "done",
+      "note": "이슈와 상품을 잇는 훅(Hook) 3개를 만들었어요."
+    },
+    {
+      "id": "write",
+      "short": "집필",
+      "name": "원고 집필",
+      "who": "✍️ 스레드 작가",
+      "state": "done",
+      "note": "광고 티 뺀 구어체 본문 + 첫 댓글 분리형 원고 3건."
+    },
+    {
+      "id": "approve",
+      "short": "승인",
+      "name": "체리 팀장 최종 승인",
+      "who": "🍒 체리 팀장",
+      "state": "done",
+      "note": "단축 링크·공정위 수수료 고지 검수 후 승인 완료!"
+    },
+    {
+      "id": "publish",
+      "short": "발행",
+      "name": "스레드 발행",
+      "who": "배호진 대표님",
+      "state": "running",
+      "note": "3건 중 1건 발행 확인 · 나머지 2건 발행 대기."
+    }
+  ],
+  "team": [
+    {
+      "id": "trend",
+      "emoji": "🔍",
+      "name": "트렌드 탐색가",
+      "role": "오늘 날씨 · 실시간 이슈 · 로켓/할인 상품 탐색",
+      "note": "리포트는 3종 후보와 할인율까지 정리해 기획자에게 넘깁니다.",
+      "doing": "오늘 3종 포착을 마치고 보드에 후보를 붙이는 중",
+      "tasks": [
+        {
+          "title": "겨울 날씨 맞춤템 포착",
+          "detail": "스피디 양면발열 손난로 8,990원 (69% · 로켓배송)"
+        },
+        {
+          "title": "트렌드·가성비 테크템 포착",
+          "detail": "지오맥스 맥세이프 보조배터리 17,860원 (74% · 로켓배송)"
+        },
+        {
+          "title": "겨울 먹거리 포착",
+          "detail": "비비고 슈크림 붕어빵 4,990원 (50% · 로켓프레시)"
+        }
+      ]
+    },
+    {
+      "id": "planner",
+      "emoji": "🧠",
+      "name": "콘텐츠 기획자",
+      "role": "이슈 + 상품 연결 훅(Hook) 기획",
+      "note": "첫 줄에서 손이 멈추게 만드는 공감 훅을 먼저 잡습니다.",
+      "doing": "훅 후보 5개 중 3개를 골라 보드에 정리하는 중",
+      "tasks": [
+        {
+          "title": "1번 훅 · 손 시린 계절",
+          "detail": "아침저녁 손 시릴 때 딱인 8,990원 가성비템"
+        },
+        {
+          "title": "2번 훅 · 케이블 스트레스",
+          "detail": "선 주렁주렁 싫어서 찾는 초슬림 맥세이프"
+        },
+        {
+          "title": "3번 훅 · 붕어빵 고민",
+          "detail": "겨울엔 집에서 굽는 슈붕이죠"
+        }
+      ]
+    },
+    {
+      "id": "writer",
+      "emoji": "✍️",
+      "name": "스레드 작가",
+      "role": "광고 티 뺀 구어체 본문 + 첫 댓글 분리형 원고",
+      "note": "본문에는 링크를 넣지 않고, 링크와 수수료 고지는 첫 댓글로 분리합니다.",
+      "doing": "본문 3건을 다듬고 첫 댓글 고지 문구를 확인하는 중",
+      "tasks": [
+        {
+          "title": "본문 3건 집필",
+          "detail": "짧은 후크 + 솔직한 한 줄 + 링크는 첫 댓글 안내"
+        },
+        {
+          "title": "첫 댓글 3건 정리",
+          "detail": "파트너스 단축 링크 + 공정위 수수료 고지 문구"
+        }
+      ]
+    },
+    {
+      "id": "lead",
+      "emoji": "🍒",
+      "name": "체리 팀장",
+      "role": "최종 승인자 · 단축 링크·공정위 고지 검수",
+      "note": "링크가 대표님 전용 단축 링크인지, 고지 문구가 빠지지 않았는지 확인한 뒤 도장을 찍습니다.",
+      "doing": "3건 모두 승인 완료 · 발행 대기함에 올려 둠",
+      "tasks": [
+        {
+          "title": "단축 링크 검수",
+          "detail": "3건 모두 link.coupang.com 단축 링크 확인"
+        },
+        {
+          "title": "공정위 고지 검수",
+          "detail": "수수료 고지 문구 누락 없음"
+        },
+        {
+          "title": "승인 완료!",
+          "detail": "3건 승인 도장 · 발행 대기로 이동"
+        }
+      ]
+    }
+  ],
+  "todayPicks": [
+    {
+      "id": "handwarmer",
+      "rank": 1,
+      "emoji": "🧤",
+      "short": "스피디 손난로",
+      "name": "스피디 양면발열 손난로 겸용 보조배터리 5200mAh",
+      "price": 8990,
+      "discount": "69%",
+      "badge": "로켓배송",
+      "approved": true,
+      "approve_label": "승인 완료!",
+      "publish_label": "발행 확인",
+      "link": "https://link.coupang.com/a/iHyvNlUFXg",
+      "hook": "아침저녁 손 시릴 때 딱인 8,990원 가성비템",
+      "body": "아침에 손 시려서 주머니에 손 넣고 다니는 계절이 왔네요 🥶\n\n양면으로 발열되는 손난로인데 보조배터리까지 된다고 해서 써봤어요. 5,200mAh라 출퇴근길 내내 따뜻하고, 만 원도 안 해서 부담도 없네요.\n\n링크는 첫 댓글에 남겨둘게요.",
+      "comment": "👉 https://link.coupang.com/a/iHyvNlUFXg\n\n이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다."
+    },
+    {
+      "id": "magsafe",
+      "rank": 2,
+      "emoji": "🔋",
+      "short": "지오맥스 보조배터리",
+      "name": "지오맥스 초슬림 맥세이프 마그네틱 유무선 보조배터리 10000mAh",
+      "price": 17860,
+      "discount": "74%",
+      "badge": "로켓배송",
+      "approved": true,
+      "approve_label": "승인 완료!",
+      "publish_label": "발행 대기",
+      "link": "https://link.coupang.com/a/iHyxUAvOQ9",
+      "hook": "케이블 주렁주렁 달기 싫은 날",
+      "body": "케이블 주렁주렁 달고 다니는 거 저만 불편했던 거 아니죠 🔋\n\n맥세이프로 착 붙는 초슬림 보조배터리인데 10,000mAh에 유선까지 됩니다. 가방 앞주머니에 쏙 들어가서 요즘 제일 자주 집는 물건이에요.\n\n링크는 첫 댓글에 남겨둘게요.",
+      "comment": "👉 https://link.coupang.com/a/iHyxUAvOQ9\n\n이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다."
+    },
+    {
+      "id": "bungeoppang",
+      "rank": 3,
+      "emoji": "🐟",
+      "short": "비비고 붕어빵",
+      "name": "비비고 슈크림 붕어빵 (냉동) 300g",
+      "price": 4990,
+      "discount": "50%",
+      "badge": "로켓프레시",
+      "approved": true,
+      "approve_label": "승인 완료!",
+      "publish_label": "발행 대기",
+      "link": "https://link.coupang.com/a/iHyzYmtRro",
+      "hook": "겨울엔 집에서 굽는 슈붕이",
+      "body": "겨울만 되면 붕어빵 앞에서 고민하잖아요 🐟\n\n집에서 에어프라이어에 몇 분만 돌리면 그 맛이 나는 슈크림 붕어빵이에요. 반값이라 한 봉지 사두면 밤에 하나씩 꺼내 먹기 딱이에요.\n\n링크는 첫 댓글에 남겨둘게요.",
+      "comment": "👉 https://link.coupang.com/a/iHyzYmtRro\n\n이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다."
+    }
+  ]
+};
+FALLBACK.coupangRoom = CP_SRC;
+
+/* ---------------- 픽셀 캐릭터 (16×21 도트, 기존 사양 그대로) ---------------- */
+const CP_CHARS = {
+  trend: {
+    name: "트렌드 탐색가", short: "🔍 탐색가",
+    role: "오늘 날씨 · 실시간 이슈 · 로켓/할인 상품 탐색",
+    accent: "#17b98a", split: 16,
+    pal: Object.assign({}, CHARS.research.pal, {
+      H:"#28405e", h:"#3f5f86", k:"#1b2c42", a:"#3f5f86",
+      L:"#16b98a", j:"#4fe0b0", l:"#0b8a63",
+      t:"#eafff8", w:"#ffffff", v:"#c2e8d8", r:"#7bf0e0", z:"#8fe0c4"
+    }),
+    rows: CHARS.research.rows
+  },
+  planner: {
+    name: "콘텐츠 기획자", short: "🧠 기획자",
+    role: "이슈 + 상품 연결 훅(Hook) 기획",
+    accent: "#7d5fd8", split: 16,
+    pal: Object.assign({}, CHARS.finance.pal, {
+      H:"#4a3070", h:"#6a4a9a", k:"#33205a", a:"#6a4a9a",
+      L:"#7d5fd8", j:"#a88cf5", l:"#5c40ab",
+      t:"#f4efff", w:"#ffffff", v:"#ddd0ee", r:"#a88cf5", z:"#e6dcff"
+    }),
+    rows: CHARS.finance.rows
+  },
+  writer: {
+    name: "스레드 작가", short: "✍️ 작가",
+    role: "광고 티 뺀 구어체 본문 + 첫 댓글 분리형 원고",
+    accent: "#e8892b", split: 16,
+    pal: Object.assign({}, CHARS.shopping.pal, {
+      H:"#a8551f", h:"#d37a32", k:"#7a3a10", a:"#d37a32",
+      L:"#f08c2e", j:"#ffbd6e", l:"#c76a22",
+      t:"#fffaf0", w:"#ffffff", v:"#e5d8c0", r:"#ffd08a", z:"#ffd08a"
+    }),
+    rows: CHARS.shopping.rows
+  },
+  lead: {
+    name: "체리 팀장", short: "🍒 체리 팀장",
+    role: "최종 승인자 · 단축 링크·공정위 고지 검수",
+    accent: "#e2508a", split: 18,
+    pal: Object.assign({}, CHARS.hq.pal, {
+      L:"#ff6f95", j:"#ffa8c0", l:"#d84e74",
+      t:"#ff6f95", w:"#ffa8c0", v:"#d84e74", r:"#ffa8c0", z:"#ffd9e0"
+    }),
+    rows: CHARS.hq.rows
+  }
+};
+const CP_ORDER = ["trend", "planner", "writer", "lead"];
+
+/* ---------------- 자리 · 동선 ---------------- */
+const CP_NODES = {
+  trend:  [308, 660],
+  planner:[638, 660],
+  writer: [968, 660],
+  lead:   [960, 965],
+  board:  [240, 1090],
+  table:  [730, 1010],
+  A1: [450, 780], A2: [638, 780], A3: [968, 780],
+  M1: [520, 1120], M2: [730, 1120], M3: [1010, 1120]
+};
+const CP_LINKS = [
+  ["trend","A1"], ["planner","A2"], ["writer","A3"],
+  ["A1","A2"], ["A2","A3"],
+  ["A1","M1"], ["A3","M3"], ["A3","lead"],
+  ["M1","board"], ["M1","M2"], ["M2","M3"], ["M2","table"], ["M3","lead"]
+];
+const CP_ADJ = {};
+Object.keys(CP_NODES).forEach(function(k){ CP_ADJ[k] = []; });
+CP_LINKS.forEach(function(pair){
+  const a = pair[0], b = pair[1];
+  if(!CP_NODES[a] || !CP_NODES[b]) return;
+  const w = Math.hypot(CP_NODES[a][0]-CP_NODES[b][0], CP_NODES[a][1]-CP_NODES[b][1]);
+  CP_ADJ[a].push([b, w]); CP_ADJ[b].push([a, w]);
+});
+function cpFindPath(from, to){
+  if(!CP_NODES[from] || !CP_NODES[to]) return null;
+  if(from === to) return [from];
+  const dist = {}, prev = {}, left = {};
+  Object.keys(CP_NODES).forEach(function(k){ dist[k] = Infinity; left[k] = true; });
+  dist[from] = 0;
+  for(;;){
+    let u = null, best = Infinity;
+    Object.keys(left).forEach(function(k){ if(left[k] && dist[k] < best){ best = dist[k]; u = k; } });
+    if(u === null || u === to) break;
+    left[u] = false;
+    CP_ADJ[u].forEach(function(e){
+      if(dist[u] + e[1] < dist[e[0]]){ dist[e[0]] = dist[u] + e[1]; prev[e[0]] = u; }
+    });
+  }
+  if(dist[to] === Infinity) return null;
+  const path = [to];
+  let c = to;
+  while(prev[c]){ c = prev[c]; path.unshift(c); }
+  return path;
+}
+
+/* ---------------- 역할별 활동지와 대사 ---------------- */
+const CP_VENUE = {
+  trend: {
+    seat:  { w: 7, lines: [
+      ["오늘 최저 4도!","손난로 각이에요"],
+      ["실시간 이슈 3건","포착 완료"],
+      ["로켓할인 훑는 중","8,990원 발견!"]
+    ]},
+    board: { w: 3, lines: [["이슈 + 상품","연결해 볼까요?"],["오늘 3종 후보","보드에 붙였어요"]] },
+    table: { w: 2, lines: [["날씨·이슈 브리핑","공유할게요"]] },
+    approve:{ w: 1, lines: [["탐색 완료 보고!","3종 후보입니다"]] }
+  },
+  planner: {
+    seat:  { w: 6, lines: [
+      ["훅 후보 5개","만들었어요"],
+      ["심심한 광고 말고","공감 한 줄부터"]
+    ]},
+    board: { w: 2, lines: [["훅 구조 정리","보드에 붙이는 중"]] },
+    table: { w: 3, lines: [["이슈 → 상품","연결 그림 그렸어요"]] },
+    approve:{ w: 1, lines: [["기획안 검수","부탁드려요!"]] }
+  },
+  writer: {
+    seat:  { w: 6, lines: [
+      ["광고 티 빼고","구어체로 썼어요"],
+      ["링크는 본문 말고","첫 댓글에!"]
+    ]},
+    board: { w: 2, lines: [["문장 다듬는 중","한 줄만 더"]] },
+    table: { w: 3, lines: [["원고 3건","읽어봐 주세요"]] },
+    approve:{ w: 2, lines: [["원고 3건","검수 부탁드려요"],["첫 댓글 고지","빠짐없이 넣었어요"]] }
+  },
+  lead: {
+    seat:  { w: 6, lines: [
+      ["단축 링크 OK","공정위 고지 OK"],
+      ["승인 완료!","발행 대기 3건"],
+      ["최종 검수 중","도장 준비!"]
+    ]},
+    board: { w: 1, lines: [["파이프라인 점검","중입니다"]] },
+    table: { w: 2, lines: [["3종 전부 통과","도장 찍었어요"]] },
+    approve:{ w: 3, lines: [["승인 완료!","쿵! 도장!"]] }
+  }
+};
+const CP_PLACE_LABEL = { seat: "내 자리", board: "보드", table: "회의 테이블", approve: "승인 데스크" };
+function cpNodeFor(id, place){
+  if(place === "seat") return id;
+  if(place === "approve") return "lead";
+  return place;
+}
+
+/* ---------------- 상태 ---------------- */
+const CP = { built: false, raf: 0, last: 0, agents: {}, people: {}, bub: {}, text: {}, cache: {}, zitems: [] };
+
+function cpInitAgents(){
+  if(Object.keys(CP.agents).length) return;
+  CP_ORDER.forEach(function(id, i){
+    const n = CP_NODES[id];
+    CP.agents[id] = {
+      id: id, node: id, place: "seat", dest: "seat",
+      x: n[0], y: n[1], phase: "idle",
+      wait: 1400 + i * 1500 + Math.random() * 1500,
+      path: null, seg: 0, t: 0, slot: null, ox: 0, oy: 0,
+      speed: 62 + Math.random() * 16, facing: 1, line: -1
+    };
+  });
+}
+
+function cpSetText(id, place, walking){
+  const ch = CP_CHARS[id];
+  if(walking){
+    CP.text[id] = { header: ch.short, accent: ch.accent, lines: ["이동 중 · " + (CP_PLACE_LABEL[place] || "이동")], walking: true };
+    return;
+  }
+  const v = CP_VENUE[id] && CP_VENUE[id][place];
+  const pool = (v && v.lines && v.lines.length) ? v.lines : [["준비 중"]];
+  const a = CP.agents[id];
+  a.line = (a.line + 1) % pool.length;
+  CP.text[id] = { header: ch.short, accent: ch.accent, lines: pool[a.line] };
+}
+
+function cpDepart(a){
+  const id = a.id;
+  const opts = [];
+  Object.keys(CP_VENUE[id] || {}).forEach(function(place){
+    if(place === a.place && place !== "seat") return;
+    opts.push({ place: place, w: (CP_VENUE[id][place].w || 1) });
+  });
+  if(!opts.length){ a.wait = 6000; return; }
+  const total = opts.reduce(function(s, o){ return s + o.w; }, 0);
+  let r = Math.random() * total, pick = opts[0].place;
+  for(let i = 0; i < opts.length; i++){ r -= opts[i].w; if(r <= 0){ pick = opts[i].place; break; } }
+  if(pick === "seat" && a.place === "seat"){ a.wait = 7000 + Math.random() * 8000; return; }
+
+  const target = cpNodeFor(id, pick);
+  const path = cpFindPath(a.node, target);
+  if(!path || path.length < 2){
+    a.place = pick; a.dest = pick; a.wait = 5000 + Math.random() * 4000;
+    cpSetText(id, pick, false);
+    return;
+  }
+  a.path = path; a.seg = 0; a.t = 0;
+  a.phase = "walk"; a.dest = pick; a.wait = 0;
+  a.slot = null; a.ox = 0; a.oy = 0;
+  cpSetText(id, pick, true);
+}
+
+function cpArrive(a){
+  const n = CP_NODES[a.node] || CP_NODES[a.id];
+  a.x = n[0]; a.y = n[1];
+  a.phase = "idle";
+  a.place = a.dest;
+  a.wait = (a.place === "seat") ? (12000 + Math.random() * 8000) : (6000 + Math.random() * 4000);
+  /* 같은 자리에 모이면 옆으로 살짝 벌려 세운다 */
+  const used = [];
+  Object.keys(CP.agents).forEach(function(id){
+    const o = CP.agents[id];
+    if(o.id !== a.id && o.phase === "idle" && o.node === a.node && typeof o.slot === "number") used.push(o.slot);
+  });
+  let s = 0;
+  while(used.indexOf(s) >= 0 && s < SLOT_OFF.length - 1) s++;
+  a.slot = s; a.ox = SLOT_OFF[s][0]; a.oy = SLOT_OFF[s][1];
+  cpSetText(a.id, a.place, false);
+}
+
+function cpFace(a, from, to){
+  const dX = to[0] - from[0];
+  if(Math.abs(dX) > 0.6) a.facing = (dX < 0) ? -1 : 1;
+}
+
+function cpStep(now){
+  if(!CP.ready) return;
+  const dt = CP.last ? Math.min(0.06, (now - CP.last) / 1000) : 0.016;
+  CP.last = now;
+  CP_ORDER.forEach(function(id){
+    const a = CP.agents[id];
+    if(a.phase === "walk" && a.path){
+      let budget = a.speed * dt, guard = 0;
+      while(budget > 0 && a.phase === "walk" && guard++ < 24){
+        const A = CP_NODES[a.path[a.seg]], B = CP_NODES[a.path[a.seg + 1]];
+        if(!A || !B){ cpArrive(a); break; }
+        const len = Math.hypot(B[0]-A[0], B[1]-A[1]) || 0.0001;
+        const remain = len * (1 - a.t);
+        if(budget < remain){
+          a.t += budget / len; budget = 0;
+          cpFace(a, A, B);
+          a.x = A[0] + (B[0]-A[0]) * a.t;
+          a.y = A[1] + (B[1]-A[1]) * a.t;
+        }else{
+          budget -= remain;
+          a.seg += 1; a.t = 0;
+          if(a.seg >= a.path.length - 1){
+            a.node = a.path[a.path.length - 1];
+            cpArrive(a);
+          }else{
+            cpFace(a, A, CP_NODES[a.path[a.seg]]);
+            a.x = B[0]; a.y = B[1];
+          }
+        }
+      }
+    }else{
+      a.wait -= dt * 1000;
+      if(a.wait <= 0) cpDepart(a);
+    }
+  });
+  cpApply();
+  CP.raf = requestAnimationFrame(cpStep);
+}
+
+function cpApply(){
+  const heads = {};
+  CP_ORDER.forEach(function(id){
+    const a = CP.agents[id];
+    const qx = Math.round(a.x + (a.ox || 0)), qy = Math.round(a.y + (a.oy || 0));
+    heads[id] = [qx, qy];
+    const el = CP.people[id];
+    if(!el) return;
+    el.setAttribute("transform", "translate(" + qx + "," + qy + ")");
+    el.setAttribute("data-x", qx); el.setAttribute("data-y", qy);
+    const f = el.querySelector(".facing");
+    if(f) f.setAttribute("transform", a.facing < 0 ? "scale(-1,1)" : "scale(1,1)");
+    el.classList.toggle("walking", a.phase === "walk");
+  });
+
+  const order = CP_ORDER.slice().sort(function(x, y){ return heads[x][1] - heads[y][1]; });
+  const occ = [];
+  order.forEach(function(id){
+    const t = CP.text[id], p = heads[id];
+    if(!t || !p) return;
+    const sz = bubbleSizeFor(t.header, t.lines);
+    const w2 = sz.w / 2;
+    let bx = p[0], by = p[1] - ROWS * CELL - 26;
+    for(let k = 0; k < 7; k++){
+      const r = { x: bx - w2, y: by - sz.h, w: sz.w, h: sz.h + 16 };
+      let hit = false;
+      for(let j = 0; j < occ.length; j++){ if(overlapArea(r, occ[j], 8) > 0){ hit = true; break; } }
+      if(!hit) break;
+      by -= 34;
+    }
+    bx = Math.max(w2 + 18, Math.min(1330 - w2 - 18, bx));
+    by = Math.max(sz.h + 16, by);
+    occ.push({ x: bx - w2, y: by - sz.h, w: sz.w, h: sz.h + 18 });
+
+    const el = CP.bub[id];
+    if(!el) return;
+    el.setAttribute("transform", "translate(" + bx.toFixed(1) + "," + by.toFixed(1) + ")");
+    const sig = t.header + "|" + t.lines.join("|") + (t.walking ? "|w" : "");
+    if(el.__sig !== sig){
+      el.__sig = sig;
+      el.innerHTML = bubbleBuild(t.accent, t.header, t.lines, sz);
+    }
+  });
+
+  /* 체리 팀장이 승인 데스크에 있을 때만 도장 배지 */
+  const stamp = document.getElementById("cpStamp");
+  if(stamp){
+    const la = CP.agents.lead;
+    const onStamp = la && la.phase === "idle" && (la.place === "seat" || la.place === "approve");
+    stamp.classList.toggle("on", !!onStamp);
+  }
+}
+
+function cpStart(){
+  CP.ready = true;
+  if(CP.raf) return;
+  if(REDUCE && REDUCE.matches){
+    CP.agents && CP_ORDER.forEach(function(id){ CP.agents[id].wait = 1e9; });
+    cpApply();
+    return;
+  }
+  CP.last = 0;
+  CP.raf = requestAnimationFrame(cpStep);
+}
+
+function cpStop(){
+  if(CP.raf) cancelAnimationFrame(CP.raf);
+  CP.raf = 0;
+  CP.last = 0;
+}
+
+/* ---------------- 그림 도구 ---------------- */
+function cpBox(x, y, w, h, d, c){
+  return '<g stroke="rgba(96,68,36,.3)" stroke-width="2" stroke-linejoin="round">'
+    + '<polygon points="' + (x+w) + ',' + (y-h) + ' ' + (x+w+d) + ',' + (y-h-d) + ' ' + (x+w+d) + ',' + (y-d) + ' ' + (x+w) + ',' + y + '" fill="' + c.side + '"/>'
+    + '<polygon points="' + x + ',' + (y-h) + ' ' + (x+w) + ',' + (y-h) + ' ' + (x+w+d) + ',' + (y-h-d) + ' ' + (x+d) + ',' + (y-h-d) + '" fill="' + c.top + '"/>'
+    + '<rect x="' + x + '" y="' + (y-h) + '" width="' + w + '" height="' + h + '" fill="' + c.front + '"/>'
+    + '</g>';
+}
+
+function cpDesk(cx, y, w, tint, label, accent, extra){
+  const x = Math.round(cx - w/2), d = 22, slabH = 22, legH = 30;
+  const surf = y - legH - slabH;   /* 상판 윗면 앞 모서리 */
+  let s = '';
+  s += '<ellipse cx="' + cx + '" cy="' + (y+3) + '" rx="' + Math.round(w*0.54) + '" ry="13" fill="rgba(120,86,46,.13)"/>';
+  s += '<rect x="' + (x+18) + '" y="' + (y-legH) + '" width="13" height="' + legH + '" fill="#b08a5c"/>';
+  s += '<rect x="' + (x+w-31) + '" y="' + (y-legH) + '" width="13" height="' + legH + '" fill="#b08a5c"/>';
+  s += cpBox(x, surf + slabH, w, slabH, d, tint);
+  /* 모니터 */
+  s += cpBox(cx-50, surf, 100, 56, 10, { top:"#46586b", front:"#2c3947", side:"#22303c" });
+  s += '<rect x="' + (cx-42) + '" y="' + (surf-50) + '" width="84" height="40" rx="3" fill="#dcf7ee"/>';
+  s += '<path d="M ' + (cx-33) + ' ' + (surf-19) + ' L ' + (cx-19) + ' ' + (surf-31) + ' L ' + (cx-6) + ' ' + (surf-22) + ' L ' + (cx+8) + ' ' + (surf-36) + ' L ' + (cx+22) + ' ' + (surf-24) + ' L ' + (cx+33) + ' ' + (surf-33) + '" fill="none" stroke="#2eb08d" stroke-width="3"/>';
+  /* 컵 · 서류 */
+  s += '<ellipse cx="' + (x+w-48) + '" cy="' + (surf-18) + '" rx="14" ry="6" fill="rgba(90,64,36,.15)"/>';
+  s += '<rect x="' + (x+w-59) + '" y="' + (surf-34) + '" width="22" height="17" rx="3" fill="#fff" stroke="#c9b291" stroke-width="2"/>';
+  s += '<path d="M ' + (x+w-37) + ' ' + (surf-30) + ' q 9 5 0 11" fill="none" stroke="#c9b291" stroke-width="2"/>';
+  s += '<rect x="' + (x+30) + '" y="' + (surf-18) + '" width="52" height="12" rx="2" fill="#fffdf3" stroke="rgba(160,125,80,.45)" stroke-width="1.5"/>';
+  /* 이름표 */
+  s += '<rect x="' + (x+16) + '" y="' + (surf+5) + '" width="120" height="14" rx="3" fill="#fffaf0" stroke="rgba(160,125,80,.4)" stroke-width="1.5"/>';
+  s += '<text x="' + (x+24) + '" y="' + (surf+16.5) + '" font-size="11.5" font-weight="800" fill="#8a6a42">' + esc(label) + '</text>';
+  s += '<rect x="' + (x+144) + '" y="' + (surf+5) + '" width="' + Math.max(12, w-162) + '" height="14" rx="3" fill="' + accent + '" opacity=".38"/>';
+  if(extra) s += extra;
+  return s;
+}
+
+function cpChair(cx, y){
+  let s = '';
+  s += '<ellipse cx="' + cx + '" cy="' + (y+3) + '" rx="30" ry="9" fill="rgba(120,86,46,.12)"/>';
+  s += '<rect x="' + (cx-5) + '" y="' + (y-36) + '" width="10" height="36" fill="#9c7a54"/>';
+  s += '<rect x="' + (cx-29) + '" y="' + (y-72) + '" width="58" height="32" rx="9" fill="#7fa3d2" stroke="rgba(45,70,110,.35)" stroke-width="2.5"/>';
+  s += '<rect x="' + (cx-33) + '" y="' + (y-42) + '" width="66" height="15" rx="6" fill="#6a90c2" stroke="rgba(45,70,110,.3)" stroke-width="2.5"/>';
+  return s;
+}
+
+function cpWindow(x, y, w, h){
+  let s = '';
+  s += '<rect x="' + (x-10) + '" y="' + (y-10) + '" width="' + (w+20) + '" height="' + (h+20) + '" rx="10" fill="#f5ddba" stroke="rgba(190,150,100,.5)" stroke-width="3"/>';
+  s += '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" fill="url(#cpSkyG)"/>';
+  s += '<ellipse cx="' + (x+w*0.28) + '" cy="' + (y+h*0.26) + '" rx="40" ry="15" fill="#fff" opacity=".92"/>';
+  s += '<ellipse cx="' + (x+w*0.36) + '" cy="' + (y+h*0.22) + '" rx="26" ry="12" fill="#fff" opacity=".92"/>';
+  s += '<ellipse cx="' + (x+w*0.78) + '" cy="' + (y+h*0.18) + '" rx="30" ry="12" fill="#fff" opacity=".8"/>';
+  s += '<rect x="' + x + '" y="' + (y+h-52) + '" width="' + w + '" height="52" fill="#cfe4f2" opacity=".75"/>';
+  s += '<rect x="' + (x+18) + '" y="' + (y+h-78) + '" width="46" height="26" fill="#b9d3e6" opacity=".85"/>';
+  s += '<rect x="' + (x+86) + '" y="' + (y+h-96) + '" width="34" height="44" fill="#c3dcec" opacity=".85"/>';
+  s += '<rect x="' + (x+150) + '" y="' + (y+h-70) + '" width="40" height="18" fill="#b9d3e6" opacity=".85"/>';
+  s += '<rect x="' + (x+w/2-3) + '" y="' + y + '" width="6" height="' + h + '" fill="#f6e3c4"/>';
+  s += '<rect x="' + x + '" y="' + (y+h/2-3) + '" width="' + w + '" height="6" fill="#f6e3c4"/>';
+  s += '<rect x="' + (x-16) + '" y="' + (y+h+8) + '" width="' + (w+32) + '" height="12" rx="4" fill="#efd2a6" stroke="rgba(190,150,100,.45)" stroke-width="2"/>';
+  return s;
+}
+
+function cpPlant(x, y){
+  let s = '';
+  s += '<ellipse cx="' + x + '" cy="' + (y+3) + '" rx="30" ry="9" fill="rgba(120,86,46,.14)"/>';
+  s += '<path d="M ' + (x-16) + ' ' + (y-28) + ' q -26 -26 -6 -52 q 20 22 6 52 Z" fill="#4faa6e" stroke="#2f7d4e" stroke-width="2"/>';
+  s += '<path d="M ' + (x+14) + ' ' + (y-28) + ' q 26 -26 6 -52 q -20 22 -6 52 Z" fill="#5dbd7c" stroke="#2f7d4e" stroke-width="2"/>';
+  s += '<path d="M ' + x + ' ' + (y-30) + ' q -14 -34 0 -60 q 14 26 0 60 Z" fill="#3f9a60" stroke="#2f7d4e" stroke-width="2"/>';
+  s += '<path d="M ' + (x-22) + ' ' + (y-24) + ' L ' + (x+22) + ' ' + (y-24) + ' L ' + (x+16) + ' ' + (y+2) + ' L ' + (x-16) + ' ' + (y+2) + ' Z" fill="#d98f5e" stroke="#a8653a" stroke-width="2"/>';
+  s += '<rect x="' + (x-24) + '" y="' + (y-30) + '" width="48" height="9" rx="4" fill="#e8a172" stroke="#a8653a" stroke-width="2"/>';
+  return s;
+}
+
+function cpParcel(x, y){
+  let s = '';
+  s += '<ellipse cx="' + x + '" cy="' + (y+2) + '" rx="48" ry="10" fill="rgba(120,86,46,.14)"/>';
+  s += cpBox(x-42, y, 84, 34, 12, { top:"#efd9b6", front:"#d9bb8e", side:"#c2a074" });
+  s += cpBox(x-30, y-34, 64, 26, 10, { top:"#f6e4c6", front:"#e2c69c", side:"#c9a87c" });
+  s += '<rect x="' + (x-42) + '" y="' + (y-24) + '" width="84" height="6" fill="#b8e0ff" opacity=".85"/>';
+  s += '<rect x="' + (x-30) + '" y="' + (y-52) + '" width="64" height="5" fill="#b8e0ff" opacity=".85"/>';
+  s += '<text x="' + x + '" y="' + (y-10) + '" text-anchor="middle" font-size="13" font-weight="800" fill="#8a6a42">로켓</text>';
+  return s;
+}
+
+function cpCoffeeCart(x, y){
+  let s = '';
+  s += '<ellipse cx="' + x + '" cy="' + (y+3) + '" rx="44" ry="10" fill="rgba(120,86,46,.14)"/>';
+  s += cpBox(x-38, y, 76, 46, 12, { top:"#f0d8b4", front:"#d7b489", side:"#bf9a6c" });
+  s += '<rect x="' + (x-26) + '" y="' + (y-46) + '" width="52" height="30" rx="5" fill="#e8eef4" stroke="#9fb2c2" stroke-width="2"/>';
+  s += '<rect x="' + (x-26) + '" y="' + (y-40) + '" width="52" height="12" rx="3" fill="#5c6b78"/>';
+  s += '<circle cx="' + (x-8) + '" cy="' + (y-34) + '" r="3" fill="#ff8a5c"/>';
+  s += '<circle cx="' + (x+8) + '" cy="' + (y-34) + '" r="3" fill="#ffc94d"/>';
+  s += '<rect x="' + (x-18) + '" y="' + (y-16) + '" width="36" height="6" rx="3" fill="#8a6a42"/>';
+  return s;
+}
+
+function cpBackdropSvg(){
+  const picks = (cpData().todayPicks || []);
+  let s = '';
+  /* 벽 */
+  s += '<rect x="0" y="0" width="1330" height="432" fill="url(#cpWallG)"/>';
+  s += '<rect x="0" y="352" width="1330" height="66" fill="rgba(255,211,152,.5)"/>';
+  for(let x = 8; x < 1330; x += 64){ s += '<rect x="' + x + '" y="355" width="30" height="63" fill="rgba(255,255,255,.32)"/>'; }
+  s += '<rect x="0" y="350" width="1330" height="5" fill="rgba(212,168,110,.5)"/>';
+  s += '<rect x="0" y="418" width="1330" height="16" fill="#e3bd8a"/>';
+  s += '<rect x="0" y="418" width="1330" height="4" fill="#f9e6c8"/>';
+  /* 바닥 */
+  s += '<rect x="0" y="432" width="1330" height="750" fill="url(#cpFloorG)"/>';
+  s += '<rect x="0" y="432" width="1330" height="750" fill="url(#cpTiles)"/>';
+  s += '<rect x="0" y="432" width="1330" height="10" fill="rgba(120,86,46,.1)"/>';
+  /* 러그 */
+  s += '<ellipse cx="730" cy="1000" rx="300" ry="120" fill="rgba(159,220,198,.32)"/>';
+  s += '<ellipse cx="730" cy="1000" rx="300" ry="120" fill="none" stroke="rgba(90,170,145,.45)" stroke-width="5"/>';
+  s += '<ellipse cx="730" cy="1000" rx="252" ry="96" fill="none" stroke="rgba(255,255,255,.7)" stroke-width="4"/>';
+  /* 천장 조명 */
+  [300, 660, 1020].forEach(function(lx){
+    s += '<rect x="' + (lx-2) + '" y="0" width="4" height="34" fill="rgba(150,120,80,.5)"/>';
+    s += '<path d="M ' + (lx-30) + ' 72 L ' + (lx+30) + ' 72 L ' + (lx+18) + ' 34 L ' + (lx-18) + ' 34 Z" fill="#ffe7b4" stroke="rgba(190,150,100,.55)" stroke-width="2"/>';
+    s += '<ellipse cx="' + lx + '" cy="74" rx="12" ry="5" fill="#fff6da"/>';
+    s += '<ellipse cx="' + lx + '" cy="150" rx="120" ry="86" fill="url(#cpLampG)"/>';
+  });
+  /* 창문 */
+  s += cpWindow(150, 150, 290, 200);
+  s += cpWindow(520, 150, 290, 200);
+  /* 월보드 */
+  const bx = 880, by = 138, bw = 360, bh = 214;
+  s += '<rect x="' + bx + '" y="' + by + '" width="' + bw + '" height="' + bh + '" rx="12" fill="#fffdf6" stroke="#d9b98c" stroke-width="4"/>';
+  s += '<rect x="' + (bx+12) + '" y="' + (by+12) + '" width="' + (bw-24) + '" height="' + (bh-24) + '" rx="8" fill="#fff5e2"/>';
+  s += '<text x="' + (bx+bw/2) + '" y="' + (by+42) + '" text-anchor="middle" font-size="19" font-weight="800" fill="#b06a1e">오늘의 추천 3종</text>';
+  picks.slice(0, 3).forEach(function(p, i){
+    const ly = by + 66 + i * 48;
+    s += '<rect x="' + (bx+24) + '" y="' + ly + '" width="' + (bw-48) + '" height="40" rx="7" fill="#fff" stroke="rgba(200,160,105,.45)" stroke-width="2"/>';
+    s += '<text x="' + (bx+38) + '" y="' + (ly+26) + '" font-size="15" fill="#5c4a3a">' + esc((p.emoji || "") + " " + (p.short || p.name)) + '</text>';
+    s += '<text x="' + (bx+bw-40) + '" y="' + (ly+26) + '" text-anchor="end" font-size="15" font-weight="800" fill="#c0392b">' + won(p.price) + '원</text>';
+  });
+  /* 벽시계 */
+  s += '<circle cx="1268" cy="86" r="26" fill="#fffdf6" stroke="#d9b98c" stroke-width="4"/>';
+  s += '<path d="M 1268 86 L 1268 70" stroke="#6b5540" stroke-width="3" stroke-linecap="round"/>';
+  s += '<path d="M 1268 86 L 1280 92" stroke="#6b5540" stroke-width="3" stroke-linecap="round"/>';
+  /* 현수막 */
+  s += '<path d="M 40 66 L 840 66" stroke="rgba(150,120,80,.4)" stroke-width="3" fill="none"/>';
+  for(let i = 0; i <= 8; i++){
+    const lx2 = 40 + i * 100, ly2 = 66 + Math.round(Math.sin(i / 8 * Math.PI) * 18);
+    s += '<circle cx="' + lx2 + '" cy="' + ly2 + '" r="6" fill="#fff3c4" stroke="#e2b96a" stroke-width="2"/>';
+  }
+  s += '<rect x="392" y="96" width="290" height="52" rx="14" fill="#fffaf0" stroke="#e0b57b" stroke-width="3"/>';
+  s += '<text x="537" y="131" text-anchor="middle" font-size="24" font-weight="900" fill="#b06a1e">🚀 쿠파스팀 스튜디오</text>';
+  return s;
+}
+
+function cpProps(){
+  const P = [];
+  const push = function(z, html){ P.push({ z: z, html: html }); };
+  const TINT = { top:"#eec48c", front:"#cf9557", side:"#b07b43" };
+  const TINT2 = { top:"#f6d9b0", front:"#d6a76c", side:"#bb8a52" };
+
+  /* 벽가 수납장 */
+  let side = '';
+  side += '<ellipse cx="250" cy="524" rx="150" ry="11" fill="rgba(120,86,46,.12)"/>';
+  side += cpBox(130, 520, 240, 56, 16, { top:"#efd5b3", front:"#d3b08a", side:"#bd9670" });
+  side += '<rect x="146" y="474" width="70" height="38" rx="4" fill="#f6e7cd" stroke="rgba(160,125,80,.4)" stroke-width="2"/>';
+  side += '<rect x="226" y="474" width="70" height="38" rx="4" fill="#f6e7cd" stroke="rgba(160,125,80,.4)" stroke-width="2"/>';
+  side += '<circle cx="181" cy="493" r="3.5" fill="#a5835a"/><circle cx="261" cy="493" r="3.5" fill="#a5835a"/>';
+  side += '<rect x="306" y="484" width="46" height="36" rx="3" fill="#e2c69c" stroke="rgba(160,125,80,.45)" stroke-width="2"/>';
+  side += '<rect x="306" y="498" width="46" height="6" fill="#b8e0ff" opacity=".8"/>';
+  push(524, side);
+
+  /* 세 사람의 자리 — 의자 + 책상 (캐릭터는 책상 뒤에 서서 앉은 모습) */
+  push(642, cpChair(88, 664) + cpChair(418, 664) + cpChair(748, 664));
+  push(700, cpDesk(230, 700, 260, TINT, "🔍 트렌드 탐색가", "#17b98a"));
+  push(700, cpDesk(560, 700, 260, TINT, "🧠 콘텐츠 기획자", "#7d5fd8"));
+  push(700, cpDesk(890, 700, 260, TINT, "✍️ 스레드 작가", "#e8892b"));
+
+  /* 체리 팀장 승인 데스크 */
+  let leadExtra = '';
+  leadExtra += '<rect x="1038" y="854" width="46" height="26" rx="4" fill="#e2564a" stroke="#a83a2c" stroke-width="2.5"/>';
+  leadExtra += '<rect x="1050" y="838" width="22" height="18" rx="3" fill="#8e5a3a" stroke="#6b4028" stroke-width="2.5"/>';
+  leadExtra += '<rect x="1176" y="852" width="74" height="18" rx="3" fill="#8ec9e8" stroke="#5b93b3" stroke-width="2.5"/>';
+  leadExtra += '<text x="1213" y="865" text-anchor="middle" font-size="11.5" font-weight="800" fill="#24506a">발행 대기</text>';
+  leadExtra += '<rect x="1178" y="838" width="62" height="12" rx="2" fill="#fffdf3" stroke="rgba(160,125,80,.5)" stroke-width="1.5"/>';
+  push(930, cpDesk(1150, 930, 240, TINT2, "🍒 체리 팀장", "#e2508a", leadExtra));
+
+  /* 승인 도장 배지 (팀장이 자리에 있을 때만 뜸) */
+  push(934, '<g transform="translate(1150,772)"><g class="cp-stamp" id="cpStamp">'
+    + '<rect x="-80" y="-24" width="160" height="48" rx="13" fill="rgba(226,86,74,.94)" stroke="#9e2f22" stroke-width="3"/>'
+    + '<text x="0" y="10" text-anchor="middle" font-size="25" font-weight="900" fill="#fff">승인 완료!</text>'
+    + '</g></g>');
+
+  /* 회의 테이블 */
+  const tx = 560, ty = 960, tw = 340, td = 24, tsurf = ty - 34 - 22;
+  let tbl = '';
+  tbl += '<ellipse cx="730" cy="' + (ty+8) + '" rx="216" ry="19" fill="rgba(120,86,46,.13)"/>';
+  tbl += '<rect x="' + (tx+30) + '" y="' + (ty-34) + '" width="16" height="34" fill="#a5835a"/>';
+  tbl += '<rect x="' + (tx+tw-46) + '" y="' + (ty-34) + '" width="16" height="34" fill="#a5835a"/>';
+  tbl += cpBox(tx, tsurf + 22, tw, 22, td, { top:"#f7dcb0", front:"#d9a970", side:"#bd8f5c" });
+  tbl += '<polygon points="' + (tx+44) + ',' + (tsurf-6) + ' ' + (tx+tw-24) + ',' + (tsurf-6) + ' ' + (tx+tw) + ',' + (tsurf-30) + ' ' + (tx+70) + ',' + (tsurf-30) + '" fill="#9fdcc6" opacity=".9"/>';
+  /* 노트북 */
+  tbl += '<rect x="672" y="' + (tsurf-40) + '" width="96" height="32" rx="3" fill="#3f4d5c"/>';
+  tbl += '<rect x="677" y="' + (tsurf-35) + '" width="86" height="22" rx="2" fill="#cdeee2"/>';
+  tbl += '<rect x="660" y="' + (tsurf-12) + '" width="120" height="11" rx="3" fill="#5d6b7a"/>';
+  /* 컵 */
+  [596, 780, 846].forEach(function(cx2){
+    tbl += '<ellipse cx="' + cx2 + '" cy="' + (tsurf-14) + '" rx="13" ry="5" fill="rgba(90,64,36,.15)"/>';
+    tbl += '<rect x="' + (cx2-10) + '" y="' + (tsurf-32) + '" width="20" height="18" rx="3" fill="#fff" stroke="#c9b291" stroke-width="2"/>';
+  });
+  /* 서류 */
+  tbl += '<rect x="812" y="' + (tsurf-38) + '" width="56" height="15" rx="2" fill="#fffdf3" stroke="rgba(160,125,80,.5)" stroke-width="1.5"/>';
+  tbl += '<rect x="808" y="' + (tsurf-30) + '" width="56" height="15" rx="2" fill="#fffdf3" stroke="rgba(160,125,80,.5)" stroke-width="1.5"/>';
+  tbl += cpChair(566, 950) + cpChair(898, 950);
+  push(962, tbl);
+
+  /* 보드 */
+  push(1060, cpBoardSvg());
+
+  /* 소품 */
+  push(1024, cpParcel(64, 1024));
+  push(1146, cpPlant(66, 1146));
+  push(1120, cpCoffeeCart(1196, 1120));
+  push(1058, cpPlant(1286, 1058));
+  return P;
+}
+
+function cpBoardSvg(){
+  const x = 100, y = 805, w = 280, h = 190;
+  let s = '';
+  s += '<ellipse cx="' + (x+w/2) + '" cy="' + (y+h+62) + '" rx="150" ry="14" fill="rgba(120,86,46,.13)"/>';
+  s += '<rect x="' + (x+24) + '" y="' + (y+h-10) + '" width="13" height="70" fill="#b18a5c"/>';
+  s += '<rect x="' + (x+w-37) + '" y="' + (y+h-10) + '" width="13" height="70" fill="#b18a5c"/>';
+  s += '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" rx="10" fill="#f8fbff" stroke="#9fb4c7" stroke-width="6"/>';
+  s += '<rect x="' + (x+12) + '" y="' + (y+12) + '" width="' + (w-24) + '" height="' + (h-24) + '" rx="6" fill="#fff"/>';
+  s += '<text x="' + (x+w/2) + '" y="' + (y+46) + '" text-anchor="middle" font-size="21" font-weight="800" fill="#2f5d7c">오늘 파이프라인</text>';
+  const notes = [[x+26, y+64, "#ffe08a", "날씨 4도"], [x+106, y+64, "#bfe9d6", "이슈 3건"], [x+186, y+64, "#ffd1d8", "로켓할인"]];
+  notes.forEach(function(n){
+    s += '<rect x="' + n[0] + '" y="' + n[1] + '" width="72" height="56" rx="4" fill="' + n[2] + '" stroke="rgba(150,120,70,.35)" stroke-width="2"/>';
+    s += '<text x="' + (n[0]+36) + '" y="' + (n[1]+34) + '" text-anchor="middle" font-size="14" font-weight="700" fill="#5a4a34">' + esc(n[3]) + '</text>';
+  });
+  s += '<text x="' + (x+w/2) + '" y="' + (y+h-30) + '" text-anchor="middle" font-size="15" font-weight="700" fill="#7b8fa1">탐색 → 기획 → 집필 → 승인</text>';
+  return s;
+}
+
+function cpDefsSvg(){
+  return '<defs>'
+    + '<linearGradient id="cpWallG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff9ec"/><stop offset="1" stop-color="#ffeecf"/></linearGradient>'
+    + '<linearGradient id="cpFloorG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f8e9cb"/><stop offset="1" stop-color="#eed7b0"/></linearGradient>'
+    + '<linearGradient id="cpSkyG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#bfe6ff"/><stop offset="1" stop-color="#eefaff"/></linearGradient>'
+    + '<radialGradient id="cpLampG" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ffe3a6" stop-opacity=".5"/><stop offset="1" stop-color="#ffe3a6" stop-opacity="0"/></radialGradient>'
+    + '<pattern id="cpTiles" width="120" height="120" patternUnits="userSpaceOnUse">'
+    + '<rect x="0" y="0" width="60" height="60" fill="rgba(214,178,120,.16)"/>'
+    + '<rect x="60" y="60" width="60" height="60" fill="rgba(214,178,120,.16)"/>'
+    + '<path d="M0 0H120M0 60H120M0 0V120M60 0V120" stroke="rgba(190,152,98,.2)" stroke-width="2"/>'
+    + '</pattern>'
+    + '</defs>';
+}
+
+function cpPersonMarkup(id, a){
+  const ch = CP_CHARS[id];
+  const px = Math.round(a.x || CP_NODES[id][0]);
+  const py = Math.round(a.y || CP_NODES[id][1]);
+  return '<g class="person cp-person" data-cp="' + id + '" data-x="' + px + '" data-y="' + py + '"'
+    + ' transform="translate(' + px + ',' + py + ')" tabindex="0" role="button"'
+    + ' aria-label="' + esc(ch.name) + ' — ' + esc(ch.role) + '">'
+    + '<ellipse class="p-shadow" cx="0" cy="0" rx="23" ry="6"/>'
+    + '<g class="bob" style="animation-duration:' + (4.2 + (id.length % 3) * 0.4).toFixed(2) + 's">'
+    + '<g class="facing">' + spriteSvg(ch) + '</g>'
+    + '</g></g>';
+}
+
+function cpRender(){
+  const svg = document.getElementById("sceneCp");
+  if(!svg) return;
+  cpInitAgents();
+  CP_ORDER.forEach(function(id){ if(!CP.text[id]) cpSetText(id, "seat", false); });
+
+  let html = cpDefsSvg() + cpBackdropSvg();
+  html += '<rect class="scene-veil" x="0" y="0" width="1330" height="1182" fill="#fff3d6" opacity="0"/>';
+
+  const props = cpProps().sort(function(a, b){ return a.z - b.z; });
+  CP.zitems = props;
+  html += '<g id="cpWorld">' + props.map(function(it){ return it.html; }).join("") + '</g>';
+  html += '<g id="cpPeople">' + CP_ORDER.map(function(id){ return cpPersonMarkup(id, CP.agents[id]); }).join("") + '</g>';
+  html += '<g id="cpBub">' + CP_ORDER.map(function(id){
+    return '<g class="bubble" data-b="' + id + '"></g>';
+  }).join("") + '</g>';
+
+  svg.innerHTML = html;
+  CP.people = {}; CP.bub = {};
+  const people = svg.querySelectorAll("#cpPeople .cp-person");
+  for(let i = 0; i < people.length; i++) CP.people[people[i].getAttribute("data-cp")] = people[i];
+  const bubs = svg.querySelectorAll("#cpBub .bubble");
+  for(let i = 0; i < bubs.length; i++){ CP.bub[bubs[i].getAttribute("data-b")] = bubs[i]; bubs[i].__sig = null; }
+  CP.built = true;
+  cpApply();
+}
+
+/* ---------------- 패널 ---------------- */
+function cpData(){
+  const d = STATE.data && STATE.data.coupangRoom;
+  return (d && d.todayPicks) ? d : CP_SRC;
+}
+const CP_SCRIPTS = {};
+
+function cpFlow(steps){
+  let h = '<div class="cp-flow">';
+  steps.forEach(function(st, i){
+    const cls = st.state === "done" ? " done" : (st.state === "running" ? " run" : " wait");
+    h += '<div class="cp-node' + cls + '">'
+      + '<span class="c">' + (st.state === "done" ? "✓" : (i + 1)) + '</span>'
+      + '<span class="l">' + esc(st.short || st.name) + '</span></div>';
+  });
+  h += '</div>';
+  const cur = steps.filter(function(s){ return s.state === "running"; })[0]
+    || steps.filter(function(s){ return s.state === "done"; }).slice(-1)[0];
+  if(cur){
+    h += '<div class="cp-note-row"><b>' + esc(cur.short || cur.name) + '</b><span>' + esc(cur.note || "") + '</span></div>';
+  }
+  return h;
+}
+
+function cpGoal(g, level){
+  const tgt = +g.target || 0, cur = +g.current || 0;
+  const pct = tgt > 0 ? Math.max(0, Math.min(100, Math.round(cur / tgt * 100))) : 0;
+  let h = '<div class="cp-goal">';
+  h += '<div class="cp-goal-top"><b>' + esc(g.label || "최종 승인 목표") + (level ? '<span class="lv">Lv.' + level + '</span>' : "") + '</b>'
+    + '<span class="num">' + won(cur) + '원 <i>/</i> ' + won(tgt) + '원</span></div>';
+  h += '<div class="bar"><i style="width:' + pct + '%"></i></div>';
+  h += '<div class="sub">달성 ' + pct + '% · ' + esc(g.stage || "") + '<br>' + esc(g.note || "") + '</div>';
+  h += '</div>';
+  return h;
+}
+
+function cpPickCard(p){
+  const id = String(p.id);
+  CP_SCRIPTS[id + ":body"] = p.body || "";
+  CP_SCRIPTS[id + ":cm"] = p.comment || "";
+  let h = '<div class="pick" data-pick="' + esc(id) + '">';
+  h += '<div class="pick-top">'
+    + '<span class="pick-ic" aria-hidden="true">' + esc(p.emoji || "🛍️") + '</span>'
+    + '<span class="pick-main"><b class="nm">' + esc((p.rank ? p.rank + ". " : "") + p.name) + '</b>'
+    + '<span class="pick-meta">'
+    + '<span class="pick-price">' + won(p.price) + '원</span>'
+    + (p.discount ? '<span class="pick-off">' + esc(p.discount) + ' 할인</span>' : "")
+    + (p.badge ? '<span class="pick-rocket">' + esc(p.badge) + '</span>' : "")
+    + (p.approved ? '<span class="pick-appr">' + esc(p.approve_label || "승인 완료!") + '</span>' : "")
+    + (p.publish_label ? '<span class="pick-pub">' + esc(p.publish_label) + '</span>' : "")
+    + '</span></span></div>';
+  h += '<div class="pick-body">';
+  h += '<div class="script-lab"><span class="t">본문 원고 · 광고 티 뺀 구어체</span>'
+    + '<button class="cp-copy" type="button" data-copy="' + esc(id) + ':body" data-label="본문 복사">본문 복사</button></div>';
+  h += '<pre class="script">' + esc(p.body || "") + '</pre>';
+  h += '<div class="script-lab"><span class="t">첫 댓글 · 링크 + 수수료 고지</span>'
+    + '<button class="cp-copy" type="button" data-copy="' + esc(id) + ':cm" data-label="첫 댓글 복사">첫 댓글 복사</button></div>';
+  h += '<pre class="script cm">' + esc(p.comment || "") + '</pre>';
+  if(p.link) h += '<a class="cp-link" href="' + esc(p.link) + '" target="_blank" rel="noopener">' + esc(p.link) + '</a>';
+  h += '</div></div>';
+  return h;
+}
+
+function cpWorkbench(d){
+  let h = '';
+  h += '<div class="sec-title">팀 파이프라인 <span class="n">' + (d.level ? "Lv." + d.level : "") + '</span></div>';
+  h += cpFlow(d.pipeline || []);
+  h += cpGoal(d.goal || {}, d.level);
+  h += '<div class="sec-title">오늘의 추천 3종 <span class="n">' + ((d.todayPicks || []).length) + '건</span></div>';
+  h += (d.todayPicks || []).map(cpPickCard).join("");
+  h += '<div class="note">복사 버튼을 누르면 원고가 클립보드에 담깁니다. 스레드 앱에서 붙여넣기만 하면 돼요.</div>';
+  h += '<div class="cp-foot-note">본문에는 링크를 넣지 않고, 파트너스 단축 링크와 공정위 수수료 고지는 첫 댓글에만 둡니다. 쿠팡 파트너스 정책상 고지 문구는 생략할 수 없습니다.</div>';
+  return h;
+}
+
+function renderCpPanel(){
+  const d = cpData();
+  const sub = document.getElementById("cpSub");
+  if(sub) sub.textContent = (d.today_label || "") + " · " + (d.updated_label || "") + " 기준";
+  const body = document.getElementById("cpBody");
+  if(body) body.innerHTML = '<div class="pane">' + cpWorkbench(d) + '</div>';
+  const foot = document.getElementById("cpFoot");
+  if(foot) foot.innerHTML = (STATE.source === "file" ? '<span class="ok">●</span> 데이터 · status.json' : "데이터 · 내장 스냅샷")
+    + '<span>' + esc(d.updated_label || "") + ' 갱신</span>';
+  const tk = document.getElementById("cpTicker");
+  if(tk){
+    const line = (d.pipeline || []).map(function(st, i){
+      return '<span><b>' + (i + 1) + '</b>' + esc((st.short || st.name) + ' · ' + (st.who || '')) + '</span>';
+    }).join("");
+    tk.innerHTML = line + line;
+  }
+}
+
+/* ---------------- 복사 ---------------- */
+function cpCopyText(text, btn){
+  const done = function(ok){
+    if(!btn) return;
+    const label = btn.getAttribute("data-label") || "복사";
+    btn.classList.toggle("copied", ok);
+    btn.classList.toggle("failed", !ok);
+    btn.textContent = ok ? "✓ 복사됨" : "✕ 복사 실패";
+    clearTimeout(btn.__t);
+    btn.__t = setTimeout(function(){
+      btn.classList.remove("copied"); btn.classList.remove("failed");
+      btn.textContent = label;
+    }, 1700);
+  };
+  const fallback = function(){
+    let ok = false;
+    try{
+      const ta = document.createElement("textarea");
+      ta.value = text;
+      ta.setAttribute("readonly", "");
+      ta.style.position = "fixed";
+      ta.style.top = "-1000px";
+      ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, ta.value.length);
+      ok = document.execCommand("copy");
+      document.body.removeChild(ta);
+    }catch(e){ ok = false; }
+    done(ok);
+  };
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(function(){ done(true); }, fallback);
+  }else{
+    fallback();
+  }
+}
+
+/* ---------------- 인물 상세 시트 ---------------- */
+function cpTeamOf(id){
+  const list = cpData().team || [];
+  for(let i = 0; i < list.length; i++){ if(list[i].id === id) return list[i]; }
+  return null;
+}
+
+function cpOpenSheet(id){
+  const t = cpTeamOf(id);
+  if(!t) return;
+  const ch = CP_CHARS[id] || {};
+  lastFocus = document.activeElement;
+  document.getElementById("sheetIcon").textContent = t.emoji || "🚀";
+  document.getElementById("sheetName").textContent = t.name || ch.name || id;
+  document.getElementById("sheetRole").textContent = (t.role || ch.role || "") + " · 🚀 쿠파스팀 전용 방";
+  let h = '<div class="note" style="margin-top:0">' + esc(t.note || "") + '</div>';
+  if(t.doing) h += '<div class="card"><div class="card-top"><span class="ic">📍</span><span class="chip chip--run">지금</span></div><h4>' + esc(t.doing) + '</h4></div>';
+  h += '<div class="sec-title">오늘 맡은 일 <span class="n">' + ((t.tasks || []).length) + '</span></div>';
+  h += (t.tasks || []).map(function(x){
+    return '<div class="card"><div class="card-top"><span class="chip chip--done">완료</span></div>'
+      + '<h4>' + esc(x.title) + '</h4>' + (x.detail ? '<p>' + esc(x.detail) + '</p>' : '') + '</div>';
+  }).join("");
+  document.getElementById("sheetBody").innerHTML = h;
+  document.getElementById("sheet").hidden = false;
+  document.getElementById("sheetClose").focus();
+  document.body.style.overflow = "hidden";
+}
+
+/* ---------------- 방 전환 ---------------- */
+function setRoom(room){
+  if(room !== "coupang") room = "office";
+  STATE.room = room;
+  const panes = document.querySelectorAll("[data-room-pane]");
+  for(let i = 0; i < panes.length; i++){
+    panes[i].hidden = panes[i].getAttribute("data-room-pane") !== room;
+  }
+  const tabs = document.querySelectorAll("[data-room-tab]");
+  for(let i = 0; i < tabs.length; i++){
+    tabs[i].setAttribute("aria-selected", String(tabs[i].getAttribute("data-room-tab") === room));
+  }
+  if(room === "coupang"){
+    stopMotion();
+    if(!CP.built) cpRender();
+    cpStart();
+    renderCpPanel();
+  }else{
+    cpStop();
+    if(STATE.loaded && !(REDUCE && REDUCE.matches)) startMotion();
+  }
+  applyLight();
+}
+
+function bindCpEvents(){
+  const nav = document.getElementById("rooms");
+  if(nav){
+    nav.addEventListener("click", function(e){
+      const b = e.target.closest("[data-room-tab]");
+      if(!b) return;
+      setRoom(b.getAttribute("data-room-tab"));
+    });
+  }
+  const body = document.getElementById("cpBody");
+  if(body){
+    body.addEventListener("click", function(e){
+      const b = e.target.closest("[data-copy]");
+      if(!b) return;
+      const key = b.getAttribute("data-copy");
+      cpCopyText(CP_SCRIPTS[key] || "", b);
+    });
+  }
+  const refresh = document.getElementById("cpRefresh");
+  if(refresh){
+    refresh.addEventListener("click", async function(e){
+      const btn = e.currentTarget;
+      btn.classList.add("spin");
+      STATE.data = await loadData();
+      renderAll();
+      renderCpPanel();
+      setTimeout(function(){ btn.classList.remove("spin"); }, 600);
+    });
+  }
+  const svg = document.getElementById("sceneCp");
+  if(svg){
+    svg.addEventListener("click", function(e){
+      const g = e.target.closest("[data-cp]");
+      if(g) cpOpenSheet(g.getAttribute("data-cp"));
+    });
+    svg.addEventListener("keydown", function(e){
+      if(e.key !== "Enter" && e.key !== " ") return;
+      const g = e.target.closest("[data-cp]");
+      if(g){ e.preventDefault(); cpOpenSheet(g.getAttribute("data-cp")); }
+    });
+  }
+}
+
 /* ---------------- 부트 ---------------- */
 function renderAll(){
   renderHead();
@@ -2812,6 +4037,7 @@ function renderAll(){
   renderPane();
   renderTicker();
   renderScene();
+  if(CP.built) renderCpPanel();
   applyLight();
 }
 
@@ -2828,9 +4054,11 @@ async function boot(){
   });
 
   bindEvents();
+  bindCpEvents();
   STATE.data = await loadData();
   loadLove();
   renderAll();
+  setRoom("office");
 
   tickClock();
   setInterval(tickClock, 15000);
