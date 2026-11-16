@@ -488,18 +488,24 @@ body::before{
   margin:0 0 8px;padding:9px 10px;border-radius:10px;background:#fdf8ef;
   border:1px dashed rgba(180,140,90,.42);font-family:inherit;font-size:11.5px;line-height:1.62;
   color:#5c4a3a;white-space:pre-wrap;word-break:keep-all;overflow-wrap:anywhere;
+  user-select:text;-webkit-user-select:text;-webkit-touch-callout:default;
 }
 .script.cm{background:#f3f8ff;border-color:rgba(120,160,200,.45);color:#3d5568}
 .cp-copy{
-  appearance:none;border:1px solid rgba(46,176,141,.5);flex:0 0 auto;
+  appearance:none;border:1px solid rgba(46,176,141,.5);border-radius:10px;
   background:linear-gradient(180deg,#f4fffb,#dcf6ea);color:#1d6f5b;font:inherit;
-  font-size:11px;font-weight:900;padding:6px 11px;border-radius:9px;cursor:pointer;
-  display:inline-flex;align-items:center;gap:4px;transition:transform .14s,background .16s;
+  flex:0 0 auto;min-height:38px;min-width:82px;
+  font-size:12px;font-weight:900;padding:10px 15px;line-height:1.2;cursor:pointer;
+  display:inline-flex;align-items:center;justify-content:center;gap:4px;
+  -webkit-tap-highlight-color:transparent;
+  transition:transform .14s,background .16s,box-shadow .16s,color .16s;
 }
 .cp-copy:hover{background:linear-gradient(180deg,#eafff7,#c9f2e0);transform:translateY(-1px)}
 .cp-copy:active{transform:none}
-.cp-copy.copied{background:linear-gradient(180deg,#cdf5de,#a9e9c3);border-color:#2fa96f;color:#14663f}
-.cp-copy.failed{background:#fff1ef;border-color:#e2735f;color:#b03a2b}
+.cp-copy:focus-visible{outline:2px solid #2fa96f;outline-offset:2px}
+.cp-copy.copied{background:linear-gradient(180deg,#c6f2da,#9fe4bb);border-color:#22a066;color:#0f5c37;
+  box-shadow:0 0 0 3px rgba(47,169,111,.24)}
+.cp-copy.failed{background:#fff1ef;border-color:#e2735f;color:#b03a2b;box-shadow:0 0 0 3px rgba(226,115,95,.2)}
 .cp-link{display:inline-block;margin:0 0 2px;font-size:10.5px;color:#3b7ea1;word-break:break-all;text-decoration:none;border-bottom:1px dotted rgba(59,126,161,.55)}
 .cp-link:hover{color:#225b78}
 .cp-foot-note{font-size:10px;color:var(--muted2);line-height:1.55;margin-top:2px}
@@ -601,6 +607,37 @@ body::before{
   border:1.5px solid #c9a171;border-radius:10px;background:linear-gradient(#fff7e6,#ffefd2);color:#7a5320;
   font-size:11.5px;font-weight:900;padding:10px 8px;letter-spacing:-.02em;-webkit-tap-highlight-color:transparent}
 .sl-save:active{transform:translateY(1px);background:#ffe3b4}
+.sl-acts{display:grid;grid-template-columns:1fr 1fr;gap:6px;width:100%;max-width:340px;margin:7px auto 0}
+.sl-act{appearance:none;min-height:44px;display:flex;align-items:center;justify-content:center;text-align:center;
+  padding:7px 6px;border-radius:10px;border:1.5px solid #c9a171;background:linear-gradient(#fff7e6,#ffefd2);
+  color:#7a5320;font:inherit;font-size:11px;font-weight:900;line-height:1.24;letter-spacing:-.03em;cursor:pointer;
+  -webkit-tap-highlight-color:transparent;transition:transform .12s,background .16s}
+.sl-act.share{border-color:#7fb9a1;background:linear-gradient(#f5fdf9,#dcf3e7);color:#136c52}
+.sl-act:active{transform:translateY(1px);background:#ffe3b4}
+.sl-act.share:active{background:#cfeeda}
+.sl-act:disabled{opacity:.8;cursor:default}
+.sl-grid-toggle{display:block;margin:6px auto 0;appearance:none;border:1px dashed rgba(180,140,90,.65);
+  background:#fffaf0;color:#8a6a42;font:inherit;font-size:10.5px;font-weight:900;letter-spacing:-.02em;
+  padding:8px 16px;min-height:44px;border-radius:99px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.sl-grid-toggle:active{background:#ffeecf}
+.sl-grid{margin:8px 0 2px;padding:8px 8px 9px;border-radius:12px;background:#fffaf0;
+  border:1px solid rgba(180,140,90,.5);box-shadow:inset 0 1px 0 rgba(255,255,255,.7)}
+.sl-grid[hidden]{display:none}
+.sl-grid-head{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin:0 0 6px;padding:0 1px}
+.sl-grid-head b{font-size:11px;font-weight:900;color:#7a5320;letter-spacing:-.02em}
+.sl-grid-head span{font-size:9.5px;font-weight:800;color:var(--muted3, #a08a6a)}
+.sl-grid-row{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.sl-grid-item{position:relative;display:block;border-radius:8px;overflow:hidden;line-height:0;
+  border:1.5px solid #3a2f24;background:#241d16}
+.sl-grid-item img{display:block;width:100%;height:auto}
+.sl-grid-item i{position:absolute;left:4px;top:4px;font-style:normal;font-size:9px;font-weight:900;color:#fff;
+  background:rgba(43,33,24,.72);border-radius:5px;padding:1px 5px;line-height:1.5}
+.sl-toast{position:fixed;left:50%;bottom:18px;transform:translate(-50%,14px);z-index:120;
+  max-width:min(340px,calc(100vw - 28px));padding:10px 13px;border-radius:12px;
+  background:rgba(43,33,24,.95);color:#fff6e4;font-size:11.5px;font-weight:700;line-height:1.5;
+  text-align:center;box-shadow:0 8px 22px rgba(0,0,0,.32);opacity:0;pointer-events:none;
+  transition:opacity .18s,transform .18s}
+.sl-toast.on{opacity:1;transform:translate(-50%,0)}
 
 /* 책장 */
 .bs-meta{display:flex;justify-content:space-between;align-items:baseline;gap:8px;
@@ -739,8 +776,9 @@ body::before{
   .rooms{width:100%;justify-content:center}
   .room-tab{flex:1 1 0;justify-content:center;padding:9px 8px;font-size:12.5px}
   .cp-legend{display:none}
-  .cp-copy{padding:8px 12px;font-size:11.5px}
+  .cp-copy{padding:10px 14px;font-size:12px;min-height:40px}
   .script{font-size:11.5px}
+  .sl-act{font-size:10.5px;padding:7px 5px}
 }
 
 </style>
@@ -4950,6 +4988,7 @@ const STORY = { title: "", body: "", updated: "", timer: 0 };
 const REVIEW = {};
 const SLIDE = {};
 const SL_IMGS = {};
+const SL_TITLE = {};
 let STORY_READY = false, REVIEW_READY = false;
 
 function lsRead(key){
@@ -5070,6 +5109,7 @@ function slFileName(src){
 function slMarkup(scope, imgs, altBase){
   if(!imgs.length) return '<div class="note">아직 이미지가 없습니다.</div>';
   SL_IMGS[scope] = imgs;
+  SL_TITLE[scope] = String(altBase || "웹툰").replace(/\s*페이지\s*$/, "").replace(/\s+/g, " ").trim();
   const i = Math.min(SLIDE[scope] || 0, imgs.length - 1);
   SLIDE[scope] = i;
   let h = '<div class="sl">';
@@ -5086,6 +5126,21 @@ function slMarkup(scope, imgs, altBase){
   });
   h += '</div>';
   h += '<a class="sl-save" data-sl-save="' + scope + '" download="' + esc(slFileName(imgs[i])) + '" href="' + esc(imgs[i]) + '">📥 현재 이미지 저장</a>';
+  const n = imgs.length;
+  h += '<div class="sl-acts">'
+    + '<button type="button" class="sl-act share" data-sl-share="' + scope + '" data-label="📤 ' + n + '장 한 번에 공유">📤 ' + n + '장 한 번에 공유</button>'
+    + '<button type="button" class="sl-act" data-sl-save-all="' + scope + '" data-label="📥 ' + n + '장 순서대로 받기">📥 ' + n + '장 순서대로 받기</button>'
+    + '</div>';
+  h += '<button type="button" class="sl-grid-toggle" data-sl-grid-toggle="' + scope + '" aria-expanded="false" aria-controls="sl-grid-' + scope + '">🖼️ ' + n + '장 펼쳐보기</button>';
+  h += '<div class="sl-grid" id="sl-grid-' + scope + '" data-sl-grid="' + scope + '" hidden>'
+    + '<div class="sl-grid-head"><b>' + n + '장 한눈에 보기</b><span>이미지를 꾹 눌러 저장</span></div>'
+    + '<div class="sl-grid-row">';
+  imgs.forEach(function(src, j){
+    h += '<a class="sl-grid-item" href="' + esc(src) + '" download="' + esc(slFileName(src)) + '" aria-label="' + esc(altBase + " " + (j + 1) + "장 크게 보기") + '">'
+      + '<img alt="' + esc(altBase + " " + (j + 1) + "장") + '" src="' + esc(src) + '" loading="lazy">'
+      + '<i aria-hidden="true">' + (j + 1) + '</i></a>';
+  });
+  h += '</div></div>';
   h += '</div>';
   return h;
 }
@@ -5119,6 +5174,159 @@ function slGoto(scope, i){
   const imgs = SL_IMGS[scope] || [];
   if(!imgs.length) return;
   slPaint(scope, Math.max(0, Math.min(imgs.length - 1, i)));
+}
+
+/* ---- 사진 여러 장 한 번에 공유·저장 ---- */
+function slSleep(ms){ return new Promise(function(r){ setTimeout(r, ms); }); }
+function slToast(msg, ms){
+  let el = document.querySelector(".sl-toast");
+  if(!el){
+    el = document.createElement("div");
+    el.className = "sl-toast";
+    el.setAttribute("role", "status");
+    el.setAttribute("aria-live", "polite");
+    document.body.appendChild(el);
+  }
+  el.textContent = msg;
+  el.classList.add("on");
+  clearTimeout(el.__t);
+  el.__t = setTimeout(function(){ el.classList.remove("on"); }, ms || 3600);
+}
+function slInApp(){
+  const ua = navigator.userAgent || "";
+  return /KAKAOTALK|NAVER\(inapp|FBAN|FBAV|Instagram|Line\/|Twitter|inapp/i.test(ua);
+}
+function slBtnIdle(btn, text, delay){
+  if(!btn) return;
+  clearTimeout(btn.__rt);
+  btn.__rt = setTimeout(function(){
+    btn.disabled = false;
+    btn.textContent = text || btn.getAttribute("data-label") || "";
+  }, delay || 1800);
+}
+function slTip(scope, kind){
+  const n = (SL_IMGS[scope] || []).length;
+  const tail = " 아래 '" + n + "장 한눈에 보기'에서 꾹 눌러 저장해 주세요.";
+  if(kind === "save") return "인앱 브라우저에선 " + n + "장 저장이 막혀 있어요. 크롬으로 열거나" + tail;
+  return "이 화면에선 여러 장 공유가 막혀 있어요. 크롬으로 열거나" + tail;
+}
+function slGridSet(scope, open){
+  const g = document.querySelector('[data-sl-grid="' + scope + '"]');
+  const t = document.querySelector('[data-sl-grid-toggle="' + scope + '"]');
+  if(!g) return false;
+  g.hidden = !open;
+  if(t){
+    const n = (SL_IMGS[scope] || []).length;
+    t.setAttribute("aria-expanded", open ? "true" : "false");
+    t.textContent = open ? "🖼️ " + n + "장 접어두기" : "🖼️ " + n + "장 펼쳐보기";
+  }
+  return open;
+}
+function slGridToggle(scope){
+  const g = document.querySelector('[data-sl-grid="' + scope + '"]');
+  if(!g) return;
+  const opened = slGridSet(scope, g.hidden);
+  if(opened){
+    try{ g.scrollIntoView({ block: "nearest", behavior: "smooth" }); }catch(e){ try{ g.scrollIntoView(false); }catch(_){} }
+  }
+}
+async function slFetchFiles(scope, onProgress){
+  const imgs = SL_IMGS[scope] || [];
+  const files = [];
+  for(let i = 0; i < imgs.length; i++){
+    const res = await fetch(imgs[i], { credentials: "same-origin", cache: "force-cache" });
+    if(!res.ok) throw new Error("HTTP " + res.status);
+    const blob = await res.blob();
+    const type = blob.type || "image/png";
+    files.push(new File([blob], slFileName(imgs[i]), { type: type }));
+    if(onProgress) onProgress(i + 1, imgs.length);
+  }
+  return files;
+}
+async function slShareAll(scope, btn){
+  const imgs = SL_IMGS[scope] || [];
+  const n = imgs.length;
+  if(!n || (btn && btn.disabled)) return;
+  const label = (btn && btn.getAttribute("data-label")) || "공유";
+  const setTxt = function(t){ if(btn) btn.textContent = t; };
+  if(!(navigator.canShare && navigator.share)){
+    slToast(slTip(scope, "share"), 4400);
+    slGridSet(scope, true);
+    return;
+  }
+  if(btn) btn.disabled = true;
+  setTxt("준비 중... (0/" + n + ")");
+  try{
+    const files = await slFetchFiles(scope, function(done, total){
+      setTxt("준비 중... (" + Math.min(done, total) + "/" + total + ")");
+    });
+    let ok = false;
+    try{ ok = !!navigator.canShare({ files: files }); }catch(_){ ok = false; }
+    if(!ok){
+      if(btn) btn.disabled = false;
+      setTxt(label);
+      slToast(slTip(scope, "share"), 4400);
+      slGridSet(scope, true);
+      return;
+    }
+    setTxt("공유 창 여는 중...");
+    await navigator.share({ files: files, title: (SL_TITLE[scope] || "웹툰") + " 웹툰 " + n + "장" });
+    setTxt("✓ 공유 창을 열었어요");
+    slBtnIdle(btn, label, 2000);
+  }catch(e){
+    const aborted = !!e && (e.name === "AbortError" || /abort|cancel/i.test(String(e.message || "")));
+    if(btn) btn.disabled = false;
+    setTxt(label);
+    if(!aborted){
+      slToast(slTip(scope, "share"), 4400);
+      slGridSet(scope, true);
+    }
+  }
+}
+async function slSaveAll(scope, btn){
+  const imgs = SL_IMGS[scope] || [];
+  const n = imgs.length;
+  if(!n || (btn && btn.disabled)) return;
+  const label = (btn && btn.getAttribute("data-label")) || "저장";
+  const setTxt = function(t){ if(btn) btn.textContent = t; };
+  if(slInApp()){
+    slToast(slTip(scope, "save"), 4400);
+    slGridSet(scope, true);
+    return;
+  }
+  if(btn) btn.disabled = true;
+  const urls = [];
+  try{
+    for(let i = 0; i < n; i++){
+      setTxt("준비 중... (" + (i + 1) + "/" + n + ")");
+      const res = await fetch(imgs[i], { credentials: "same-origin", cache: "force-cache" });
+      if(!res.ok) throw new Error("HTTP " + res.status);
+      const blob = await res.blob();
+      urls.push({ url: URL.createObjectURL(blob), name: slFileName(imgs[i]) });
+    }
+    for(let i = 0; i < urls.length; i++){
+      const a = document.createElement("a");
+      a.href = urls[i].url;
+      a.download = urls[i].name;
+      a.rel = "noopener";
+      a.style.display = "none";
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(function(){ try{ a.parentNode && a.parentNode.removeChild(a); }catch(e){} }, 0);
+      setTxt("저장 중... (" + (i + 1) + "/" + n + ")");
+      if(i < urls.length - 1) await slSleep(350);
+    }
+    setTxt("✓ " + n + "장 받기 시작했어요");
+    slBtnIdle(btn, label, 2200);
+  }catch(e){
+    if(btn) btn.disabled = false;
+    setTxt(label);
+    slToast(slTip(scope, "save"), 4400);
+    slGridSet(scope, true);
+  }
+  setTimeout(function(){
+    urls.forEach(function(x){ try{ URL.revokeObjectURL(x.url); }catch(e){} });
+  }, 30000);
 }
 
 function cpStoryBoard(){
@@ -5323,41 +5531,84 @@ function renderCpPanel(){
 }
 
 /* ---------------- 복사 ---------------- */
+function cpLegacyCopy(text){
+  let ok = false;
+  const host = document.body;
+  try{
+    const ta = document.createElement("textarea");
+    ta.value = text;
+    ta.setAttribute("readonly", "");
+    ta.setAttribute("aria-hidden", "true");
+    ta.style.cssText = "position:fixed;top:0;left:0;width:1px;height:1px;padding:0;border:0;margin:0;opacity:0;font-size:16px;line-height:1;";
+    host.appendChild(ta);
+    try{ ta.focus({ preventScroll: true }); }catch(_){ try{ ta.focus(); }catch(__){} }
+    ta.select();
+    try{ ta.setSelectionRange(0, ta.value.length); }catch(_){}
+    try{ ok = document.execCommand("copy"); }catch(_){ ok = false; }
+    if(ta.parentNode) ta.parentNode.removeChild(ta);
+  }catch(e){ ok = false; }
+  if(ok) return true;
+  try{
+    const dv = document.createElement("div");
+    dv.setAttribute("contenteditable", "true");
+    dv.setAttribute("aria-hidden", "true");
+    dv.textContent = text;
+    dv.style.cssText = "position:fixed;top:0;left:0;width:2px;height:2px;padding:0;border:0;margin:0;opacity:0;overflow:hidden;font-size:16px;";
+    host.appendChild(dv);
+    const r = document.createRange();
+    r.selectNodeContents(dv);
+    const sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(r);
+    try{ dv.focus({ preventScroll: true }); }catch(_){ try{ dv.focus(); }catch(__){} }
+    try{ ok = document.execCommand("copy"); }catch(_){ ok = false; }
+    sel.removeAllRanges();
+    if(dv.parentNode) dv.parentNode.removeChild(dv);
+  }catch(e){ ok = false; }
+  return ok;
+}
+function cpSelectNeighborScript(btn){
+  try{
+    const lab = btn && btn.closest(".script-lab");
+    const pre = lab && lab.nextElementSibling;
+    if(!pre || pre.tagName !== "PRE") return false;
+    const r = document.createRange();
+    r.selectNodeContents(pre);
+    const sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(r);
+    return true;
+  }catch(e){ return false; }
+}
 function cpCopyText(text, btn){
+  const label = btn ? (btn.getAttribute("data-label") || "복사") : "";
   const done = function(ok){
     if(!btn) return;
-    const label = btn.getAttribute("data-label") || "복사";
     btn.classList.toggle("copied", ok);
     btn.classList.toggle("failed", !ok);
-    btn.textContent = ok ? "✓ 복사됨" : "✕ 복사 실패";
+    btn.textContent = ok ? "✓ 복사 완료!" : "✕ 복사 실패";
     clearTimeout(btn.__t);
     btn.__t = setTimeout(function(){
       btn.classList.remove("copied"); btn.classList.remove("failed");
       btn.textContent = label;
-    }, 1700);
+    }, 2000);
   };
   const fallback = function(){
-    let ok = false;
-    try{
-      const ta = document.createElement("textarea");
-      ta.value = text;
-      ta.setAttribute("readonly", "");
-      ta.style.position = "fixed";
-      ta.style.top = "-1000px";
-      ta.style.opacity = "0";
-      document.body.appendChild(ta);
-      ta.select();
-      ta.setSelectionRange(0, ta.value.length);
-      ok = document.execCommand("copy");
-      document.body.removeChild(ta);
-    }catch(e){ ok = false; }
-    done(ok);
+    if(cpLegacyCopy(text)){ done(true); return; }
+    const selected = btn ? cpSelectNeighborScript(btn) : false;
+    done(false);
+    slToast(selected
+      ? "복사가 막혀 있어요. 본문이 선택됐으니 길게 눌러 '복사'를 눌러 주세요"
+      : "복사가 막혀 있어요. 본문을 길게 눌러 직접 복사해 주세요", 4200);
   };
-  if(navigator.clipboard && navigator.clipboard.writeText){
-    navigator.clipboard.writeText(text).then(function(){ done(true); }, fallback);
-  }else{
-    fallback();
-  }
+  const finish = function(ok){ if(ok){ done(true); } else { fallback(); } };
+  try{
+    if(window.isSecureContext && navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(function(){ finish(true); }, function(){ finish(false); });
+      return;
+    }
+  }catch(e){}
+  fallback();
 }
 
 /* ---------------- 인물 상세 시트 ---------------- */
@@ -6020,6 +6271,12 @@ function bindCpEvents(){
       if(slN){ slGo(slN.getAttribute("data-sl-next"), 1); return; }
       const slD = e.target.closest("[data-sl-dot]");
       if(slD){ slGoto(slD.getAttribute("data-sl-dot"), +slD.getAttribute("data-sl-i")); return; }
+      const slSh = e.target.closest("[data-sl-share]");
+      if(slSh){ slShareAll(slSh.getAttribute("data-sl-share"), slSh); return; }
+      const slSA = e.target.closest("[data-sl-save-all]");
+      if(slSA){ slSaveAll(slSA.getAttribute("data-sl-save-all"), slSA); return; }
+      const slGT = e.target.closest("[data-sl-grid-toggle]");
+      if(slGT){ slGridToggle(slGT.getAttribute("data-sl-grid-toggle")); return; }
       const bk = e.target.closest("[data-bs-open]");
       if(bk){ cpToggleBook(bk.getAttribute("data-bs-open")); return; }
       const revAddBtn = e.target.closest("[data-rev-add]");
