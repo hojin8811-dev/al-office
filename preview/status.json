@@ -1331,7 +1331,7 @@
         "15분봉 SHA 색이 맞을 때만 21선(EMA21) 지정가로 기다렸다가 체결",
         "수익 중에 색이 바뀌면 그 자리에서 익절, 손절은 1%"
       ],
-      "switches": "allowLong · allowShort · useDailyFilter 세 스위치로 방향과 일봉 필터를 끄고 켭니다",
+      "switches": "세 스위치로 롱·숏 진입과 일봉 방향 필터를 끄고 켭니다. 기본은 셋 다 켜짐.",
       "backtest": {
         "symbol": "ETHUSDT.P",
         "capital": "50만 원",
