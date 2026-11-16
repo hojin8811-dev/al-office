@@ -85,7 +85,7 @@
         "id": "waiting",
         "icon": "⏳",
         "title": "대기 · 결정 필요",
-        "meta": "9건",
+        "meta": "9건 중 5건",
         "tone": "wait",
         "items": [
           {
