@@ -788,14 +788,14 @@
       "text": "오늘 요약 탭 추가 · al-office 라이브 배포"
     },
     {
-      "t": "18:05",
-      "desk": "hq",
-      "text": "status.json · index.html 오늘 기준 동기화 (KPI·AI 업무·로그)"
-    },
-    {
       "t": "18:03",
       "desk": "cleanup",
       "text": "바나나몰 탈퇴 완료 회신 확인 — 3곳 모두 정리, 회신 감시 종료"
+    },
+    {
+      "t": "18:05",
+      "desk": "hq",
+      "text": "status.json · index.html 오늘 기준 동기화 (KPI·AI 업무·로그)"
     },
     {
       "t": "19:00",
