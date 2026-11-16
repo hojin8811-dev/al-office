@@ -5647,7 +5647,7 @@ function renderTrPanel(){
       + '<span><b>손절</b>진입가 대비 1%</span>'
       + '<span><b>백테스트</b>' + esc(b.symbol || "ETHUSDT.P") + ' ' + esc(b.capital || "50만 원") + ' ×' + esc(b.leverage || "2배")
       + ' · +' + numFix(b.pnl_pct, 2) + '%</span>'
-      + '<span><b>목표</b>150,000원 승인 실적</span>';
+      + '<span><b>리스크</b>손절 1% · 진입은 21선 지정가</span>';
     tk.innerHTML = line + line;
   }
   trDirPaint();
