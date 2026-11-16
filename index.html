@@ -566,6 +566,10 @@ body::before{
 .sl-dots{display:flex;gap:4px;justify-content:center;margin-top:5px}
 .sl-dots i{width:6px;height:6px;border-radius:50%;background:rgba(138,106,66,.26);cursor:pointer}
 .sl-dots i.on{background:#e79a2c;transform:scale(1.3)}
+.sl-save{display:block;margin:9px auto 2px;width:100%;max-width:340px;text-align:center;text-decoration:none;
+  border:1.5px solid #c9a171;border-radius:10px;background:linear-gradient(#fff7e6,#ffefd2);color:#7a5320;
+  font-size:11.5px;font-weight:900;padding:10px 8px;letter-spacing:-.02em;-webkit-tap-highlight-color:transparent}
+.sl-save:active{transform:translateY(1px);background:#ffe3b4}
 
 /* 책장 */
 .bs-meta{display:flex;justify-content:space-between;align-items:baseline;gap:8px;
@@ -4389,6 +4393,11 @@ function slImgsOf(item){
   for(let i = 1; i <= n; i++) out.push("webtoon/ep1/page-" + i + ".png");
   return out;
 }
+function slFileName(src){
+  const parts = String(src || "").split("?")[0].split("/").filter(Boolean);
+  const tail = parts.slice(-3).join("-");
+  return tail || "webtoon.png";
+}
 function slMarkup(scope, imgs, altBase){
   if(!imgs.length) return '<div class="note">아직 이미지가 없습니다.</div>';
   SL_IMGS[scope] = imgs;
@@ -4406,7 +4415,9 @@ function slMarkup(scope, imgs, altBase){
   imgs.forEach(function(_, j){
     h += '<i data-sl-dot="' + scope + '" data-sl-i="' + j + '" class="' + (j === i ? "on" : "") + '"></i>';
   });
-  h += '</div></div>';
+  h += '</div>';
+  h += '<a class="sl-save" data-sl-save="' + scope + '" download="' + esc(slFileName(imgs[i])) + '" href="' + esc(imgs[i]) + '">📥 현재 이미지 저장</a>';
+  h += '</div>';
   return h;
 }
 function slPaint(scope, i){
@@ -4424,6 +4435,11 @@ function slPaint(scope, i){
   if(cnt) cnt.textContent = (i + 1) + " / " + imgs.length;
   const dots = document.querySelectorAll('[data-sl-dot="' + scope + '"]');
   for(let k = 0; k < dots.length; k++) dots[k].classList.toggle("on", +dots[k].getAttribute("data-sl-i") === i);
+  const save = document.querySelector('[data-sl-save="' + scope + '"]');
+  if(save){
+    save.setAttribute("href", imgs[i]);
+    save.setAttribute("download", slFileName(imgs[i]));
+  }
 }
 function slGo(scope, dir){
   const imgs = SL_IMGS[scope] || [];
