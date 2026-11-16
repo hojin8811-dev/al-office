@@ -248,6 +248,37 @@ body::before{
 }
 .tab:hover{color:var(--ink);background:#fff7ea}
 .tab[aria-selected="true"]{background:linear-gradient(180deg,#ffc46b,#e79a2c);color:#3d2405;border-color:rgba(255,200,120,.7);box-shadow:0 4px 14px rgba(217,143,52,.28)}
+/* ---------- 📊 오늘 요약 ---------- */
+.tab-sum{
+  grid-column:1 / -1;margin-top:1px;padding:9px 1px;font-size:12px;font-weight:800;letter-spacing:-.2px;
+  color:#a3651a;border-color:rgba(240,169,63,.5);background:linear-gradient(180deg,#fff8e9,#ffeed0);
+}
+.sum{padding-bottom:2px}
+.sum-top{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin:12px 0 3px}
+.sum-day{font-size:12.5px;font-weight:800;color:#5a4632;letter-spacing:-.2px}
+.sum-up{font-size:10.5px;color:var(--muted2)}
+.sum-lead{margin:0 0 11px;font-size:12px;line-height:1.62;color:var(--muted)}
+.sblock{
+  --tone:#2fa96f;--tone-bg:#eefaf2;--tone-line:rgba(47,169,111,.34);
+  margin:0 0 10px;border:1px solid var(--tone-line);border-radius:12px;overflow:hidden;
+  background:#fffdf7;box-shadow:0 1px 0 #fff inset;
+}
+.sblock[data-tone="run"]{--tone:#c9821c;--tone-bg:#fff6e6;--tone-line:rgba(201,130,28,.32)}
+.sblock[data-tone="wait"]{--tone:#3f7cb5;--tone-bg:#eff5fc;--tone-line:rgba(63,124,181,.32)}
+.sb-head{display:flex;align-items:center;gap:7px;padding:9px 11px;background:var(--tone-bg);border-bottom:1px solid var(--tone-line)}
+.sb-ic{font-size:13px;line-height:1}
+.sb-head b{font-size:12.5px;font-weight:800;color:#4b3b2d;letter-spacing:-.3px}
+.sb-meta{margin-left:auto;font-size:10px;font-weight:800;color:var(--tone);background:#fff;border:1px solid var(--tone-line);border-radius:6px;padding:2px 6px;white-space:nowrap}
+.sb-list{list-style:none;margin:0;padding:3px 0 5px}
+.sb-list li{display:flex;gap:9px;padding:8px 11px 8px 11px}
+.sb-list li + li{border-top:1px dashed rgba(180,140,90,.28)}
+.sb-em{flex:0 0 auto;width:17px;font-size:13px;line-height:1.55;text-align:center}
+.sb-body{min-width:0;flex:1 1 auto}
+.sb-t{display:block;font-size:12.5px;font-weight:700;line-height:1.5;color:#433326;letter-spacing:-.2px;word-break:keep-all}
+.sb-s{display:block;margin-top:2px;font-size:11.5px;line-height:1.6;color:var(--muted);word-break:keep-all}
+.sum-empty{margin:14px 0 6px;padding:14px 13px;border:1px dashed var(--line);border-radius:12px;background:#fffdf7}
+.sum-empty b{display:block;font-size:12.5px;color:#5a4632;margin-bottom:4px}
+.sum-empty p{margin:0;font-size:11.5px;line-height:1.6;color:var(--muted)}
 .panes{padding:0 15px 12px;overflow-y:auto;flex:1 1 auto;min-height:0;scrollbar-width:thin;scrollbar-color:rgba(214,168,104,.5) transparent}
 .panes::-webkit-scrollbar{width:6px}
 .panes::-webkit-scrollbar-thumb{background:rgba(214,168,104,.45);border-radius:99px}
@@ -700,6 +731,7 @@ body::before{
         <button class="tab" role="tab" id="tab-team" aria-controls="panes" aria-selected="false" data-tab="team">직원 현황</button>
         <button class="tab" role="tab" id="tab-log" aria-controls="panes" aria-selected="false" data-tab="log">활동 로그</button>
         <button class="tab" role="tab" id="tab-love" aria-controls="panes" aria-selected="false" data-tab="love">💕 기념일</button>
+        <button class="tab tab-sum" role="tab" id="tab-summary" aria-controls="panes" aria-selected="false" data-tab="summary">📊 오늘 요약</button>
       </div>
       <div class="panes" id="panes" role="tabpanel" aria-labelledby="tab-office" tabindex="0"></div>
       <div class="panel-foot">
@@ -743,6 +775,95 @@ body::before{
    status.json 과 같은 내용이며, 파일을 읽지 못하면 이 값으로 그립니다.
    ======================================================================= */
 const FALLBACK = {
+  "dailySummary": {
+    "date": "2026-11-16",
+    "date_label": "2026년 11월 16일 (월)",
+    "updated_label": "17:55",
+    "headline": "웹툰 3편 손보고, 매매 도구 다듬고, 세금까지 확인한 하루였어요.",
+    "note": "매일 밤 여기만 새로 정리해 두면 이 보드는 알아서 바뀝니다.",
+    "blocks": [
+      {
+        "id": "done",
+        "icon": "✅",
+        "title": "오늘 같이 끝낸 일",
+        "meta": "2026-11-16",
+        "tone": "done",
+        "items": [
+          {
+            "icon": "🎨",
+            "title": "웹툰 1화 v2 · 2화 · 3화 v2 완성",
+            "detail": "놀부네 보쌈과 도르리 무드등까지, 책장에도 바로 반영했어요."
+          },
+          {
+            "icon": "📈",
+            "title": "Cherry MTF 개편",
+            "detail": "21선 지정가 진입, 롱·숏 스위치, 50만 원 2배 기준으로 맞췄어요. ETHUSDT.P 백테스트 +29.02%."
+          },
+          {
+            "icon": "🏛️",
+            "title": "홈택스에서 세금 세 가지 확인",
+            "detail": "장려금은 대상 아님, 미수령 환급금 0원, 작년 월세는 경정청구로 최대 10만 원 여지."
+          },
+          {
+            "icon": "🏠",
+            "title": "홍골공원 환불 만기 점검 등록",
+            "detail": "2027-01-04와 2027-01-16, 두 번 알려드릴게요."
+          },
+          {
+            "icon": "🗑️",
+            "title": "핀트 · 굿리치 탈퇴 완료 확인",
+            "detail": "이제 바나나몰 한 곳만 회신을 기다리고 있어요."
+          }
+        ]
+      },
+      {
+        "id": "growth",
+        "icon": "🚀",
+        "title": "쿠파스·웹툰 현황",
+        "tone": "run",
+        "items": [
+          {
+            "icon": "📚",
+            "title": "웹툰 1~3화 제작 완료",
+            "detail": "스레드 @hojin8811에 순서대로 올릴 수 있게 준비됐어요."
+          },
+          {
+            "icon": "⏰",
+            "title": "매일 오전 9시 트렌드 3종 자동 추천",
+            "detail": "오늘 뽑은 추천 상품은 쿠파스팀 방에 올라가 있어요."
+          }
+        ]
+      },
+      {
+        "id": "waiting",
+        "icon": "⏳",
+        "title": "다음 챙길 일·대기",
+        "tone": "wait",
+        "items": [
+          {
+            "icon": "🔐",
+            "title": "11/18 금융결제원 공동인증서 만료",
+            "detail": "우리은행 앱에서 무료로 갱신하면 돼요. 이틀 남았어요."
+          },
+          {
+            "icon": "🗑️",
+            "title": "바나나몰 탈퇴 회신 기다리는 중",
+            "detail": "매시간 확인하고 있어요. 회신이 오면 바로 알려드릴게요."
+          },
+          {
+            "icon": "📩",
+            "title": "ChatGPT 데이터 내보내기 메일 대기",
+            "detail": "다운로드 준비가 끝났다는 메일이 오면 바로 확인할게요."
+          },
+          {
+            "icon": "🏠",
+            "title": "홍골공원 환불 점검",
+            "detail": "2027-01-04에 1차로 알려드려요."
+          }
+        ]
+      }
+    ]
+  },
   "meta": {
     "title": "AI 사무실 본부",
     "tagline": "체리 비서실장이 운영하는 본부 현황판",
@@ -2838,6 +2959,42 @@ function paneTasks(){
   return h;
 }
 
+function summaryData(){ return STATE.data.dailySummary || null; }
+
+function paneSummary(){
+  const s = summaryData();
+  const blocks = (s && Array.isArray(s.blocks)) ? s.blocks : [];
+  if(!blocks.length){
+    return '<div class="sum-empty"><b>오늘 요약이 아직 없어요.</b>' +
+      '<p>이 보드는 status.json의 dailySummary를 그대로 읽어요. 하루 정리를 적어 두면 다음에 열 때 바로 채워집니다.</p></div>';
+  }
+  let h = '<div class="sum">';
+  h += '<div class="sum-top"><span class="sum-day">' + esc(s.date_label || s.date || "") + '</span>' +
+    (s.updated_label ? '<span class="sum-up">' + esc(s.updated_label) + ' 기준</span>' : '') + '</div>';
+  if(s.headline) h += '<p class="sum-lead">' + esc(s.headline) + '</p>';
+  h += blocks.map(function(b){
+    const items = b.items || [];
+    const meta = b.meta || (items.length ? items.length + "건" : "");
+    let out = '<section class="sblock" data-tone="' + esc(b.tone || "done") + '">' +
+      '<div class="sb-head"><span class="sb-ic" aria-hidden="true">' + esc(b.icon || "•") + '</span>' +
+      '<b>' + esc(b.title || "") + '</b>' +
+      (meta ? '<span class="sb-meta">' + esc(meta) + '</span>' : '') + '</div>';
+    if(items.length){
+      out += '<ul class="sb-list">' + items.map(function(it){
+        return '<li><span class="sb-em" aria-hidden="true">' + esc(it.icon || "•") + '</span>' +
+          '<span class="sb-body"><span class="sb-t">' + esc(it.title || "") + '</span>' +
+          (it.detail ? '<span class="sb-s">' + esc(it.detail) + '</span>' : '') +
+          '</span></li>';
+      }).join("") + '</ul>';
+    }else{
+      out += '<div class="sb-s" style="padding:8px 11px 10px">아직 적어 둔 내용이 없어요.</div>';
+    }
+    return out + '</section>';
+  }).join("");
+  if(s.note) h += '<div class="note">' + esc(s.note) + '</div>';
+  return h + '</div>';
+}
+
 function paneTeam(){
   const d = STATE.data;
   const map = deskMap();
@@ -2881,7 +3038,7 @@ function paneLog(){
 function renderPane(keepScroll){
   const el = document.getElementById("panes");
   const sc = keepScroll ? el.scrollTop : 0;
-  const fn = { office:paneOffice, tasks:paneTasks, team:paneTeam, log:paneLog, love:paneLove }[STATE.tab] || paneOffice;
+  const fn = { office:paneOffice, summary:paneSummary, tasks:paneTasks, team:paneTeam, log:paneLog, love:paneLove }[STATE.tab] || paneOffice;
   el.innerHTML = '<div class="pane">'+fn()+'</div>';
   el.scrollTop = sc;
   document.querySelectorAll(".tab").forEach(b=>{
