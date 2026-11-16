@@ -370,7 +370,7 @@ body::before{
 .empty{font-size:11.5px;color:var(--muted2);padding:14px 4px;text-align:center}
 /* ---------- responsive ---------- */
 @media (min-width:1081px){
-  #scene,#sceneCp{max-height:min(70vh,720px)}
+  #scene,#sceneCp,#sceneTr{max-height:min(70vh,720px)}
 }
 @media (max-width:1080px){
   .layout{grid-template-columns:1fr}
@@ -629,6 +629,111 @@ body::before{
 .bs-view-head{display:flex;gap:6px;align-items:flex-start;justify-content:space-between;margin-bottom:2px}
 .bs-view-head b{font-size:10.5px;font-weight:900;color:#5c4a3a;line-height:1.45}
 
+/* ========== 💰 기록판 (쿠파스 클릭·수익 · 매매 손익) ========== */
+.led{border-radius:15px;padding:10px 11px 11px;margin:9px 0 4px;
+  background:linear-gradient(180deg,#fffdf6 0%,#fff5e4 100%);border:1px solid var(--line);
+  box-shadow:var(--shadow-s),inset 0 1px 0 #fff}
+.led-sum{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}
+.led-cell{border-radius:10px;background:#fff;border:1px solid var(--line2);padding:6px 7px 7px;min-width:0}
+.led-cell .lb{display:block;font-size:9.5px;font-weight:800;color:var(--muted);letter-spacing:-.2px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.led-cell .vl{display:block;font-size:14px;font-weight:900;color:#433326;font-variant-numeric:tabular-nums;
+  letter-spacing:-.5px;line-height:1.25;margin-top:2px}
+.led-cell .vl i{display:block;font-style:normal;font-size:9.5px;font-weight:800;color:var(--muted2);letter-spacing:0}
+.led-cell .vl.pos{color:#1d7a55}
+.led-cell .vl.neg{color:#c0392b}
+.led-lab{display:block;font-size:10.5px;font-weight:800;color:var(--muted);margin:9px 0 0}
+.led-lab .opt{font-weight:700;color:var(--muted2);font-size:9.5px;margin-left:2px}
+.led-in{display:block;width:100%;margin-top:4px;border:1px solid var(--line);border-radius:10px;background:#fff;
+  font:inherit;font-size:14px;font-weight:700;color:var(--ink);padding:10px 11px;outline:none;min-height:42px;
+  -webkit-appearance:none;appearance:none}
+.led-in::placeholder{font-weight:500;color:#cbbba4}
+.led-in:focus{border-color:#f0b45f;background:#fffdf6;box-shadow:0 0 0 3px rgba(240,169,63,.16)}
+.led-f{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:9px}
+.led-f .led-lab{margin-top:0}
+.led-dir{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:4px}
+.led-dir button{appearance:none;font:inherit;font-size:13px;font-weight:900;padding:10px 4px;border-radius:10px;
+  border:1px solid var(--line);background:#fff;color:var(--muted);cursor:pointer;min-height:42px}
+.led-dir button[aria-pressed="true"][data-dir="long"]{background:linear-gradient(180deg,#cdf5de,#a9e9c3);border-color:#2fa96f;color:#14663f}
+.led-dir button[aria-pressed="true"][data-dir="short"]{background:linear-gradient(180deg,#ffe0da,#ffc7bd);border-color:#e2735f;color:#a8352a}
+.led-add{display:block;width:100%;margin-top:11px;appearance:none;font:inherit;font-size:14px;font-weight:900;
+  padding:12px 10px;border-radius:11px;border:1px solid rgba(46,176,141,.5);cursor:pointer;min-height:46px;
+  background:linear-gradient(180deg,#f4fffb,#dcf6ea);color:#16654a;transition:background .16s}
+.led-add:hover{background:linear-gradient(180deg,#eafff7,#c9f2e0)}
+.led-add.ok{background:linear-gradient(180deg,#cdf5de,#a9e9c3);border-color:#2fa96f;color:#14663f}
+.led-list{margin-top:11px}
+.led-empty{font-size:11px;color:var(--muted2);line-height:1.6;padding:12px 10px;border:1px dashed var(--line);
+  border-radius:10px;background:#fffdf7;text-align:center}
+.led-row{display:grid;grid-template-columns:38px minmax(0,1fr) auto 30px;gap:7px;align-items:center;
+  padding:7px 2px;border-top:1px dashed rgba(180,140,90,.28)}
+.led-row.is-trade{grid-template-columns:38px auto minmax(0,1fr) auto 30px}
+.led-row:first-child{border-top:0}
+.lr-date{font-size:10.5px;font-weight:800;color:var(--muted2);font-variant-numeric:tabular-nums}
+.lr-main{min-width:0}
+.lr-main b{display:block;font-size:12px;font-weight:800;color:#433326;line-height:1.35;letter-spacing:-.2px;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lr-meta{display:block;font-size:9.5px;font-weight:700;color:var(--muted2);margin-top:1px;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lr-amt{font-size:12.5px;font-weight:900;color:#433326;font-variant-numeric:tabular-nums;white-space:nowrap}
+.lr-amt.pos{color:#1d7a55}
+.lr-amt.neg{color:#c0392b}
+.lr-dir{font-size:9px;font-weight:900;border-radius:5px;padding:2px 6px;white-space:nowrap}
+.lr-dir.long{background:#dcf6ea;color:#14663f}
+.lr-dir.short{background:#ffe0da;color:#a8352a}
+.lr-del{appearance:none;width:30px;height:30px;border-radius:9px;border:1px solid var(--line2);background:#fff;
+  color:#c0ab92;font:inherit;font-size:12px;font-weight:900;cursor:pointer;display:grid;place-items:center;padding:0}
+.lr-del:hover{background:#fff1ef;border-color:#e8a396;color:#b03a2b}
+.led-act{display:flex;gap:6px;margin-top:10px}
+.led-note{font-size:9.5px;color:var(--muted2);line-height:1.55;margin-top:7px}
+.goal-src{font-size:9.5px;font-weight:800;color:#1d6f5b;background:rgba(255,255,255,.72);
+  border:1px dashed rgba(46,176,141,.4);border-radius:7px;padding:4px 7px;margin-top:6px;line-height:1.4}
+
+/* ========== 📈 트레이더 방 ========== */
+.trad{border-radius:15px;padding:11px 12px 12px;margin:2px 0 6px;background:#fff;
+  border:1px solid var(--line2);box-shadow:var(--shadow-s)}
+.trad-top{display:flex;gap:9px;align-items:flex-start}
+.trad-ic{width:36px;height:36px;border-radius:11px;flex:0 0 auto;display:grid;place-items:center;font-size:17px;
+  background:linear-gradient(160deg,#eafff7,#cdf5de);border:1px solid rgba(46,176,141,.45)}
+.trad-t{min-width:0}
+.trad-t b{display:block;font-size:13.5px;font-weight:900;color:#2c4a3f;letter-spacing:-.3px}
+.trad-t span{display:block;font-size:10.5px;font-weight:700;color:var(--muted);line-height:1.5;margin-top:3px}
+.trad-rules{list-style:none;margin:10px 0 0;padding:0}
+.trad-rules li{position:relative;padding:0 0 0 13px;font-size:11px;line-height:1.62;color:#5c4a3a;margin-bottom:3px;word-break:keep-all}
+.trad-rules li::before{content:"";position:absolute;left:2px;top:7px;width:5px;height:5px;border-radius:50%;background:#2eb08d}
+.trad-basis{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin:11px 0 6px;
+  padding-top:9px;border-top:1px dashed rgba(180,140,90,.32)}
+.trad-basis span{font-size:9.5px;font-weight:900;color:var(--muted);letter-spacing:.2px}
+.trad-basis b{font-size:10.5px;font-weight:800;color:#7a5b36}
+.trad-stat{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}
+.trad-cell{border-radius:10px;background:#f7fdfa;border:1px solid rgba(46,176,141,.28);padding:7px 5px;text-align:center;min-width:0}
+.trad-cell .k{display:block;font-size:9px;font-weight:800;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.trad-cell b{display:block;font-size:12px;font-weight:900;color:#2c4a3f;font-variant-numeric:tabular-nums;
+  margin-top:3px;letter-spacing:-.4px;white-space:nowrap}
+.trad-cell b.pos{color:#1d7a55}
+.trad-cell i{display:block;font-style:normal;font-size:8.5px;font-weight:800;color:#59a98a;margin-top:2px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.trad-meta{margin-top:10px;font-size:9.5px;line-height:1.6;color:var(--muted)}
+.trad-meta code{font-family:inherit;font-size:9px;font-weight:900;color:#7a6a54;background:#fdf3df;
+  border:1px solid rgba(180,140,90,.42);border-radius:5px;padding:1px 4px;margin:0 1px}
+.tr-person{pointer-events:none}
+
+/* ---------- 방 탭 3개 · 트레이더 방 반응형 ---------- */
+@media (max-width:640px){
+  .rooms{gap:4px;padding:4px}
+  .room-tab{flex:1 1 0;justify-content:center;padding:8px 4px;font-size:11.5px;gap:4px}
+  .room-tab .rt-ic{font-size:13px}
+  .room-tab .rt-new{font-size:8px;padding:1.5px 3px;letter-spacing:0}
+  .led-sum{gap:4px}
+  .led-cell{padding:5px 6px 6px}
+  .led-cell .lb{font-size:9px}
+  .led-cell .vl{font-size:13px}
+  .led-row{gap:6px;grid-template-columns:36px minmax(0,1fr) auto 34px}
+  .led-row.is-trade{grid-template-columns:36px auto minmax(0,1fr) auto 34px}
+  .lr-del{width:34px;height:34px}
+  .trad-stat{gap:4px}
+  .trad-cell b{font-size:11px}
+}
+
 /* ---------- 쿠파스팀 방 반응형 ---------- */
 @media (max-width:640px){
   .rooms{width:100%;justify-content:center}
@@ -655,10 +760,13 @@ body::before{
 
   <nav class="rooms" id="rooms" role="tablist" aria-label="방 선택">
     <button class="room-tab" type="button" role="tab" data-room-tab="office" aria-selected="true" aria-controls="stage">
-      <span class="rt-ic" aria-hidden="true">🏢</span>본부 사무실
+      <span class="rt-ic" aria-hidden="true">🏢</span>본부
     </button>
     <button class="room-tab" type="button" role="tab" data-room-tab="coupang" aria-selected="false" aria-controls="stageCp">
-      <span class="rt-ic" aria-hidden="true">🚀</span>쿠파스팀 방<span class="rt-new">NEW</span>
+      <span class="rt-ic" aria-hidden="true">🚀</span>쿠파스팀 방
+    </button>
+    <button class="room-tab" type="button" role="tab" data-room-tab="trader" aria-selected="false" aria-controls="stageTr">
+      <span class="rt-ic" aria-hidden="true">📈</span>트레이더 방<span class="rt-new">NEW</span>
     </button>
   </nav>
 
@@ -750,6 +858,43 @@ body::before{
       <div class="panes" id="cpBody" role="region" aria-label="쿠파스팀 현황"></div>
       <div class="panel-foot" id="cpFoot"><span>데이터 · status.json</span><span>--:-- 갱신</span></div>
     </aside>
+    <section class="stage cp-stage" id="stageTr" data-room-pane="trader" hidden aria-label="트레이더 방 — Cherry MTF 전략실">
+      <div class="stage-head">
+        <div class="stage-id">
+          <div class="glyph" aria-hidden="true">📈</div>
+          <div>
+            <h2>📈 트레이더 방 · Cherry MTF 전략실</h2>
+            <p>일봉 SHA 방향 + 15분봉 EMA21 지정가 · 수익 중 색상 전환 익절</p>
+          </div>
+        </div>
+        <div class="cp-legend" aria-label="트레이더 방 구성">
+          <span>🍒 체리 팀장</span>
+          <span>📊 ETHUSDT.P 15분</span>
+          <span>🛡️ 손절 1%</span>
+        </div>
+      </div>
+      <div class="canvas-wrap">
+        <svg id="sceneTr" viewBox="0 0 1330 1182" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="trSceneTitle">
+          <title id="trSceneTitle">트레이더 방 — 벽면 시세판에 ETHUSDT.P 15분봉 차트와 21선이 떠 있고, 매매 기록 데스크에 트레이딩팀과 체리 팀장이 앉아 있는 밝은 픽셀 사무실</title>
+        </svg>
+      </div>
+      <div class="stage-foot cp-stage-foot">
+        <span class="live-pill"><i></i>LIVE</span>
+        <div class="ticker"><div class="ticker-track" id="trTicker"></div></div>
+        <span class="foot-hint">기록은 이 기기에만 저장</span>
+      </div>
+    </section>
+    <aside class="panel" id="panelTr" data-room-pane="trader" hidden aria-label="트레이더 방 매매 기록">
+      <div class="panel-head">
+        <div>
+          <h2>📈 트레이더 방 <span class="live-tag">LIVE</span></h2>
+          <p id="trSub">Cherry MTF 전략실 · --:-- 기준</p>
+        </div>
+        <button class="icon-btn" id="trRefresh" title="현황 새로고침" aria-label="현황 새로고침">⟳</button>
+      </div>
+      <div class="panes" id="trBody" role="region" aria-label="트레이더 방 전략·기록"></div>
+      <div class="panel-foot" id="trFoot"><span>데이터 · status.json</span><span>--:-- 갱신</span></div>
+    </aside>
   </main>
 </div>
 
@@ -811,8 +956,13 @@ const FALLBACK = {
           },
           {
             "icon": "🗑️",
-            "title": "핀트 · 굿리치 탈퇴 완료 확인",
-            "detail": "이제 바나나몰 한 곳만 회신을 기다리고 있어요."
+            "title": "핀트 · 굿리치 · 바나나몰 탈퇴 완료",
+            "detail": "세 곳 다 정리됐고, 매시간 돌던 회신 감시도 멈췄어요."
+          },
+          {
+            "icon": "💰",
+            "title": "쿠파스 수익 기록판 · 트레이더 방",
+            "detail": "클릭 수와 수익을 적으면 15만 원 목표 게이지가 바로 올라가요."
           }
         ]
       },
@@ -846,11 +996,6 @@ const FALLBACK = {
             "detail": "우리은행 앱에서 무료로 갱신하면 돼요. 이틀 남았어요."
           },
           {
-            "icon": "🗑️",
-            "title": "바나나몰 탈퇴 회신 기다리는 중",
-            "detail": "매시간 확인하고 있어요. 회신이 오면 바로 알려드릴게요."
-          },
-          {
             "icon": "📩",
             "title": "ChatGPT 데이터 내보내기 메일 대기",
             "detail": "다운로드 준비가 끝났다는 메일이 오면 바로 확인할게요."
@@ -865,8 +1010,8 @@ const FALLBACK = {
     ]
   },
   "summary": {
-    "done": 8,
-    "running": 1,
+    "done": 9,
+    "running": 0,
     "waiting": 5,
     "members": 7
   },
@@ -885,13 +1030,13 @@ const FALLBACK = {
       "desk_label": "대표님 책상",
       "status": "지휘",
       "accent": "#f0b45f",
-      "bubble": "오늘 8건 처리|웹툰까지 완료!",
+      "bubble": "오늘 9건 처리|웹툰까지 완료!",
       "tasks": [
         {
           "time": "02:18",
           "state": "done",
-          "title": "Cherry MTF·웹툰·세금까지 8건 처리",
-          "detail": "웹툰 1~3화, Cherry MTF 개편, 홈택스 확인, 홍골공원 알림, 핀트·굿리치 탈퇴, 9시 추천 3종 — 오늘 안에 다 끝냈습니다. 상세는 AI 업무 탭에서."
+          "title": "Cherry MTF·웹툰·세금까지 9건 처리",
+          "detail": "웹툰 1~3화, Cherry MTF 개편, 홈택스 확인, 홍골공원 알림, 탈퇴 3곳, 9시 추천 3종까지 — 오늘 안에 다 끝냈습니다. 상세는 AI 업무 탭에서."
         },
         {
           "time": "21:52",
@@ -915,8 +1060,14 @@ const FALLBACK = {
       "desk_label": "안내 데스크",
       "status": "상시",
       "accent": "#e8848f",
-      "bubble": "오늘 요약 배포|바나나몰 회신 감시",
+      "bubble": "오늘 요약 배포|수익 기록판 오픈",
       "tasks": [
+        {
+          "time": "19:00",
+          "state": "done",
+          "title": "수익 기록판 · 트레이더 방 추가",
+          "detail": "쿠파스 클릭·수익 기록판과 Cherry MTF 트레이더 방을 만들어 al-office 라이브에 올렸습니다."
+        },
         {
           "time": "18:05",
           "state": "done",
@@ -930,10 +1081,10 @@ const FALLBACK = {
           "detail": "dailySummary 한 장 요약 탭을 붙여 al-office 라이브에 올렸습니다."
         },
         {
-          "time": "20:01",
-          "state": "running",
-          "title": "탈퇴 회신 자동 감시",
-          "detail": "핀트·굿리치는 완료, 이제 바나나몰 한 곳만 매시간 확인합니다. 회신이 오면 바로 알려드립니다."
+          "time": "18:03",
+          "state": "done",
+          "title": "탈퇴 회신 감시 종료",
+          "detail": "바나나몰 회신까지 확인해 3곳 모두 완료 처리하고 매시간 감시를 멈췄습니다."
         },
         {
           "time": "21:52",
@@ -979,9 +1130,9 @@ const FALLBACK = {
       "short": "정리팀",
       "role": "계정 · 구독 정리",
       "desk_label": "정리팀 데스크",
-      "status": "진행 중",
+      "status": "완료",
       "accent": "#8fbf6a",
-      "bubble": "핀트·굿리치 완료|바나나몰 회신 대기",
+      "bubble": "탈퇴 3곳 완료|회신 감시 종료",
       "tasks": [
         {
           "time": "11/15",
@@ -1002,10 +1153,10 @@ const FALLBACK = {
           "detail": "11:50 고객센터 답변으로 바로 탈퇴 처리 완료 — 앱에서 지울 필요 없어졌습니다."
         },
         {
-          "time": null,
-          "state": "running",
-          "title": "바나나몰 회신 자동 감시 중",
-          "detail": "매시간 회신과 반송을 확인합니다. 회신이 오면 바로 알려드립니다."
+          "time": "18:03",
+          "state": "done",
+          "title": "바나나몰 탈퇴 완료 확인",
+          "detail": "15:34 회신을 스팸함에서 확인했습니다. 핀트·굿리치·바나나몰 3곳 모두 탈퇴 완료 — 회신 감시를 종료했습니다."
         },
         {
           "time": null,
@@ -1225,6 +1376,14 @@ const FALLBACK = {
   },
   "completed": [
     {
+      "desk": "cleanup",
+      "team": "정리팀",
+      "time": "18:03",
+      "icon": "🗑️",
+      "title": "바나나몰까지 3곳 탈퇴 완료",
+      "detail": "스팸함에 있던 15:34 회신을 찾아 확인했습니다. 핀트·굿리치·바나나몰이 모두 정리돼 매시간 돌던 회신 감시도 멈췄습니다."
+    },
+    {
       "desk": "finance",
       "team": "재무팀",
       "time": "17:01",
@@ -1289,18 +1448,7 @@ const FALLBACK = {
       "detail": "21선 지정가 진입 · 롱·숏 스위치 · 50만 원 2배 기준으로 정리. ETHUSDT.P 백테스트 +29.02%."
     }
   ],
-  "running": [
-    {
-      "desk": "cleanup",
-      "team": "정리팀",
-      "icon": "🔄",
-      "title": "바나나몰 탈퇴 회신 자동 감시",
-      "since": "20:01",
-      "interval": "1시간마다",
-      "detail": "핀트·굿리치는 정리되어 이제 바나나몰 한 곳만 봅니다. 회신이 오면 바로 알려드리고, 끝나면 감시를 멈춥니다.",
-      "path": "scheduled-actions/🗑️-회원탈퇴-회신-확인"
-    }
-  ],
+  "running": [],
   "quests": [
     {
       "desk": "finance",
@@ -1360,8 +1508,8 @@ const FALLBACK = {
       "name": "배호진",
       "role": "대표님",
       "status": "지휘",
-      "done": 8,
-      "note": "오늘 8건 처리 완료"
+      "done": 9,
+      "note": "오늘 9건 처리 완료"
     },
     {
       "id": "shopping",
@@ -1377,9 +1525,9 @@ const FALLBACK = {
       "desk": "cleanup",
       "name": "정리팀",
       "role": "계정 · 구독 정리",
-      "status": "진행 중",
+      "status": "완료",
       "done": 1,
-      "note": "탈퇴 요청 3곳 접수"
+      "note": "탈퇴 3곳 완료"
     },
     {
       "id": "research",
@@ -1415,7 +1563,7 @@ const FALLBACK = {
       "role": "쿠팡 파트너스 · 콘텐츠 성장",
       "status": "준비 중",
       "done": 0,
-      "note": "Lv.1 · 목표 150,000원"
+      "note": "Lv.2 · 목표 150,000원"
     }
   ],
   "hq_note": "안내 데스크의 체리 비서실장은 본부 운영자로, 팀원 집계(7명)에는 대표님과 6개 전담팀만 셉니다.",
@@ -1551,9 +1699,46 @@ const FALLBACK = {
     {
       "t": "18:05",
       "desk": "hq",
-      "text": "status.json · index.html 오늘 기준 동기화 (오늘 처리 8건)"
+      "text": "status.json · index.html 오늘 기준 동기화 (KPI·AI 업무·로그)"
+    },
+    {
+      "t": "18:03",
+      "desk": "cleanup",
+      "text": "바나나몰 탈퇴 완료 회신 확인 — 3곳 모두 정리, 회신 감시 종료"
+    },
+    {
+      "t": "19:00",
+      "desk": "hq",
+      "text": "쿠파스 수익 기록판 · 트레이더 방 추가 · al-office 라이브 배포"
     }
-  ]
+  ],
+  "traderRoom": {
+    "title": "📈 트레이더 방",
+    "subtitle": "Cherry MTF 전략실",
+    "updated_label": "11월 16일 19:00 기준",
+    "strategy": {
+      "name": "Cherry MTF",
+      "file": "trading/cherry-mtf-sha-ema21.txt",
+      "symbol": "ETHUSDT.P",
+      "rules": [
+        "일봉 SHA 방향이 롱·숏을 정합니다 (녹색이면 롱만, 빨강이면 숏만)",
+        "15분봉 SHA 색이 맞을 때만 21선(EMA21) 지정가로 기다렸다가 체결",
+        "수익 중에 색이 바뀌면 그 자리에서 익절, 손절은 1%"
+      ],
+      "switches": "세 스위치로 롱·숏 진입과 일봉 방향 필터를 끄고 켭니다. 기본은 셋 다 켜짐.",
+      "backtest": {
+        "symbol": "ETHUSDT.P",
+        "capital": "50만 원",
+        "leverage": "2배",
+        "pnl_usd": 103.03,
+        "pnl_pct": 29.02,
+        "profit_factor": 1.549,
+        "win_rate": 54.29,
+        "note": "일봉 SHA + 15분 EMA21 지정가 · 50만 원을 2배로 운용했을 때"
+      }
+    },
+    "note": "기록은 이 기기 브라우저에만 저장됩니다. 체리에게 넘길 때는 아래 복사 버튼을 눌러 채팅에 붙여넣어 주세요."
+  }
 };
 
 /* =======================================================================
@@ -2933,13 +3118,15 @@ function growthGoalHtml(g, withSteps){
   g = g || growthData();
   if(!g) return "";
   const goal = g.goal || {};
-  const cur = +goal.current || 0, tgt = +goal.target || 0;
+  const base = +goal.current || 0, tgt = +goal.target || 0;
+  const add = revTotal().amount, cur = base + add;
   const pct = tgt > 0 ? Math.max(0, Math.min(100, Math.round(cur / tgt * 100))) : 0;
-  let h = '<div class="goal">'+
+  let h = '<div class="goal" data-goal-card data-base="'+base+'" data-tgt="'+tgt+'">'+
     '<div class="goal-top"><b>'+esc(goal.label||"최종 승인 목표")+'</b>'+
-      '<span class="goal-num">'+won(cur)+'원 <i>/</i> '+won(tgt)+'원</span></div>'+
-    '<div class="gbar"><i style="width:'+pct+'%"></i></div>'+
-    '<div class="goal-sub">달성 '+pct+'% · '+esc(goal.note||"")+'</div></div>';
+      '<span class="goal-num" data-g-num>'+won(cur)+'원 <i>/</i> '+won(tgt)+'원</span></div>'+
+    '<div class="gbar"><i data-g-fill style="width:'+pct+'%"></i></div>'+
+    '<div class="goal-sub"><span data-g-pct>달성 '+pct+'%</span> · '+esc(goal.note||"")+'</div>'+
+    '<div class="goal-src" data-g-src>'+esc(revSrcText(cur, tgt, add))+'</div></div>';
   if(withSteps){
     const steps = g.steps || [];
     h += '<div class="steps">'+steps.map(function(s){
@@ -3341,16 +3528,16 @@ const CP_SRC = {
  "title": "🚀 쿠파스팀 워크벤치",
  "subtitle": "칠판 → 작가 → 탐색가 → 기획자 → 웹툰 작가 → 체리 팀장 검수 → 호진 님 승인",
  "today": "2026-11-16",
- "today_label": "11월 16일 웹툰 1화",
- "updated_label": "11월 16일 13:20 기준",
- "level": 1,
+ "today_label": "11월 16일 웹툰 3화",
+ "updated_label": "11월 16일 19:00 기준",
+ "level": 2,
  "goal": {
   "label": "최종 승인 목표",
   "current": 0,
   "target": 150000,
   "unit": "원",
-  "stage": "Lv.1 세팅 완료",
-  "note": "쿠팡 파트너스 승인 기준 · 대표님 승인 0원에서 시작"
+  "stage": "Lv.2 · 1~3단계 완료 (15만 원 목표 도전 중)",
+  "note": "쿠팡 파트너스 승인 기준 · 1~3단계 완료, 지금은 승인 실적을 쌓는 단계"
  },
  "pipeline": [
   {
@@ -3359,7 +3546,7 @@ const CP_SRC = {
    "name": "스토리 칠판에 이야기 쓰기",
    "who": "🖐 배호진 대표님",
    "state": "done",
-   "note": "호진 님이 칠판에 1화 이야기를 적었습니다 — 야간 물류 기사, 퇴근 후 불막창 한 잔."
+   "note": "3화 이야기가 정해졌습니다 — 주 6일 야간, 토요일 하루의 휴일."
   },
   {
    "id": "script",
@@ -3375,7 +3562,7 @@ const CP_SRC = {
    "name": "스토리에 맞는 제품 탐색 · 단축 링크",
    "who": "🔍 트렌드 탐색가",
    "state": "done",
-   "note": "곰곰 매콤한 불막창 11,480원 · 파트너스 단축 링크까지 만들어 승인 대기에 올렸습니다."
+   "note": "도르리 우디 LED 무드등 18,900원 → 15,210원(19%) · 파트너스 단축 링크까지 만들어 승인 대기에 올렸습니다."
   },
   {
    "id": "plan",
@@ -3391,7 +3578,7 @@ const CP_SRC = {
    "name": "콘티 · 컷 이미지 · 말풍선 제작",
    "who": "🎨 웹툰 작가",
    "state": "done",
-   "note": "12컷을 그리고 6장 페이지로 합쳤습니다."
+   "note": "1·2·3화 각 12컷을 그리고 6장 페이지로 합쳤습니다."
   },
   {
    "id": "review",
@@ -3407,7 +3594,7 @@ const CP_SRC = {
    "name": "호진 님 최종 승인 · 발행",
    "who": "🖐 배호진 대표님",
    "state": "running",
-   "note": "1화가 승인 대기 보드에 있습니다. 카드를 눌러 6장과 원고를 확인해 주세요."
+   "note": "1·2·3화가 승인 대기 보드에 있습니다. 카드를 눌러 6장과 원고를 확인하고, 이미지는 카드 아래 저장 버튼으로 바로 받으실 수 있습니다."
   }
  ],
  "team": [
@@ -3417,7 +3604,7 @@ const CP_SRC = {
    "name": "트렌드 탐색가",
    "role": "스토리에 맞는 쿠팡 제품 탐색 · 파트너스 단축 링크 생성",
    "note": "스토리와 상품이 붙는 자리를 찾는 팀입니다. 링크를 만들어 승인 대기에 올립니다.",
-   "doing": "1화 불막창 링크 생성 완료 · 2화 소재 탐색 대기",
+   "doing": "3화 도르리 우디 무드등 링크 생성 완료 · 승인 대기",
    "tasks": [
     {
      "title": "1화 제품 매칭",
@@ -3430,6 +3617,22 @@ const CP_SRC = {
     {
      "title": "승인 대기 등록",
      "detail": "체리 팀장 검수 후 호진 님 승인 대기 보드로 넘김"
+    },
+    {
+     "title": "2화 제품 매칭",
+     "detail": "놀부네 김장하는날 통삼겹보쌈 (냉동) 270g · 12,900원 → 10,960원 (15% 할인)"
+    },
+    {
+     "title": "2화 단축 링크 발급",
+     "detail": "https://link.coupang.com/a/iICB2pVjIO · 상품 페이지 연결 확인"
+    },
+    {
+     "title": "3화 제품 매칭",
+     "detail": "도르리 우디 LED 무드등 인테리어 조명 테이블 램프 · 18,900원 → 15,210원 (19% 할인)"
+    },
+    {
+     "title": "3화 단축 링크 발급",
+     "detail": "https://link.coupang.com/a/iIHzhFHJpk · 상품 페이지 연결 확인"
     }
    ]
   },
@@ -3461,7 +3664,7 @@ const CP_SRC = {
    "name": "스레드 작가",
    "role": "호진 님 스토리에 감정선 · 대사 · 컷 흐름 살 붙이기",
    "note": "호진 님이 칠판에 적은 이야기를 12컷 대사와 나레이션으로 풀어냅니다.",
-   "doing": "2화 스토리 칠판 메모를 기다리는 중",
+   "doing": "3화 스레드 본문 작성 완료 · '토요일은 달려!'",
    "tasks": [
     {
      "title": "1화 12컷 대본",
@@ -3479,7 +3682,7 @@ const CP_SRC = {
    "name": "웹툰 작가",
    "role": "콘티 · 컷 이미지 · 말풍선 제작",
    "note": "기획자 훅과 탐색가 상품을 받아 콘티를 짜고, 12컷을 그려 6장 페이지로 합칩니다.",
-   "doing": "1화 6장 완성 · 체리 팀장 검수 통과",
+   "doing": "3화 6장 완성 · 체리 팀장 검수 통과",
    "tasks": [
     {
      "title": "1화 콘티 12컷",
@@ -3501,7 +3704,7 @@ const CP_SRC = {
    "name": "체리 팀장",
    "role": "전체 검수 · 승인 대기 보드·책장 등록",
    "note": "글자 깨짐·그림체·상품 매칭을 먼저 보고, 통과한 작업만 호진 님 보드에 올립니다.",
-   "doing": "1화 검수 통과 → 승인 대기 보드·책장 1번째 칸에 등록",
+   "doing": "3화 검수 통과 → 승인 대기 보드·책장 3번째 칸에 등록",
    "tasks": [
     {
      "title": "글자·그림체 검수",
@@ -3613,7 +3816,7 @@ const CP_SRC = {
    "status": "승인 대기",
    "author": "✍️ 스레드 작가 · 🎨 웹툰 작가",
    "reviewed_by": "🍒 체리 팀장",
-   "reviewed_at": "2026-11-16 13:00",
+   "reviewed_at": "2026-11-16 15:08",
    "date": "2026-11-16",
    "pages": 6,
    "images": [
@@ -3629,7 +3832,7 @@ const CP_SRC = {
    "discount": "20%",
    "badge": "로켓프레시",
    "link": "https://link.coupang.com/a/iIv9xtxOPA",
-   "thread": "[1화] 남들 잘 때 출근하고, 출근할 때 마신다\n\n밤 7시. 남들 퇴근할 때 내 하루는 시작된다.\n\nGS 물류 공산 기사. 오늘 밤도 만차다.\n박스 하나하나 실을 때마다 허리에서 소리가 난다.\n\n새벽 3시 고속도로엔 라디오 소리 말고는 아무도 없다.\n졸려도 하나하나, 실수 없이. 이게 내 밥벌이다.\n\n창밖이 밝아오는 아침 6시 반, 마지막 코스까지 끝내고\n아침 7시, 출근길 정체 뚫고 집으로 간다.\n\n샤워하고 냉장고에서 캔 하나 꺼내는 이 순간.\n남들에겐 아침인데, 내겐 금요일 밤이다.\n\n야간 근무 끝나고 먹는 낮술엔 매콤한 불막창이 딱이지.\n크으… 이 맛에 또 밤새 달린다.\n\n다음 화 예고 — 혼자가 익숙해질 무렵\n\n그림은 6장으로 이어집니다. 링크는 첫 댓글에 남겨둘게요.",
+   "thread": "[1화] 남들 잘 때 출근하고, 출근할 때 마신다\n\n밤 7시 출근, 아침 7시 퇴근.\n남들 출근할 때 퇴근해서 마시는 시원한 낮술에 매콤한 불막창 한 팬이면 오늘 밤 피로도 싹 풀리죠 ㅋㅋ\n\n(2화: 혼자 해먹는 야간 기사의 집밥)",
    "comment": "👉 https://link.coupang.com/a/iIv9xtxOPA\n\n이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
    "checks": [
     "6장 순서와 말풍선 글자 깨짐 없음",
@@ -3639,14 +3842,89 @@ const CP_SRC = {
     "🍒 체리 팀장 1차 검수 통과 → 호진 님 승인 대기"
    ],
    "note": "야간 물류 기사 호진 님의 하루 — 밤 7시 출근, 아침 7시 퇴근, 그 뒤 한 잔."
+  },
+  {
+   "id": "ep2",
+   "ep": 2,
+   "label": "[2화]",
+   "title": "이게 맞아?",
+   "status": "승인 대기",
+   "author": "✍️ 스레드 작가 · 🎨 웹툰 작가",
+   "reviewed_by": "🍒 체리 팀장",
+   "reviewed_at": "2026-11-16 14:40",
+   "date": "2026-11-16",
+   "pages": 6,
+   "images": [
+    "webtoon/ep2/page-1.png",
+    "webtoon/ep2/page-2.png",
+    "webtoon/ep2/page-3.png",
+    "webtoon/ep2/page-4.png",
+    "webtoon/ep2/page-5.png",
+    "webtoon/ep2/page-6.png"
+   ],
+   "product": "놀부네 김장하는날 통삼겹보쌈 (냉동), 270g, 1개",
+   "price": 10960,
+   "discount": "15%",
+   "badge": "로켓프레시",
+   "link": "https://link.coupang.com/a/iICB2pVjIO",
+   "thread": "[2화] 이게 맞아?\n\n밤 7시. 오늘로 주 6일째 야간이다.\n트럭에 올라타는 것도 이제 몸이 먼저 기억한다.\n\n편의점 앞에서 박스 내리는데 점주가 팔짱 끼고 한마디.\n박스 거기 두면 어떡해요, 다시 안쪽으로 넣어요.\n\n네, 바로 옮기겠습니다. 하고 또 고개 숙인다.\n이게 맞아? 하는 생각은 아직 아무한테도 못 했다.\n\n새벽 거리엔 만취한 손님.\n야! 길 막지 말고 비켜봐—\n박스 놓칠까 봐 한 손으로 붙잡고 조용히 피했다.\n\n그러다 비까지 쏟아진다.\n물건 젖을까 봐 몸으로 다 막고 뛰었다.\n\n아침 퇴근. 젖은 작업복 벗고 현관 들어서면\n오늘 밤 멘탈은 다 털렸는데, 그래도 집 오면 내 세상이다.\n\n쟁여둔 보쌈 몇 분 데우고, 소주 한 잔.\n이 비주얼이 간편 조리로 나온다는 게 아직도 신기하다.\n\n크으... 아까 진상도, 비 맞은 것도 다 잊힌다.\n오늘도 버텼다.\n\n다음 화 — 밤낮 바뀐 야간 기사의 휴일\n\n그림은 6장으로 이어집니다. 링크는 첫 댓글에 남겨둘게요.",
+   "comment": "👉 https://link.coupang.com/a/iICB2pVjIO\n\n이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
+   "checks": [
+    "6장 순서·자막 글자 깨짐과 잘림 없음",
+    "12컷 모두 카메라 정면 응시 없이 옆·뒷모습·행동 구도",
+    "GS 스타일 흰색 탑차 · 회색 타일 주방(가스레인지) · 검정 마블 식탁 반영",
+    "9·10컷 수육·김치·마늘소스·소주 연출 퀄리티 확인",
+    "상품 매칭 — 놀부네 김장하는날 통삼겹보쌈 (냉동) 270g · 10,960원",
+    "본문에 링크 없음 · 첫 댓글에 단축 링크 + 수수료 고지",
+    "🍒 체리 팀장 1차 검수 통과 → 호진 님 승인 대기"
+   ],
+   "note": "주 6일 야간 — 점주 갑질, 만취 손님, 빗속 배송, 그리고 혼자 차린 보쌈 한 상."
+  },
+  {
+   "id": "ep3",
+   "ep": 3,
+   "label": "[3화]",
+   "title": "토요일은 달려!",
+   "status": "승인 대기",
+   "author": "✍️ 스레드 작가 · 🎨 웹툰 작가",
+   "reviewed_by": "🍒 체리 팀장",
+   "reviewed_at": "2026-11-16 15:55",
+   "date": "2026-11-16",
+   "pages": 6,
+   "images": [
+    "webtoon/ep3/page-1.png",
+    "webtoon/ep3/page-2.png",
+    "webtoon/ep3/page-3.png",
+    "webtoon/ep3/page-4.png",
+    "webtoon/ep3/page-5.png",
+    "webtoon/ep3/page-6.png"
+   ],
+   "product": "도르리 우디 LED 무드등 인테리어 조명 테이블 램프 수면등 취침등 수유등 신생아 침대",
+   "price": 15210,
+   "discount": "19%",
+   "badge": "무료배송",
+   "link": "https://link.coupang.com/a/iIHzhFHJpk",
+   "thread": "[3화] 토요일은 달려!\n\n일주일에 딱 하루, 토요일은 무조건 달린다.\n주 6일 야간에 몸은 다 축났어도, 토요일 저녁만 되면 이상하게 힘이 난다.\n\n행거 옆 거울 앞에서 한참 서 있다.\n연두색 후드티 위에 차콜 롱코트, 그리고 청바지.\n이게 요즘 내 유일한 외출복이다.\n\n해 질 무렵 골목으로 나선다.\n어두워지는 하늘, 가로등 불빛. 친구들 만나러 가는 발걸음이 이렇게 가볍다.\n\n1차는 고깃집.\n불판 위에서 지글지글 익는 삼겹살, 소주잔 부딪히는 소리.\n한 주 동안 고생했다, 짠—\n\n이 맛에 일주일을 버텼다.\n고기 한 점, 소주 한 잔이면 아까운 일들은 다 잊힌다.\n\n2차는 언제나 그 집. 친구가 하는 작은 이자카야, 느린하루.\n따뜻한 등불 아래 마주 앉으면 말이 술술 나온다.\n\n요즘 어때?\n사는 거 다 똑같지 뭐...\n\n옛날 얘기, 일 얘기, 별거 아닌 얘기.\n시간 가는 줄 모르고 달렸다.\n\n조심히 들어가! 다음 주 토요일에 또 보자.\n\n집 앞 골목. 살짝 취한 채로 밤공기를 마신다.\n아, 오늘 진짜 잘 놀았다.\n\n그런데 현관문을 열고 들어서는 순간,\n방이 너무 적막하다. 불도 안 켠 깜깜한 방.\n\n그래서 무드등 하나 켰다.\n원통형 주름 갓에 우드 받침, 은은하게 퍼지는 불빛.\n이거 하나 켰을 뿐인데 방 분위기가 확 산다.\n\n그래도 오늘 밤은 따뜻하네.\n잠이 스르르 온다.\n\n다음 화 — 일요일은 시체처럼\n\n그림은 6장으로 이어집니다. 링크는 첫 댓글에 남겨둘게요.",
+   "comment": "👉 https://link.coupang.com/a/iIHzhFHJpk\n\n이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
+   "checks": [
+    "6장 순서·자막 글자 깨짐과 잘림 없음",
+    "12컷 모두 카메라 정면 응시 없이 옆·뒷모습·행동 구도",
+    "연두색 후드티 + 차콜 롱코트 + 청바지 사복 일관되게 반영",
+    "3컷 삼겹살 불판 클로즈업 음식 작화 퀄리티 확인",
+    "11·12컷 우디 무드등 — 원통형 주름 화이트 갓 + 우드 받침 형태 실제 상품과 일치",
+    "상품 매칭 — 도르리 우디 LED 무드등 (18,900원 → 15,210원·19% 할인)",
+    "본문에 링크 없음 · 첫 댓글에 단축 링크 + 수수료 고지",
+    "🍒 체리 팀장 1차 검수 통과 → 호진 님 승인 대기"
+   ],
+   "note": "토요일 하루 — 고깃집 삼겹살, 단골 이자카야 느린하루, 그리고 텅 빈 방에 켠 무드등 한 개."
   }
  ],
  "webtoonBookshelf": {
   "title": "웹툰 책장 · 100부작 시리즈",
   "total": 100,
-  "filled": 1,
+  "filled": 3,
   "updated_label": "11월 16일",
-  "note": "2화부터는 호진 님 승인까지 끝난 화만 한 권씩 꽂힙니다.",
+  "note": "1·2·3화까지 꽂혔습니다. 3화는 호진 님 승인만 남았습니다.",
   "books": [
    {
     "id": "ep1",
@@ -3656,7 +3934,7 @@ const CP_SRC = {
     "status": "승인 대기",
     "author": "✍️ 스레드 작가 · 🎨 웹툰 작가",
     "reviewed_by": "🍒 체리 팀장",
-    "reviewed_at": "2026-11-16 13:00",
+    "reviewed_at": "2026-11-16 15:08",
     "date": "2026-11-16",
     "pages": 6,
     "images": [
@@ -3672,7 +3950,7 @@ const CP_SRC = {
     "discount": "20%",
     "badge": "로켓프레시",
     "link": "https://link.coupang.com/a/iIv9xtxOPA",
-    "thread": "[1화] 남들 잘 때 출근하고, 출근할 때 마신다\n\n밤 7시. 남들 퇴근할 때 내 하루는 시작된다.\n\nGS 물류 공산 기사. 오늘 밤도 만차다.\n박스 하나하나 실을 때마다 허리에서 소리가 난다.\n\n새벽 3시 고속도로엔 라디오 소리 말고는 아무도 없다.\n졸려도 하나하나, 실수 없이. 이게 내 밥벌이다.\n\n창밖이 밝아오는 아침 6시 반, 마지막 코스까지 끝내고\n아침 7시, 출근길 정체 뚫고 집으로 간다.\n\n샤워하고 냉장고에서 캔 하나 꺼내는 이 순간.\n남들에겐 아침인데, 내겐 금요일 밤이다.\n\n야간 근무 끝나고 먹는 낮술엔 매콤한 불막창이 딱이지.\n크으… 이 맛에 또 밤새 달린다.\n\n다음 화 예고 — 혼자가 익숙해질 무렵\n\n그림은 6장으로 이어집니다. 링크는 첫 댓글에 남겨둘게요.",
+    "thread": "[1화] 남들 잘 때 출근하고, 출근할 때 마신다\n\n밤 7시 출근, 아침 7시 퇴근.\n남들 출근할 때 퇴근해서 마시는 시원한 낮술에 매콤한 불막창 한 팬이면 오늘 밤 피로도 싹 풀리죠 ㅋㅋ\n\n(2화: 혼자 해먹는 야간 기사의 집밥)",
     "comment": "👉 https://link.coupang.com/a/iIv9xtxOPA\n\n이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
     "checks": [
      "6장 순서와 말풍선 글자 깨짐 없음",
@@ -3682,10 +3960,85 @@ const CP_SRC = {
      "🍒 체리 팀장 1차 검수 통과 → 호진 님 승인 대기"
     ],
     "note": "야간 물류 기사 호진 님의 하루 — 밤 7시 출근, 아침 7시 퇴근, 그 뒤 한 잔."
+   },
+   {
+    "id": "ep2",
+    "ep": 2,
+    "label": "[2화]",
+    "title": "이게 맞아?",
+    "status": "승인 대기",
+    "author": "✍️ 스레드 작가 · 🎨 웹툰 작가",
+    "reviewed_by": "🍒 체리 팀장",
+    "reviewed_at": "2026-11-16 14:40",
+    "date": "2026-11-16",
+    "pages": 6,
+    "images": [
+     "webtoon/ep2/page-1.png",
+     "webtoon/ep2/page-2.png",
+     "webtoon/ep2/page-3.png",
+     "webtoon/ep2/page-4.png",
+     "webtoon/ep2/page-5.png",
+     "webtoon/ep2/page-6.png"
+    ],
+    "product": "놀부네 김장하는날 통삼겹보쌈 (냉동), 270g, 1개",
+    "price": 10960,
+    "discount": "15%",
+    "badge": "로켓프레시",
+    "link": "https://link.coupang.com/a/iICB2pVjIO",
+    "thread": "[2화] 이게 맞아?\n\n밤 7시. 오늘로 주 6일째 야간이다.\n트럭에 올라타는 것도 이제 몸이 먼저 기억한다.\n\n편의점 앞에서 박스 내리는데 점주가 팔짱 끼고 한마디.\n박스 거기 두면 어떡해요, 다시 안쪽으로 넣어요.\n\n네, 바로 옮기겠습니다. 하고 또 고개 숙인다.\n이게 맞아? 하는 생각은 아직 아무한테도 못 했다.\n\n새벽 거리엔 만취한 손님.\n야! 길 막지 말고 비켜봐—\n박스 놓칠까 봐 한 손으로 붙잡고 조용히 피했다.\n\n그러다 비까지 쏟아진다.\n물건 젖을까 봐 몸으로 다 막고 뛰었다.\n\n아침 퇴근. 젖은 작업복 벗고 현관 들어서면\n오늘 밤 멘탈은 다 털렸는데, 그래도 집 오면 내 세상이다.\n\n쟁여둔 보쌈 몇 분 데우고, 소주 한 잔.\n이 비주얼이 간편 조리로 나온다는 게 아직도 신기하다.\n\n크으... 아까 진상도, 비 맞은 것도 다 잊힌다.\n오늘도 버텼다.\n\n다음 화 — 밤낮 바뀐 야간 기사의 휴일\n\n그림은 6장으로 이어집니다. 링크는 첫 댓글에 남겨둘게요.",
+    "comment": "👉 https://link.coupang.com/a/iICB2pVjIO\n\n이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
+    "checks": [
+     "6장 순서·자막 글자 깨짐과 잘림 없음",
+     "12컷 모두 카메라 정면 응시 없이 옆·뒷모습·행동 구도",
+     "GS 스타일 흰색 탑차 · 회색 타일 주방(가스레인지) · 검정 마블 식탁 반영",
+     "9·10컷 수육·김치·마늘소스·소주 연출 퀄리티 확인",
+     "상품 매칭 — 놀부네 김장하는날 통삼겹보쌈 (냉동) 270g · 10,960원",
+     "본문에 링크 없음 · 첫 댓글에 단축 링크 + 수수료 고지",
+     "🍒 체리 팀장 1차 검수 통과 → 호진 님 승인 대기"
+    ],
+    "note": "주 6일 야간 — 점주 갑질, 만취 손님, 빗속 배송, 그리고 혼자 차린 보쌈 한 상."
+   },
+   {
+    "id": "ep3",
+    "ep": 3,
+    "label": "[3화]",
+    "title": "토요일은 달려!",
+    "status": "승인 대기",
+    "author": "✍️ 스레드 작가 · 🎨 웹툰 작가",
+    "reviewed_by": "🍒 체리 팀장",
+    "reviewed_at": "2026-11-16 15:55",
+    "date": "2026-11-16",
+    "pages": 6,
+    "images": [
+     "webtoon/ep3/page-1.png",
+     "webtoon/ep3/page-2.png",
+     "webtoon/ep3/page-3.png",
+     "webtoon/ep3/page-4.png",
+     "webtoon/ep3/page-5.png",
+     "webtoon/ep3/page-6.png"
+    ],
+    "product": "도르리 우디 LED 무드등 인테리어 조명 테이블 램프 수면등 취침등 수유등 신생아 침대",
+    "price": 15210,
+    "discount": "19%",
+    "badge": "무료배송",
+    "link": "https://link.coupang.com/a/iIHzhFHJpk",
+    "thread": "[3화] 토요일은 달려!\n\n일주일에 딱 하루, 토요일은 무조건 달린다.\n주 6일 야간에 몸은 다 축났어도, 토요일 저녁만 되면 이상하게 힘이 난다.\n\n행거 옆 거울 앞에서 한참 서 있다.\n연두색 후드티 위에 차콜 롱코트, 그리고 청바지.\n이게 요즘 내 유일한 외출복이다.\n\n해 질 무렵 골목으로 나선다.\n어두워지는 하늘, 가로등 불빛. 친구들 만나러 가는 발걸음이 이렇게 가볍다.\n\n1차는 고깃집.\n불판 위에서 지글지글 익는 삼겹살, 소주잔 부딪히는 소리.\n한 주 동안 고생했다, 짠—\n\n이 맛에 일주일을 버텼다.\n고기 한 점, 소주 한 잔이면 아까운 일들은 다 잊힌다.\n\n2차는 언제나 그 집. 친구가 하는 작은 이자카야, 느린하루.\n따뜻한 등불 아래 마주 앉으면 말이 술술 나온다.\n\n요즘 어때?\n사는 거 다 똑같지 뭐...\n\n옛날 얘기, 일 얘기, 별거 아닌 얘기.\n시간 가는 줄 모르고 달렸다.\n\n조심히 들어가! 다음 주 토요일에 또 보자.\n\n집 앞 골목. 살짝 취한 채로 밤공기를 마신다.\n아, 오늘 진짜 잘 놀았다.\n\n그런데 현관문을 열고 들어서는 순간,\n방이 너무 적막하다. 불도 안 켠 깜깜한 방.\n\n그래서 무드등 하나 켰다.\n원통형 주름 갓에 우드 받침, 은은하게 퍼지는 불빛.\n이거 하나 켰을 뿐인데 방 분위기가 확 산다.\n\n그래도 오늘 밤은 따뜻하네.\n잠이 스르르 온다.\n\n다음 화 — 일요일은 시체처럼\n\n그림은 6장으로 이어집니다. 링크는 첫 댓글에 남겨둘게요.",
+    "comment": "👉 https://link.coupang.com/a/iIHzhFHJpk\n\n이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
+    "checks": [
+     "6장 순서·자막 글자 깨짐과 잘림 없음",
+     "12컷 모두 카메라 정면 응시 없이 옆·뒷모습·행동 구도",
+     "연두색 후드티 + 차콜 롱코트 + 청바지 사복 일관되게 반영",
+     "3컷 삼겹살 불판 클로즈업 음식 작화 퀄리티 확인",
+     "11·12컷 우디 무드등 — 원통형 주름 화이트 갓 + 우드 받침 형태 실제 상품과 일치",
+     "상품 매칭 — 도르리 우디 LED 무드등 (18,900원 → 15,210원·19% 할인)",
+     "본문에 링크 없음 · 첫 댓글에 단축 링크 + 수수료 고지",
+     "🍒 체리 팀장 1차 검수 통과 → 호진 님 승인 대기"
+    ],
+    "note": "토요일 하루 — 고깃집 삼겹살, 단골 이자카야 느린하루, 그리고 텅 빈 방에 켠 무드등 한 개."
    }
   ]
  }
-};
+};;;;
 FALLBACK.coupangRoom = CP_SRC;
 
 /* ---------------- 픽셀 캐릭터 (16×21 도트, 기존 사양 그대로) ---------------- */
@@ -4106,10 +4459,10 @@ function cpChair(cx, y){
   return s;
 }
 
-function cpWindow(x, y, w, h){
+function cpWindow(x, y, w, h, sky){
   let s = '';
   s += '<rect x="' + (x-10) + '" y="' + (y-10) + '" width="' + (w+20) + '" height="' + (h+20) + '" rx="10" fill="#f5ddba" stroke="rgba(190,150,100,.5)" stroke-width="3"/>';
-  s += '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" fill="url(#cpSkyG)"/>';
+  s += '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" fill="url(#' + (sky || 'cpSkyG') + ')"/>';
   s += '<ellipse cx="' + (x+w*0.28) + '" cy="' + (y+h*0.26) + '" rx="40" ry="15" fill="#fff" opacity=".92"/>';
   s += '<ellipse cx="' + (x+w*0.36) + '" cy="' + (y+h*0.22) + '" rx="26" ry="12" fill="#fff" opacity=".92"/>';
   s += '<ellipse cx="' + (x+w*0.78) + '" cy="' + (y+h*0.18) + '" rx="30" ry="12" fill="#fff" opacity=".8"/>';
@@ -4451,13 +4804,15 @@ function cpFlow(steps){
 }
 
 function cpGoal(g, level){
-  const tgt = +g.target || 0, cur = +g.current || 0;
+  const tgt = +g.target || 0, base = +g.current || 0;
+  const add = revTotal().amount, cur = base + add;
   const pct = tgt > 0 ? Math.max(0, Math.min(100, Math.round(cur / tgt * 100))) : 0;
-  let h = '<div class="cp-goal">';
+  let h = '<div class="cp-goal" data-goal-card data-base="' + base + '" data-tgt="' + tgt + '">';
   h += '<div class="cp-goal-top"><b>' + esc(g.label || "최종 승인 목표") + (level ? '<span class="lv">Lv.' + level + '</span>' : "") + '</b>'
-    + '<span class="num">' + won(cur) + '원 <i>/</i> ' + won(tgt) + '원</span></div>';
-  h += '<div class="bar"><i style="width:' + pct + '%"></i></div>';
-  h += '<div class="sub">달성 ' + pct + '% · ' + esc(g.stage || "") + '<br>' + esc(g.note || "") + '</div>';
+    + '<span class="num" data-g-num>' + won(cur) + '원 <i>/</i> ' + won(tgt) + '원</span></div>';
+  h += '<div class="bar"><i data-g-fill style="width:' + pct + '%"></i></div>';
+  h += '<div class="sub"><span data-g-pct>달성 ' + pct + '%</span> · ' + esc(g.stage || "") + '<br>' + esc(g.note || "") + '</div>';
+  h += '<div class="goal-src" data-g-src>' + esc(revSrcText(cur, tgt, add)) + '</div>';
   h += '</div>';
   return h;
 }
@@ -4494,6 +4849,7 @@ function cpWorkbench(d){
   h += '<div class="sec-title">팀 파이프라인 <span class="n">' + (d.level ? "Lv." + d.level : "") + '</span></div>';
   h += cpFlow(d.pipeline || []);
   h += cpGoal(d.goal || {}, d.level);
+  h += cpRevenueBoard();
   h += cpRoles(d);
   h += cpStoryBoard();
   h += cpReviewPanel(d);
@@ -4950,9 +5306,584 @@ function cpOpenSheet(id){
   document.body.style.overflow = "hidden";
 }
 
+/* =======================================================================
+   💰 기록판 (쿠파스 클릭·수익) · 📈 트레이더 방 (매매 손익)
+   두 기록 모두 이 기기 브라우저(localStorage)에만 남습니다.
+   ======================================================================= */
+const LS_REV = "al-office.revenue.v1";
+const LS_TRADE = "al-office.trades.v1";
+const REV = { list: null };
+const TRADE = { list: null, dir: "long" };
+const TR = { built: false };
+
+function todayISO(){
+  const n = new Date();
+  const p = function(x){ return (x < 10 ? "0" : "") + x; };
+  return n.getFullYear() + "-" + p(n.getMonth() + 1) + "-" + p(n.getDate());
+}
+function numOf(v){
+  if(typeof v === "number") return isFinite(v) ? Math.round(v) : 0;
+  const s = String(v == null ? "" : v).replace(/[^0-9.\-]/g, "");
+  if(!s || s === "-" || s === "." || s === "-.") return 0;
+  const n = parseFloat(s);
+  return isFinite(n) ? Math.round(n) : 0;
+}
+function mmdd(iso){
+  const m = String(iso || "").match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  return m ? (m[2] + "/" + m[3]) : String(iso || "");
+}
+function signed(n){ return (n > 0 ? "+" : "") + won(n); }
+function flashBtn(btn, text, ok){
+  if(!btn) return;
+  if(!btn.getAttribute("data-label")) btn.setAttribute("data-label", btn.textContent);
+  const label = btn.getAttribute("data-label");
+  btn.textContent = text;
+  btn.classList.toggle("ok", !!ok);
+  clearTimeout(btn.__f);
+  btn.__f = setTimeout(function(){ btn.classList.remove("ok"); btn.textContent = label; }, 1700);
+}
+
+/* ---------------- 💰 쿠파스 클릭·수익 기록판 ---------------- */
+function revLoad(){
+  if(REV.list) return REV.list;
+  const v = lsRead(LS_REV);
+  REV.list = Array.isArray(v) ? v.filter(function(x){ return x && typeof x === "object"; }) : [];
+  return REV.list;
+}
+function revSave(){ return lsWrite(LS_REV, revLoad()); }
+function revTotal(){
+  const l = revLoad();
+  let clicks = 0, amount = 0;
+  l.forEach(function(x){ clicks += Math.abs(numOf(x.clicks)); amount += numOf(x.amount); });
+  return { clicks: clicks, amount: amount, count: l.length };
+}
+function revTarget(){
+  const d = cpData() || {};
+  return numOf((d.goal || {}).target) || 150000;
+}
+function revSrcText(cur, tgt, add){
+  if(!add) return "기록판에 적은 금액이 여기 그대로 더해집니다";
+  const left = tgt - cur;
+  return "기록판 " + won(add) + "원 반영" + (left > 0 ? " · 남은 " + won(left) + "원" : " · 목표 달성!");
+}
+function revListHtml(){
+  const l = revLoad();
+  if(!l.length) return '<div class="led-empty">아직 기록이 없어요. 오늘 들어온 클릭과 수익부터 적어 보세요.</div>';
+  return l.slice().reverse().map(function(x){
+    const amt = numOf(x.amount);
+    const click = Math.abs(numOf(x.clicks));
+    let s = '<div class="led-row">';
+    s += '<span class="lr-date">' + esc(mmdd(x.date)) + '</span>';
+    s += '<span class="lr-main"><b>' + esc(x.memo || "메모 없음") + '</b>'
+      + '<span class="lr-meta">' + (click ? "👆 클릭 " + won(click) : "클릭 기록 없음") + '</span></span>';
+    s += '<span class="lr-amt' + (amt > 0 ? " pos" : (amt < 0 ? " neg" : "")) + '">' + signed(amt) + '원</span>';
+    s += '<button class="lr-del" type="button" data-rev-del="' + esc(String(x.id)) + '" aria-label="이 기록 삭제">✕</button>';
+    return s + '</div>';
+  }).join("");
+}
+function revPaint(){
+  const t = revTotal(), tgt = revTarget();
+  const pct = tgt > 0 ? Math.max(0, Math.min(100, Math.round(t.amount / tgt * 100))) : 0;
+  const clicks = document.querySelector("[data-rev-clicks]");
+  if(clicks) clicks.textContent = won(t.clicks) + "회";
+  const amount = document.querySelector("[data-rev-amount]");
+  if(amount) amount.innerHTML = won(t.amount) + "원<i>/ " + won(tgt) + "원</i>";
+  const pctEl = document.querySelector("[data-rev-pct]");
+  if(pctEl) pctEl.textContent = pct + "%";
+  const cnt = document.querySelector("[data-rev-count]");
+  if(cnt) cnt.textContent = t.count + "건 기록";
+  const list = document.querySelector("[data-rev-list]");
+  if(list) list.innerHTML = revListHtml();
+  paintGoals();
+}
+function revAdd(btn){
+  const dEl = document.getElementById("revDate");
+  const cEl = document.getElementById("revClicks");
+  const aEl = document.getElementById("revAmount");
+  const mEl = document.getElementById("revMemo");
+  if(!aEl) return;
+  const amount = numOf(aEl.value);
+  const clicks = Math.abs(numOf(cEl ? cEl.value : ""));
+  const memo = (mEl ? mEl.value : "").trim();
+  if(!amount && !clicks && !memo){ flashBtn(btn, "금액이나 메모를 적어 주세요"); return; }
+  const list = revLoad();
+  list.push({
+    id: "r" + Date.now() + Math.floor(Math.random() * 1000),
+    date: (dEl && dEl.value) || todayISO(),
+    clicks: clicks,
+    amount: amount,
+    memo: memo
+  });
+  if(!revSave()){ flashBtn(btn, "저장 실패 — 브라우저 저장 공간을 확인해 주세요"); return; }
+  aEl.value = ""; if(cEl) cEl.value = ""; if(mEl) mEl.value = "";
+  revPaint();
+  flashBtn(btn, "✓ 저장됨", true);
+}
+function revDel(id){
+  const l = revLoad();
+  for(let i = 0; i < l.length; i++){
+    if(String(l[i].id) === String(id)){ l.splice(i, 1); break; }
+  }
+  revSave();
+  revPaint();
+}
+function revCopyText(){
+  const l = revLoad(), t = revTotal(), tgt = revTarget();
+  const pct = tgt > 0 ? Math.round(t.amount / tgt * 100) : 0;
+  let s = "🚀 쿠파스 실적 기록";
+  s += "\n누적 수익 " + won(t.amount) + "원 / " + won(tgt) + "원 (" + pct + "%) · 누적 클릭 " + won(t.clicks) + "회";
+  if(!l.length){ s += "\n\n아직 기록이 없습니다."; return s; }
+  s += "\n";
+  l.slice().sort(function(a, b){ return String(a.date).localeCompare(String(b.date)); }).forEach(function(x){
+    const click = Math.abs(numOf(x.clicks));
+    s += "\n" + mmdd(x.date) + " · " + signed(numOf(x.amount)) + "원"
+      + (click ? " · 클릭 " + won(click) : "") + (x.memo ? " · " + x.memo : "");
+  });
+  s += "\n\n— al-office 쿠파스 기록판에서 보냅니다.";
+  return s;
+}
+function cpRevenueBoard(){
+  const t = revTotal(), tgt = revTarget();
+  const pct = tgt > 0 ? Math.max(0, Math.min(100, Math.round(t.amount / tgt * 100))) : 0;
+  let h = '<div class="sec-title">💰 쿠파스 클릭·수익 기록판 <span class="n" data-rev-count>' + t.count + '건 기록</span></div>';
+  h += '<div class="led">';
+  h += '<div class="led-sum">'
+    + '<div class="led-cell"><span class="lb">누적 클릭 수</span><span class="vl" data-rev-clicks>' + won(t.clicks) + '회</span></div>'
+    + '<div class="led-cell"><span class="lb">쿠파스 누적 수익</span><span class="vl" data-rev-amount>' + won(t.amount) + '원<i>/ ' + won(tgt) + '원</i></span></div>'
+    + '<div class="led-cell"><span class="lb">목표 달성률</span><span class="vl" data-rev-pct>' + pct + '%</span></div>'
+    + '</div>';
+  h += '<div class="led-f">'
+    + '<label class="led-lab">날짜<input class="led-in" type="date" id="revDate" value="' + todayISO() + '"></label>'
+    + '<label class="led-lab">클릭 수 <span class="opt">선택</span><input class="led-in" type="text" inputmode="numeric" id="revClicks" placeholder="0" maxlength="6"></label>'
+    + '</div>';
+  h += '<label class="led-lab">수익 금액 <span class="opt">원 · 손실은 -로</span><input class="led-in" type="text" inputmode="numeric" id="revAmount" placeholder="12,000" maxlength="12"></label>';
+  h += '<label class="led-lab">메모<input class="led-in" type="text" id="revMemo" placeholder="웹툰 1화 불막창 · 가습기 링크" maxlength="60"></label>';
+  h += '<button class="led-add" type="button" data-rev-add data-label="기록 추가">기록 추가</button>';
+  h += '<div class="led-list" data-rev-list>' + revListHtml() + '</div>';
+  h += '<div class="led-act"><button class="cp-copy" type="button" data-rev-copy data-label="📋 내역 복사">📋 내역 복사</button></div>';
+  h += '<div class="led-note">적은 수익은 쿠파스팀 방과 성장 트래커의 150,000원 게이지에 바로 더해져요. 이 기기 브라우저에만 저장됩니다.</div>';
+  h += '</div>';
+  return h;
+}
+
+/* ---------------- 📈 매매 손익 기록판 ---------------- */
+function tradeLoad(){
+  if(TRADE.list) return TRADE.list;
+  const v = lsRead(LS_TRADE);
+  TRADE.list = Array.isArray(v) ? v.filter(function(x){ return x && typeof x === "object"; }) : [];
+  return TRADE.list;
+}
+function tradeSave(){ return lsWrite(LS_TRADE, tradeLoad()); }
+function tradeTotal(){
+  const l = tradeLoad();
+  let win = 0, loss = 0, pnl = 0;
+  l.forEach(function(x){
+    const a = numOf(x.amount);
+    pnl += a;
+    if(a > 0) win++;
+    else if(a < 0) loss++;
+  });
+  return { count: l.length, win: win, loss: loss, pnl: pnl };
+}
+function tradeListHtml(){
+  const l = tradeLoad();
+  if(!l.length) return '<div class="led-empty">아직 매매 기록이 없어요. 오늘 진입한 자리부터 남겨 보세요.</div>';
+  return l.slice().reverse().map(function(x){
+    const amt = numOf(x.amount);
+    const short = x.dir === "short";
+    let s = '<div class="led-row is-trade">';
+    s += '<span class="lr-date">' + esc(mmdd(x.date)) + '</span>';
+    s += '<span class="lr-dir ' + (short ? "short" : "long") + '">' + (short ? "숏" : "롱") + '</span>';
+    s += '<span class="lr-main"><b>' + esc(x.symbol || "ETHUSDT.P") + '</b>'
+      + '<span class="lr-meta">' + esc(x.memo || "메모 없음") + '</span></span>';
+    s += '<span class="lr-amt' + (amt > 0 ? " pos" : (amt < 0 ? " neg" : "")) + '">' + signed(amt) + '원</span>';
+    s += '<button class="lr-del" type="button" data-trade-del="' + esc(String(x.id)) + '" aria-label="이 기록 삭제">✕</button>';
+    return s + '</div>';
+  }).join("");
+}
+function tradePaint(){
+  const t = tradeTotal();
+  const rate = t.count ? Math.round(t.win / t.count * 100) : 0;
+  const cnt = document.querySelector("[data-tr-count]");
+  if(cnt) cnt.textContent = t.count + "건";
+  const rateEl = document.querySelector("[data-tr-rate]");
+  if(rateEl) rateEl.textContent = t.count ? rate + "%" : "—";
+  const pnl = document.querySelector("[data-tr-pnl]");
+  if(pnl){
+    pnl.textContent = signed(t.pnl) + "원";
+    pnl.classList.remove("pos", "neg");
+    if(t.pnl > 0) pnl.classList.add("pos");
+    else if(t.pnl < 0) pnl.classList.add("neg");
+  }
+  const n = document.querySelector("[data-tr-n]");
+  if(n) n.textContent = t.count + "건 기록";
+  const list = document.querySelector("[data-tr-list]");
+  if(list) list.innerHTML = tradeListHtml();
+}
+function tradeAdd(btn){
+  const dEl = document.getElementById("trDate");
+  const sEl = document.getElementById("trSymbol");
+  const aEl = document.getElementById("trAmount");
+  const mEl = document.getElementById("trMemo");
+  if(!aEl) return;
+  if(String(aEl.value).trim() === ""){ flashBtn(btn, "손익 금액을 적어 주세요"); return; }
+  const list = tradeLoad();
+  list.push({
+    id: "t" + Date.now() + Math.floor(Math.random() * 1000),
+    date: (dEl && dEl.value) || todayISO(),
+    symbol: ((sEl && sEl.value.trim()) || "ETHUSDT.P"),
+    dir: TRADE.dir === "short" ? "short" : "long",
+    amount: numOf(aEl.value),
+    memo: (mEl ? mEl.value : "").trim()
+  });
+  if(!tradeSave()){ flashBtn(btn, "저장 실패 — 브라우저 저장 공간을 확인해 주세요"); return; }
+  aEl.value = ""; if(mEl) mEl.value = "";
+  tradePaint();
+  flashBtn(btn, "✓ 저장됨", true);
+}
+function tradeDel(id){
+  const l = tradeLoad();
+  for(let i = 0; i < l.length; i++){
+    if(String(l[i].id) === String(id)){ l.splice(i, 1); break; }
+  }
+  tradeSave();
+  tradePaint();
+}
+function tradeCopyText(){
+  const l = tradeLoad(), t = tradeTotal();
+  const rate = t.count ? Math.round(t.win / t.count * 100) : 0;
+  let s = "📈 매매 일지 — Cherry MTF";
+  s += "\n총 " + t.count + "건 · 승률 " + (t.count ? rate + "%" : "—") + " · 누적 " + signed(t.pnl) + "원";
+  if(!l.length){ s += "\n\n아직 기록이 없습니다."; return s; }
+  s += "\n";
+  l.slice().sort(function(a, b){ return String(a.date).localeCompare(String(b.date)); }).forEach(function(x){
+    s += "\n" + mmdd(x.date) + " " + (x.symbol || "ETHUSDT.P") + " "
+      + (x.dir === "short" ? "숏" : "롱") + " " + signed(numOf(x.amount)) + "원"
+      + (x.memo ? " · " + x.memo : "");
+  });
+  s += "\n\n— al-office 트레이더 방에서 보냅니다.";
+  return s;
+}
+function trDirPaint(){
+  const btns = document.querySelectorAll("[data-dir]");
+  for(let i = 0; i < btns.length; i++){
+    btns[i].setAttribute("aria-pressed", String(btns[i].getAttribute("data-dir") === TRADE.dir));
+  }
+}
+function trTradeBoard(){
+  const t = tradeTotal();
+  const rate = t.count ? Math.round(t.win / t.count * 100) : 0;
+  const d = trData();
+  let h = '<div class="sec-title">📈 매매 손익 기록판 <span class="n" data-tr-n>' + t.count + '건 기록</span></div>';
+  h += '<div class="led">';
+  h += '<div class="led-sum">'
+    + '<div class="led-cell"><span class="lb">총 거래 수</span><span class="vl" data-tr-count>' + t.count + '건</span></div>'
+    + '<div class="led-cell"><span class="lb">승률</span><span class="vl" data-tr-rate>' + (t.count ? rate + "%" : "—") + '</span></div>'
+    + '<div class="led-cell"><span class="lb">누적 손익</span><span class="vl' + (t.pnl > 0 ? " pos" : (t.pnl < 0 ? " neg" : "")) + '" data-tr-pnl>' + signed(t.pnl) + '원</span></div>'
+    + '</div>';
+  h += '<div class="led-f">'
+    + '<label class="led-lab">날짜<input class="led-in" type="date" id="trDate" value="' + todayISO() + '"></label>'
+    + '<label class="led-lab">종목<input class="led-in" type="text" id="trSymbol" value="ETHUSDT.P" maxlength="18" placeholder="ETHUSDT.P"></label>'
+    + '</div>';
+  h += '<div class="led-lab">방향<span class="opt">진입한 쪽</span><div class="led-dir">'
+    + '<button type="button" data-dir="long" aria-pressed="' + (TRADE.dir !== "short") + '">롱 (매수)</button>'
+    + '<button type="button" data-dir="short" aria-pressed="' + (TRADE.dir === "short") + '">숏 (매도)</button>'
+    + '</div></div>';
+  h += '<label class="led-lab">손익 금액 <span class="opt">원 · 손실은 -로</span><input class="led-in" type="text" inputmode="numeric" id="trAmount" placeholder="8,000" maxlength="12"></label>';
+  h += '<label class="led-lab">메모<input class="led-in" type="text" id="trMemo" placeholder="21선 롱 · 색상 전환 익절" maxlength="60"></label>';
+  h += '<button class="led-add" type="button" data-trade-add data-label="기록 추가">기록 추가</button>';
+  h += '<div class="led-list" data-tr-list>' + tradeListHtml() + '</div>';
+  h += '<div class="led-act"><button class="cp-copy" type="button" data-trade-copy data-label="📋 매매 일지 복사">📋 매매 일지 복사</button></div>';
+  h += '<div class="led-note">' + esc(d.note || "기록은 이 기기 브라우저에만 저장됩니다.") + '</div>';
+  h += '</div>';
+  return h;
+}
+
+/* ---------------- 📈 트레이더 방 데이터 · 패널 ---------------- */
+function trData(){
+  const d = STATE.data && STATE.data.traderRoom;
+  if(d && d.strategy) return d;
+  return (typeof FALLBACK !== "undefined" && FALLBACK.traderRoom) ? FALLBACK.traderRoom : {};
+}
+function numFix(v, n){
+  const x = Number(v);
+  return isFinite(x) ? x.toFixed(n) : "—";
+}
+function trStrategyCard(){
+  const d = trData(), s = d.strategy || {}, b = s.backtest || {};
+  let h = '<div class="sec-title">지금 돌리는 전략 <span class="n">' + esc(s.file || "cherry-mtf") + '</span></div>';
+  h += '<div class="trad">';
+  h += '<div class="trad-top"><span class="trad-ic" aria-hidden="true">📈</span>'
+    + '<span class="trad-t"><b>' + esc(s.name || "Cherry MTF") + '</b>'
+    + '<span>' + esc(s.symbol || "ETHUSDT.P") + ' · 일봉 SHA 방향 + 15분봉 EMA21(21선) 지정가 · 수익 중 색상 전환 익절</span></span></div>';
+  h += '<ul class="trad-rules">' + (s.rules || []).map(function(r){
+    return '<li>' + esc(r) + '</li>';
+  }).join("") + '</ul>';
+  h += '<div class="trad-basis"><span>최근 백테스트</span><b>' + esc(b.symbol || "ETHUSDT.P") + ' · '
+    + esc(b.capital || "50만 원") + ' · ' + esc(b.leverage || "2배") + ' 레버리지</b></div>';
+  h += '<div class="trad-stat">'
+    + '<div class="trad-cell"><span class="k">누적 PnL</span><b class="pos">+' + numFix(b.pnl_usd, 2) + ' USD</b><i>+' + numFix(b.pnl_pct, 2) + '%</i></div>'
+    + '<div class="trad-cell"><span class="k">수익 팩터</span><b>' + numFix(b.profit_factor, 3) + '</b><i>PF</i></div>'
+    + '<div class="trad-cell"><span class="k">승률</span><b>' + numFix(b.win_rate, 2) + '%</b><i>백테스트</i></div>'
+    + '</div>';
+  h += '<div class="trad-meta">핵심 스위치 <code>allowLong</code><code>allowShort</code><code>useDailyFilter</code> — '
+    + esc(s.switches || "") + '</div>';
+  h += '</div>';
+  return h;
+}
+function renderTrPanel(){
+  const d = trData();
+  const sub = document.getElementById("trSub");
+  if(sub) sub.textContent = (d.subtitle || "Cherry MTF 전략실") + " · " + (d.updated_label || "") + " 기준";
+  const body = document.getElementById("trBody");
+  if(body) body.innerHTML = '<div class="pane">' + trStrategyCard() + trTradeBoard() + '</div>';
+  const foot = document.getElementById("trFoot");
+  if(foot) foot.innerHTML = (STATE.source === "file" ? '<span class="ok">●</span> 데이터 · status.json' : "데이터 · 내장 스냅샷")
+    + '<span>' + esc(d.updated_label || "") + ' 갱신</span>';
+  const tk = document.getElementById("trTicker");
+  if(tk){
+    const s = d.strategy || {}, b = s.backtest || {};
+    const line = '<span><b>전략</b>일봉 SHA 방향 + 15분 EMA21 지정가</span>'
+      + '<span><b>손절</b>진입가 대비 1%</span>'
+      + '<span><b>백테스트</b>' + esc(b.symbol || "ETHUSDT.P") + ' ' + esc(b.capital || "50만 원") + ' ×' + esc(b.leverage || "2배")
+      + ' · +' + numFix(b.pnl_pct, 2) + '%</span>'
+      + '<span><b>리스크</b>손절 1% · 진입은 21선 지정가</span>';
+    tk.innerHTML = line + line;
+  }
+  trDirPaint();
+}
+
+/* ---------------- 📈 트레이더 방 씬 (픽셀) ---------------- */
+function trDefsSvg(){
+  return cpDefsSvg().replace(/id="cp/g, 'id="tr').replace(/url\(#cp/g, "url(#tr");
+}
+function trSeries(){
+  let seed = 20261116;
+  const rnd = function(){
+    seed = (seed * 1103515245 + 12345) % 2147483648;
+    return seed / 2147483648;
+  };
+  const out = [];
+  let p = 100;
+  for(let i = 0; i < 42; i++){
+    const drift = 0.62 - i * 0.006;
+    const o = p;
+    const c = o + (rnd() - 0.42) * 5.4 + drift;
+    const hi = Math.max(o, c) + rnd() * 2.6;
+    const lo = Math.min(o, c) - rnd() * 2.6;
+    out.push({ o: o, c: c, h: hi, l: lo });
+    p = c;
+  }
+  return out;
+}
+function trChartBoard(x, y, w, h){
+  const cs = trSeries();
+  const k = 2 / 22;
+  let e = cs[0].c;
+  const emas = cs.map(function(p){ e = e + (p.c - e) * k; return e; });
+  let hi = -1e9, lo = 1e9;
+  cs.forEach(function(c){ hi = Math.max(hi, c.h); lo = Math.min(lo, c.l); });
+  emas.forEach(function(v){ hi = Math.max(hi, v); lo = Math.min(lo, v); });
+  const padL = 20, padR = 20, padT = 34, padB = 26;
+  const iw = w - padL - padR, ih = h - padT - padB;
+  const px = function(i){ return x + padL + (iw / (cs.length - 1)) * i; };
+  const py = function(v){ return y + padT + ih - ((v - lo) / (hi - lo)) * ih; };
+  let s = '';
+  s += '<ellipse cx="' + (x + w / 2) + '" cy="' + (y + h + 30) + '" rx="' + Math.round(w * 0.4) + '" ry="13" fill="rgba(120,86,46,.12)"/>';
+  s += '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" rx="14" fill="#b98a52" stroke="#8a6334" stroke-width="4"/>';
+  s += '<rect x="' + (x + 10) + '" y="' + (y + 10) + '" width="' + (w - 20) + '" height="' + (h - 20) + '" rx="9" fill="#fffdf6"/>';
+  /* 일봉 SHA 배경 밴드 */
+  cs.forEach(function(_, i){
+    if(i === 0) return;
+    const up = emas[i] >= emas[i - 1];
+    s += '<rect x="' + Math.round(px(i) - 7) + '" y="' + (y + padT - 6) + '" width="14" height="' + (ih + 12)
+      + '" fill="' + (up ? "#2eb08d" : "#e2564a") + '" opacity=".055"/>';
+  });
+  /* 그리드 */
+  for(let g = 1; g < 4; g++){
+    const gy = Math.round(y + padT + (ih / 4) * g);
+    s += '<path d="M ' + (x + padL) + ' ' + gy + ' H ' + (x + w - padR) + '" stroke="rgba(190,155,105,.3)" stroke-width="2" stroke-dasharray="7 9"/>';
+  }
+  /* 캔들 */
+  cs.forEach(function(c, i){
+    const cx = Math.round(px(i));
+    const up = c.c >= c.o;
+    const col = up ? "#2fa96f" : "#e2564a";
+    const yT = py(Math.max(c.o, c.c)), yB = py(Math.min(c.o, c.c));
+    s += '<path d="M ' + cx + ' ' + Math.round(py(c.h)) + ' V ' + Math.round(py(c.l)) + '" stroke="' + col + '" stroke-width="2.6" stroke-linecap="round"/>';
+    s += '<rect x="' + (cx - 5) + '" y="' + Math.round(yT) + '" width="10" height="' + Math.max(3, Math.round(yB - yT)) + '" rx="2" fill="' + col + '"/>';
+  });
+  /* EMA21 */
+  s += '<path d="M ' + emas.map(function(v, i){ return Math.round(px(i)) + ' ' + Math.round(py(v)); }).join(' L ')
+    + '" fill="none" stroke="#e0912a" stroke-width="3.4" stroke-linejoin="round" stroke-linecap="round" opacity=".9"/>';
+  s += '<text x="' + (x + 26) + '" y="' + (y + padT - 10) + '" font-size="15" font-weight="900" fill="#b06a1e">ETHUSDT.P · 15분봉</text>';
+  s += '<text x="' + (x + w - 26) + '" y="' + (y + padT - 10) + '" text-anchor="end" font-size="15" font-weight="900" fill="#2fa96f">+29.02%</text>';
+  s += '<text x="' + (x + 26) + '" y="' + (y + h - 12) + '" font-size="12" font-weight="800" fill="#a08f78">일봉 SHA 방향 · 21선 지정가 · 색상 전환 익절</text>';
+  s += '<text x="' + (x + w - 26) + '" y="' + (y + h - 12) + '" text-anchor="end" font-size="12" font-weight="800" fill="#c08a4a">EMA 21</text>';
+  return s;
+}
+function trBackdropSvg(){
+  let s = '';
+  s += '<rect x="0" y="0" width="1330" height="432" fill="url(#trWallG)"/>';
+  s += '<rect x="0" y="352" width="1330" height="66" fill="rgba(255,211,152,.5)"/>';
+  for(let x = 8; x < 1330; x += 64){ s += '<rect x="' + x + '" y="355" width="30" height="63" fill="rgba(255,255,255,.32)"/>'; }
+  s += '<rect x="0" y="350" width="1330" height="5" fill="rgba(212,168,110,.5)"/>';
+  s += '<rect x="0" y="418" width="1330" height="16" fill="#e3bd8a"/>';
+  s += '<rect x="0" y="418" width="1330" height="4" fill="#f9e6c8"/>';
+  s += '<rect x="0" y="432" width="1330" height="750" fill="url(#trFloorG)"/>';
+  s += '<rect x="0" y="432" width="1330" height="750" fill="url(#trTiles)"/>';
+  s += '<rect x="0" y="432" width="1330" height="10" fill="rgba(120,86,46,.1)"/>';
+  s += '<ellipse cx="720" cy="1010" rx="322" ry="124" fill="rgba(159,220,198,.3)"/>';
+  s += '<ellipse cx="720" cy="1010" rx="322" ry="124" fill="none" stroke="rgba(90,170,145,.42)" stroke-width="5"/>';
+  s += '<ellipse cx="720" cy="1010" rx="268" ry="100" fill="none" stroke="rgba(255,255,255,.7)" stroke-width="4"/>';
+  [330, 700, 1060].forEach(function(lx){
+    s += '<rect x="' + (lx - 2) + '" y="0" width="4" height="34" fill="rgba(150,120,80,.5)"/>';
+    s += '<path d="M ' + (lx - 30) + ' 72 L ' + (lx + 30) + ' 72 L ' + (lx + 18) + ' 34 L ' + (lx - 18) + ' 34 Z" fill="#ffe7b4" stroke="rgba(190,150,100,.55)" stroke-width="2"/>';
+    s += '<ellipse cx="' + lx + '" cy="74" rx="12" ry="5" fill="#fff6da"/>';
+    s += '<ellipse cx="' + lx + '" cy="150" rx="120" ry="86" fill="url(#trLampG)"/>';
+  });
+  s += cpWindow(1000, 132, 258, 180, "trSkyG");
+  s += trChartBoard(140, 74, 762, 278);
+  /* 시계 */
+  s += '<circle cx="1268" cy="86" r="26" fill="#fffdf6" stroke="#d9b98c" stroke-width="4"/>';
+  s += '<path d="M 1268 86 L 1268 70" stroke="#6b5540" stroke-width="3" stroke-linecap="round"/>';
+  s += '<path d="M 1268 86 L 1280 92" stroke="#6b5540" stroke-width="3" stroke-linecap="round"/>';
+  /* 간판 */
+  s += '<rect x="452" y="12" width="366" height="48" rx="13" fill="#fffaf0" stroke="#e0b57b" stroke-width="3"/>';
+  s += '<text x="635" y="44" text-anchor="middle" font-size="21" font-weight="900" fill="#b06a1e">📈 Cherry MTF 전략실</text>';
+  return s;
+}
+function trChar(cx, cy, ch){
+  return '<g class="tr-person" transform="translate(' + cx + ',' + cy + ')">'
+    + '<ellipse class="p-shadow" cx="0" cy="0" rx="23" ry="6"/>'
+    + '<g class="bob" style="animation-duration:4.4s">' + spriteSvg(ch) + '</g></g>';
+}
+function trProps(){
+  const P = [];
+  const push = function(z, html){ P.push({ z: z, html: html }); };
+  const TINT = { top: "#eec48c", front: "#cf9557", side: "#b07b43" };
+  const TINT2 = { top: "#f6d9b0", front: "#d6a76c", side: "#bb8a52" };
+  /* 벽가 서류장 */
+  let cab = '';
+  cab += '<ellipse cx="200" cy="560" rx="132" ry="11" fill="rgba(120,86,46,.12)"/>';
+  cab += cpBox(96, 556, 208, 58, 16, { top: "#efd5b3", front: "#d3b08a", side: "#bd9670" });
+  for(let i = 0; i < 3; i++){
+    cab += '<rect x="' + (110 + i * 62) + '" y="508" width="52" height="34" rx="4" fill="#f6e7cd" stroke="rgba(160,125,80,.4)" stroke-width="2"/>';
+    cab += '<rect x="' + (126 + i * 62) + '" y="522" width="20" height="4" rx="2" fill="#a5835a"/>';
+  }
+  push(524, cab);
+  /* 매매일지 수납장 (오른쪽 벽가) */
+  let sb = '';
+  sb += '<ellipse cx="1215" cy="704" rx="106" ry="10" fill="rgba(120,86,46,.12)"/>';
+  sb += cpBox(1120, 700, 190, 50, 15, { top: "#f2dcbb", front: "#dcb98f", side: "#c39c72" });
+  sb += '<rect x="1132" y="658" width="166" height="32" rx="4" fill="#f8ead2" stroke="rgba(160,125,80,.42)" stroke-width="2"/>';
+  sb += '<rect x="1144" y="666" width="20" height="17" rx="2" fill="#8ec9e8" stroke="#5b93b3" stroke-width="1.6"/>';
+  sb += '<rect x="1168" y="662" width="14" height="21" rx="2" fill="#e05c6a" stroke="rgba(43,33,24,.35)" stroke-width="1.2"/>';
+  sb += '<rect x="1184" y="666" width="16" height="17" rx="2" fill="#3f9a60" stroke="rgba(43,33,24,.35)" stroke-width="1.2"/>';
+  sb += '<rect x="1204" y="660" width="12" height="23" rx="2" fill="#f0a93f" stroke="rgba(43,33,24,.35)" stroke-width="1.2"/>';
+  sb += '<rect x="1222" y="664" width="18" height="19" rx="2" fill="#8f6bd8" stroke="rgba(43,33,24,.35)" stroke-width="1.2"/>';
+  sb += '<rect x="1248" y="669" width="40" height="14" rx="3" fill="#fffaf0" stroke="rgba(120,86,46,.45)" stroke-width="1.4"/>';
+  sb += '<text x="1268" y="680" text-anchor="middle" font-size="10" font-weight="900" fill="#8a5f37">매매일지</text>';
+  push(560, sb);
+  /* 데스크 */
+  let leadExtra = '';
+  leadExtra += '<rect x="960" y="620" width="74" height="18" rx="3" fill="#8ec9e8" stroke="#5b93b3" stroke-width="2.5"/>';
+  leadExtra += '<text x="997" y="633" text-anchor="middle" font-size="11.5" font-weight="800" fill="#24506a">매매일지</text>';
+  push(642, cpChair(638, 664) + cpChair(1088, 664));
+  push(700, cpDesk(560, 700, 300, TINT, "📈 Cherry MTF", "#2eb08d"));
+  push(700, cpDesk(1010, 700, 250, TINT2, "🍒 체리 팀장", "#e2508a", leadExtra));
+  /* 차트 펼친 테이블 */
+  let tbl = '';
+  tbl += '<ellipse cx="690" cy="978" rx="170" ry="20" fill="rgba(120,86,46,.13)"/>';
+  tbl += '<rect x="672" y="940" width="16" height="38" fill="#a5835a"/>';
+  tbl += '<ellipse cx="690" cy="924" rx="168" ry="56" fill="#e8c79a"/>';
+  tbl += '<ellipse cx="690" cy="916" rx="168" ry="56" fill="#fbe8c8" stroke="#d9ae78" stroke-width="3"/>';
+  tbl += '<rect x="586" y="884" width="152" height="48" rx="3" fill="#fffdf6" stroke="rgba(160,125,80,.5)" stroke-width="1.4" transform="rotate(-3 662 908)"/>';
+  [[598,904],[606,898],[614,906],[622,900],[630,910],[638,902],[646,912],[654,906],[662,914],[670,908]].forEach(function(b, i){
+    tbl += '<rect x="' + b[0] + '" y="' + b[1] + '" width="5" height="' + (14 - (i % 3) * 3) + '" rx="1" fill="' + (i % 2 ? "#e2564a" : "#2fa96f") + '"/>';
+  });
+  tbl += '<path d="M 596 912 L 616 904 L 636 908 L 656 898 L 676 900" fill="none" stroke="#e0912a" stroke-width="2"/>';
+  tbl += '<rect x="780" y="886" width="86" height="30" rx="3" fill="#3f4d5c"/>';
+  tbl += '<rect x="785" y="891" width="76" height="19" rx="2" fill="#cdeee2"/>';
+  tbl += '<rect x="772" y="910" width="102" height="10" rx="3" fill="#5d6b7a"/>';
+  tbl += '<ellipse cx="598" cy="922" rx="12" ry="5" fill="rgba(90,64,36,.15)"/>';
+  tbl += '<rect x="588" y="906" width="20" height="17" rx="3" fill="#fff" stroke="#c9b291" stroke-width="2"/>';
+  tbl += cpChair(556, 1010) + cpChair(824, 1010);
+  push(962, tbl);
+  push(694, cpPlant(228, 694));
+  push(1024, cpParcel(64, 1024));
+  push(1146, cpPlant(66, 1146));
+  push(1120, cpCoffeeCart(1196, 1120));
+  push(1058, cpPlant(1286, 1058));
+  return P;
+}
+function trRender(){
+  const svg = document.getElementById("sceneTr");
+  if(!svg) return;
+  let html = trDefsSvg() + trBackdropSvg();
+  html += '<rect class="scene-veil" x="0" y="0" width="1330" height="1182" fill="#fff3d6" opacity="0"/>';
+  const props = trProps().sort(function(a, b){ return a.z - b.z; });
+  html += '<g id="trWorld">' + props.map(function(it){ return it.html; }).join("") + '</g>';
+  html += '<g id="trPeople">'
+    + trChar(638, 660, CHARS.trading)
+    + trChar(1088, 660, CP_CHARS.lead)
+    + '</g>';
+  svg.innerHTML = html;
+  TR.built = true;
+}
+
+function bindTrEvents(){
+  const body = document.getElementById("trBody");
+  if(body){
+    body.addEventListener("click", function(e){
+      const dir = e.target.closest("[data-dir]");
+      if(dir){ TRADE.dir = dir.getAttribute("data-dir"); trDirPaint(); return; }
+      const add = e.target.closest("[data-trade-add]");
+      if(add){ tradeAdd(add); return; }
+      const del = e.target.closest("[data-trade-del]");
+      if(del){ tradeDel(del.getAttribute("data-trade-del")); return; }
+      const copy = e.target.closest("[data-trade-copy]");
+      if(copy){ cpCopyText(tradeCopyText(), copy); return; }
+    });
+  }
+  const refresh = document.getElementById("trRefresh");
+  if(refresh){
+    refresh.addEventListener("click", async function(e){
+      const btn = e.currentTarget;
+      btn.classList.add("spin");
+      STATE.data = await loadData();
+      renderAll();
+      renderTrPanel();
+      setTimeout(function(){ btn.classList.remove("spin"); }, 600);
+    });
+  }
+}
+
+/* ---------------- 게이지 실시간 합산 ---------------- */
+function paintGoalCard(el){
+  if(!el) return;
+  const base = numOf(el.getAttribute("data-base"));
+  const tgt = numOf(el.getAttribute("data-tgt"));
+  const add = revTotal().amount;
+  const cur = base + add;
+  const pct = tgt > 0 ? Math.max(0, Math.min(100, Math.round(cur / tgt * 100))) : 0;
+  const num = el.querySelector("[data-g-num]");
+  if(num) num.innerHTML = won(cur) + "원 <i>/</i> " + won(tgt) + "원";
+  const fill = el.querySelector("[data-g-fill]");
+  if(fill) fill.style.width = pct + "%";
+  const pc = el.querySelector("[data-g-pct]");
+  if(pc) pc.textContent = "달성 " + pct + "%";
+  const src = el.querySelector("[data-g-src]");
+  if(src) src.textContent = revSrcText(cur, tgt, add);
+}
+function paintGoals(){
+  const list = document.querySelectorAll("[data-goal-card]");
+  for(let i = 0; i < list.length; i++) paintGoalCard(list[i]);
+}
+
 /* ---------------- 방 전환 ---------------- */
 function setRoom(room){
-  if(room !== "coupang") room = "office";
+  if(room !== "coupang" && room !== "trader") room = "office";
   STATE.room = room;
   const panes = document.querySelectorAll("[data-room-pane]");
   for(let i = 0; i < panes.length; i++){
@@ -4967,6 +5898,11 @@ function setRoom(room){
     if(!CP.built) cpRender();
     cpStart();
     renderCpPanel();
+  }else if(room === "trader"){
+    cpStop();
+    stopMotion();
+    if(!TR.built) trRender();
+    renderTrPanel();
   }else{
     cpStop();
     if(STATE.loaded && !(REDUCE && REDUCE.matches)) startMotion();
@@ -5004,6 +5940,12 @@ function bindCpEvents(){
       if(slD){ slGoto(slD.getAttribute("data-sl-dot"), +slD.getAttribute("data-sl-i")); return; }
       const bk = e.target.closest("[data-bs-open]");
       if(bk){ cpToggleBook(bk.getAttribute("data-bs-open")); return; }
+      const revAddBtn = e.target.closest("[data-rev-add]");
+      if(revAddBtn){ revAdd(revAddBtn); return; }
+      const revDelBtn = e.target.closest("[data-rev-del]");
+      if(revDelBtn){ revDel(revDelBtn.getAttribute("data-rev-del")); return; }
+      const revCopyBtn = e.target.closest("[data-rev-copy]");
+      if(revCopyBtn){ cpCopyText(revCopyText(), revCopyBtn); return; }
     });
     body.addEventListener("input", function(e){
       const t = e.target;
@@ -5051,6 +5993,7 @@ function renderAll(){
   renderTicker();
   renderScene();
   if(CP.built) renderCpPanel();
+  if(TR.built) renderTrPanel();
   applyLight();
 }
 
@@ -5068,6 +6011,7 @@ async function boot(){
 
   bindEvents();
   bindCpEvents();
+  bindTrEvents();
   STATE.data = await loadData();
   loadLove();
   renderAll();
