@@ -658,12 +658,12 @@ body::before{
           <div class="glyph" aria-hidden="true">🚀</div>
           <div>
             <h2>쿠파스팀 스튜디오</h2>
-            <p>탐색 → 기획 → 집필 → 체리 팀장 승인 → 발행</p>
+            <p>칠판 → 작가 → 탐색가 → 기획자 → 웹툰 작가 → 체리 팀장 검수 → 호진 님 승인</p>
           </div>
         </div>
         <div class="cp-legend" aria-label="쿠파스팀 역할">
           <span>🔍 트렌드 탐색가</span>
-          <span>🧠 콘텐츠 기획자</span>
+          <span>📊 콘텐츠 기획자</span>
           <span>✍️ 스레드 작가</span>
           <span>🎨 웹툰 작가</span>
           <span>🍒 체리 팀장</span>
@@ -3200,7 +3200,7 @@ const CP_SRC = {
   },
   {
    "id": "planner",
-   "emoji": "🧠",
+   "emoji": "📊",
    "name": "콘텐츠 기획자",
    "role": "100부작 회차 흐름 · 첫 컷 훅 · 업로드 타이밍 · 해시태그 · 수익 동선",
    "note": "회차가 쌓여도 안 질리게 흐름을 잡고, 첫 컷에서 손이 멈추게 만듭니다.",
@@ -3467,7 +3467,7 @@ const CP_CHARS = {
     rows: CHARS.research.rows
   },
   planner: {
-    name: "콘텐츠 기획자", short: "🧠 기획자",
+    name: "콘텐츠 기획자", short: "📊 기획자",
     role: "이슈 + 상품 연결 훅(Hook) 기획",
     accent: "#7d5fd8", split: 16,
     pal: Object.assign({}, CHARS.finance.pal, {
@@ -3996,7 +3996,7 @@ function cpProps(){
   /* 세 사람의 자리 — 의자 + 책상 (캐릭터는 책상 뒤에 서서 앉은 모습) */
   push(642, cpChair(43, 664) + cpChair(323, 664) + cpChair(603, 664) + cpChair(883, 664));
   push(700, cpDesk(185, 700, 220, TINT, "🔍 트렌드 탐색가", "#17b98a"));
-  push(700, cpDesk(465, 700, 220, TINT, "🧠 콘텐츠 기획자", "#7d5fd8"));
+  push(700, cpDesk(465, 700, 220, TINT, "📊 콘텐츠 기획자", "#7d5fd8"));
   push(700, cpDesk(745, 700, 220, TINT, "✍️ 스레드 작가", "#e8892b"));
   push(700, cpArtistDesk(1015, 700, 220, TINT, "🎨 웹툰 작가", "#2f8fd8"));
 
