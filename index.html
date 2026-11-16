@@ -406,7 +406,7 @@ body::before{
 /* ---------- 워크벤치 패널 ---------- */
 .cp-flow{display:flex;align-items:flex-start;padding:10px 2px 4px;overflow-x:auto;scrollbar-width:none}
 .cp-flow::-webkit-scrollbar{display:none}
-.cp-node{flex:1 1 0;min-width:54px;display:flex;flex-direction:column;align-items:center;gap:5px;position:relative}
+.cp-node{flex:1 1 0;min-width:44px;display:flex;flex-direction:column;align-items:center;gap:5px;position:relative}
 .cp-node::before{content:"";position:absolute;top:9px;left:-50%;width:100%;height:2px;background:rgba(180,140,90,.26)}
 .cp-node:first-child::before{display:none}
 .cp-node .c{
@@ -472,6 +472,127 @@ body::before{
 .cp-link{display:inline-block;margin:0 0 2px;font-size:10.5px;color:#3b7ea1;word-break:break-all;text-decoration:none;border-bottom:1px dotted rgba(59,126,161,.55)}
 .cp-link:hover{color:#225b78}
 .cp-foot-note{font-size:10px;color:var(--muted2);line-height:1.55;margin-top:2px}
+
+/* ---------- 🎨 웹툰 작가 · 📝 스토리 칠판 · 🔍 검수 보드 · 📚 책장 ---------- */
+/* 스토리 칠판 */
+.cs{border-radius:14px;margin:8px 0 6px;overflow:hidden;border:2px solid #8a5f37;
+  background:linear-gradient(180deg,#3f6b52,#2e5140);
+  box-shadow:0 3px 0 rgba(95,62,32,.28),inset 0 0 0 3px rgba(255,255,255,.06)}
+.cs-top{display:flex;align-items:center;gap:8px;padding:9px 11px 7px}
+.cs-top .ic{width:26px;height:26px;border-radius:8px;background:rgba(255,255,255,.13);display:grid;place-items:center;font-size:14px}
+.cs-t b{display:block;font-size:12px;font-weight:900;color:#f6f2e2;letter-spacing:-.2px}
+.cs-t .sub{display:block;font-size:9.5px;color:rgba(238,246,232,.64);font-weight:700;margin-top:1px}
+.cs-badge{margin-left:auto;font-size:9px;font-weight:900;color:#24513c;background:#d9f0c8;border-radius:5px;padding:2px 6px;white-space:nowrap}
+.cs-in,.cs-ta{display:block;width:calc(100% - 22px);margin:0 11px 7px;border:1px dashed rgba(255,255,255,.3);
+  border-radius:8px;background:rgba(12,26,18,.42);color:#f2f7ec;font:inherit;font-size:11.5px;line-height:1.6;
+  padding:8px 9px;outline:none}
+.cs-in{font-weight:800}
+.cs-ta{resize:vertical;min-height:88px}
+.cs-in::placeholder,.cs-ta::placeholder{color:rgba(226,240,214,.46)}
+.cs-in:focus,.cs-ta:focus{border-color:#ffe9a8;background:rgba(12,26,18,.58)}
+.cs-act{display:flex;gap:6px;padding:0 11px 8px;flex-wrap:wrap}
+.cs-btn{appearance:none;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.12);
+  color:#f2f7ec;font:inherit;font-size:10.5px;font-weight:900;padding:7px 10px;border-radius:8px;cursor:pointer}
+.cs-btn:hover{background:rgba(255,255,255,.2)}
+.cs-btn.primary{background:linear-gradient(180deg,#ffe9a8,#f5cf6b);border-color:#e3b452;color:#5a3d0f}
+.cs-btn.copied{background:#cdf5de;border-color:#2fa96f;color:#14663f}
+.cs-btn.failed{background:#ffdcd3;border-color:#e2735f;color:#8e2f1f}
+.cs-stamp{font-size:9.5px;color:rgba(238,246,232,.62);font-weight:800;padding:0 11px 4px}
+.cs-note{font-size:9.5px;color:rgba(238,246,232,.55);line-height:1.55;padding:0 11px 9px}
+.cs-note b{color:#ffe9a8}
+
+/* 팀 역할 분담 */
+.tr-list{display:flex;flex-direction:column;gap:5px;margin:2px 0 4px}
+.tr-row{display:flex;gap:7px;align-items:flex-start;background:#fffaf0;border:1px solid var(--line);
+  border-radius:9px;padding:6px 8px}
+.tr-row .e{font-size:13px;flex:0 0 auto;line-height:1.25}
+.tr-row b{display:block;font-size:10.5px;font-weight:900;color:#5c4a3a}
+.tr-row span.d{display:block;font-size:9.5px;color:var(--muted);line-height:1.45;margin-top:1px}
+
+/* 검수 보드 */
+.rv-note{font-size:9.5px;color:#7b6a55;background:#fdf3df;border:1px dashed rgba(180,140,90,.5);
+  border-radius:9px;padding:7px 9px;line-height:1.55;margin:0 0 8px}
+.rv-note b{color:#9a6416}
+.rv-card{border-radius:14px;background:#fff;border:1px solid var(--line2);box-shadow:var(--shadow-s);
+  margin-bottom:9px;overflow:hidden}
+.rv-card.open{border-color:rgba(46,176,141,.5)}
+.rv-head{display:flex;width:100%;gap:8px;align-items:flex-start;padding:10px 11px;border:0;
+  background:transparent;font:inherit;text-align:left;cursor:pointer}
+.rv-head:hover{background:#fdf8ef}
+.rv-ic{width:32px;height:32px;flex:0 0 auto;border-radius:9px;display:grid;place-items:center;font-size:15px;
+  background:linear-gradient(160deg,#eef5ff,#cfe2fa);border:1px solid #bcd4f0}
+.rv-main{flex:1 1 auto;min-width:0}
+.rv-main b{display:block;font-size:11.5px;font-weight:900;line-height:1.4;color:#433326;letter-spacing:-.3px}
+.rv-meta{display:block;font-size:9.5px;color:var(--muted);margin-top:4px;font-weight:700;line-height:1.4}
+.rv-chip{flex:0 0 auto;font-size:9.5px;font-weight:900;border-radius:6px;padding:3px 6px;white-space:nowrap}
+.rv-chip.wait{background:#fff0cf;color:#9a6416;border:1px solid #eccf92}
+.rv-chip.ok{background:#dcf6ea;color:#14663f;border:1px solid #9fdcc2}
+.rv-chip.fix{background:#ffe3dc;color:#a83522;border:1px solid #f0b7a8}
+.rv-caret{flex:0 0 auto;color:#b09a7d;font-size:11px;transition:transform .2s;margin-top:2px}
+.rv-card.open .rv-caret{transform:rotate(180deg)}
+.rv-body{padding:0 11px 11px;border-top:1px dashed rgba(180,140,90,.35)}
+.rv-body .rv-note{margin-top:9px}
+.rv-line{font-size:11px;color:#5c4a3a;line-height:1.5;margin:2px 0 3px}
+.rv-line b{font-weight:800}
+.rv-price{font-size:11.5px;font-weight:900;color:#c0392b;font-variant-numeric:tabular-nums}
+.rv-checks{margin:8px 0 0;padding:8px 10px;border-radius:9px;background:#f8fbf8;border:1px dashed rgba(90,150,120,.42)}
+.rv-checks b{display:block;font-size:9.5px;color:#3f7a60;font-weight:900;margin-bottom:3px}
+.rv-checks ul{margin:0;padding-left:13px}
+.rv-checks li{font-size:9.5px;color:#5b6b60;line-height:1.6}
+.rv-act{display:flex;gap:6px;margin:9px 0 0;flex-wrap:wrap}
+.rv-btn{appearance:none;flex:1 1 0;min-width:104px;border-radius:9px;border:1px solid rgba(120,100,70,.38);
+  background:#fff;color:#6b5540;font:inherit;font-size:11px;font-weight:900;padding:8px 10px;cursor:pointer}
+.rv-btn:hover{filter:brightness(1.03)}
+.rv-btn.ok{background:linear-gradient(180deg,#f3fff9,#d7f2e5);border-color:#8fd4b4;color:#14663f}
+.rv-btn.fix{background:linear-gradient(180deg,#fff6f3,#ffe0d8);border-color:#f0b3a2;color:#a83522}
+.rv-btn[aria-pressed="true"]{box-shadow:0 0 0 3px rgba(46,176,141,.24)}
+.rv-btn.fix[aria-pressed="true"]{box-shadow:0 0 0 3px rgba(226,115,95,.22)}
+.rv-hint{font-size:9px;color:var(--muted2);line-height:1.5;margin-top:6px}
+
+/* 이미지 슬라이드 */
+.sl{margin:9px 0 4px}
+.sl-frame{position:relative;border-radius:11px;overflow:hidden;border:2px solid #3a2f24;background:#241d16;
+  display:flex;align-items:center;justify-content:center;min-height:140px}
+.sl-frame img{display:block;width:100%;height:auto}
+.sl-frame .miss{display:none;padding:26px 12px;text-align:center;font-size:10.5px;color:#e8d9bb;line-height:1.6}
+.sl-frame .miss span{font-size:9px;color:#b9a98c;word-break:break-all}
+.sl-frame.missing img{display:none}
+.sl-frame.missing .miss{display:block}
+.sl-bar{display:flex;align-items:center;gap:8px;justify-content:center;margin-top:6px}
+.sl-bar button{appearance:none;border:1px solid var(--line);background:#fffaf0;color:#8a6a42;width:30px;height:26px;
+  border-radius:8px;font:inherit;font-size:13px;font-weight:900;cursor:pointer}
+.sl-bar button:hover{background:#ffeecf}
+.sl-count{font-size:10px;font-weight:900;color:var(--muted);font-variant-numeric:tabular-nums;min-width:46px;text-align:center}
+.sl-dots{display:flex;gap:4px;justify-content:center;margin-top:5px}
+.sl-dots i{width:6px;height:6px;border-radius:50%;background:rgba(138,106,66,.26);cursor:pointer}
+.sl-dots i.on{background:#e79a2c;transform:scale(1.3)}
+
+/* 책장 */
+.bs-meta{display:flex;justify-content:space-between;align-items:baseline;gap:8px;
+  font-size:9.5px;font-weight:800;color:var(--muted);margin:0 0 5px}
+.bs-bar{height:11px;border-radius:99px;background:#f6ebd8;border:1px solid rgba(180,140,90,.35);
+  overflow:hidden;margin:0 0 8px}
+.bs-bar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,#e0a84c,#f7cf7e)}
+.bs-wood{position:relative;padding:9px 8px 0;border-radius:12px 12px 4px 4px;
+  background:linear-gradient(180deg,#d7a469,#b9834a);border:2px solid #8a5f37;
+  box-shadow:inset 0 0 0 2px rgba(255,255,255,.13)}
+.bs-row{display:flex;gap:4px;align-items:flex-end;min-height:72px;padding-bottom:0}
+.bs-book{appearance:none;position:relative;flex:0 0 auto;width:25px;height:66px;border-radius:3px 3px 0 0;
+  border:2px solid #2b2118;font:inherit;cursor:pointer;display:flex;flex-direction:column;
+  justify-content:flex-end;align-items:center;padding:0 0 3px;color:#fff8e6;font-size:8.5px;font-weight:900;
+  letter-spacing:-.4px;line-height:1.1;box-shadow:inset -3px 0 0 rgba(0,0,0,.18)}
+.bs-book .n{font-size:11px;line-height:1}
+.bs-book.ghost{background:#e8d8bd;border-color:#c9b291;color:#a08a6a;box-shadow:none;cursor:default;opacity:.7}
+.bs-book.on{background:linear-gradient(180deg,#8f6bd8,#6a48b8)}
+.bs-book.on:hover{filter:brightness(1.08)}
+.bs-book.pressed{outline:3px solid rgba(143,107,216,.4);outline-offset:1px}
+.bs-plank{height:9px;border-radius:3px;margin:0 -8px;
+  background:linear-gradient(180deg,#eed3ac,#c99a63);border-top:2px solid #8a5f37}
+.bs-note{font-size:9px;color:var(--muted2);line-height:1.5;margin-top:6px}
+.bs-view{margin-top:9px;padding:9px 10px 10px;border-radius:12px;background:#fbf7ef;
+  border:1px dashed rgba(180,140,90,.5)}
+.bs-view-head{display:flex;gap:6px;align-items:flex-start;justify-content:space-between;margin-bottom:2px}
+.bs-view-head b{font-size:10.5px;font-weight:900;color:#5c4a3a;line-height:1.45}
 
 /* ---------- 쿠파스팀 방 반응형 ---------- */
 @media (max-width:640px){
@@ -544,12 +665,13 @@ body::before{
           <span>🔍 트렌드 탐색가</span>
           <span>🧠 콘텐츠 기획자</span>
           <span>✍️ 스레드 작가</span>
+          <span>🎨 웹툰 작가</span>
           <span>🍒 체리 팀장</span>
         </div>
       </div>
       <div class="canvas-wrap">
         <svg id="sceneCp" viewBox="0 0 1330 1182" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="cpSceneTitle">
-          <title id="cpSceneTitle">쿠파스팀 전용 스튜디오 — 트렌드 탐색가, 콘텐츠 기획자, 스레드 작가, 체리 팀장이 자리·회의 테이블·보드 사이를 움직이며 협업하는 모습</title>
+          <title id="cpSceneTitle">쿠파스팀 전용 스튜디오 — 트렌드 탐색가, 콘텐츠 기획자, 스레드 작가, 웹툰 작가, 체리 팀장 5명이 자리·회의 테이블·칠판·책장 사이를 움직이며 협업하는 모습</title>
         </svg>
       </div>
       <div class="stage-foot cp-stage-foot">
@@ -2981,201 +3103,353 @@ function bindEvents(){
    기존 본부 사무실(8명)은 그대로 두고, 이 방만 따로 그립니다.
    ======================================================================= */
 const CP_SRC = {
-  "title": "🚀 쿠파스팀 워크벤치",
-  "subtitle": "탐색 → 기획 → 집필 → 체리 팀장 승인 → 발행",
-  "today": "2026-11-15",
-  "today_label": "11월 15일 발행분",
-  "updated_label": "11월 15일 23:55 기준",
-  "level": 1,
-  "goal": {
-    "label": "최종 승인 목표",
-    "current": 0,
-    "target": 150000,
-    "unit": "원",
-    "stage": "Lv.1 세팅 완료",
-    "note": "쿠팡 파트너스 승인 기준 · 대표님 승인 0원에서 시작"
+ "title": "🚀 쿠파스팀 워크벤치",
+ "subtitle": "칠판 → 작가 → 탐색가 → 기획자 → 웹툰 작가 → 체리 팀장 검수 → 호진 님 승인",
+ "today": "2026-11-16",
+ "today_label": "11월 16일 웹툰 1화",
+ "updated_label": "11월 16일 13:20 기준",
+ "level": 1,
+ "goal": {
+  "label": "최종 승인 목표",
+  "current": 0,
+  "target": 150000,
+  "unit": "원",
+  "stage": "Lv.1 세팅 완료",
+  "note": "쿠팡 파트너스 승인 기준 · 대표님 승인 0원에서 시작"
+ },
+ "pipeline": [
+  {
+   "id": "story",
+   "short": "이야기",
+   "name": "스토리 칠판에 이야기 쓰기",
+   "who": "🖐 배호진 대표님",
+   "state": "done",
+   "note": "호진 님이 칠판에 1화 이야기를 적었습니다 — 야간 물류 기사, 퇴근 후 불막창 한 잔."
   },
-  "pipeline": [
+  {
+   "id": "script",
+   "short": "각본",
+   "name": "감정선·대사·컷 흐름 살 붙이기",
+   "who": "✍️ 스레드 작가",
+   "state": "done",
+   "note": "12컷 대사와 나레이션을 정리해 작화 순서를 잡았습니다."
+  },
+  {
+   "id": "product",
+   "short": "상품",
+   "name": "스토리에 맞는 제품 탐색 · 단축 링크",
+   "who": "🔍 트렌드 탐색가",
+   "state": "done",
+   "note": "곰곰 매콤한 불막창 11,480원 · 파트너스 단축 링크까지 만들어 승인 대기에 올렸습니다."
+  },
+  {
+   "id": "plan",
+   "short": "기획",
+   "name": "100부작 회차 흐름 · 첫 컷 훅 · 업로드 설계",
+   "who": "📊 콘텐츠 기획자",
+   "state": "done",
+   "note": "1화 첫 컷 훅·업로드 타이밍·해시태그·수익 전환 동선까지 잡았습니다."
+  },
+  {
+   "id": "art",
+   "short": "작화",
+   "name": "콘티 · 컷 이미지 · 말풍선 제작",
+   "who": "🎨 웹툰 작가",
+   "state": "done",
+   "note": "12컷을 그리고 6장 페이지로 합쳤습니다."
+  },
+  {
+   "id": "review",
+   "short": "검수",
+   "name": "체리 팀장 1차 검수",
+   "who": "🍒 체리 팀장",
+   "state": "done",
+   "note": "글자·그림체·상품 매칭 확인 후 통과 — 승인 대기 보드와 책장에 등록했습니다."
+  },
+  {
+   "id": "approve",
+   "short": "승인",
+   "name": "호진 님 최종 승인 · 발행",
+   "who": "🖐 배호진 대표님",
+   "state": "running",
+   "note": "1화가 승인 대기 보드에 있습니다. 카드를 눌러 6장과 원고를 확인해 주세요."
+  }
+ ],
+ "team": [
+  {
+   "id": "trend",
+   "emoji": "🔍",
+   "name": "트렌드 탐색가",
+   "role": "스토리에 맞는 쿠팡 제품 탐색 · 파트너스 단축 링크 생성",
+   "note": "스토리와 상품이 붙는 자리를 찾는 팀입니다. 링크를 만들어 승인 대기에 올립니다.",
+   "doing": "1화 불막창 링크 생성 완료 · 2화 소재 탐색 대기",
+   "tasks": [
     {
-      "id": "scan",
-      "short": "탐색",
-      "name": "트렌드 탐색",
-      "who": "🔍 트렌드 탐색가",
-      "state": "done",
-      "note": "오늘 날씨·실시간 이슈·로켓 할인을 훑어 3종을 골랐어요."
+     "title": "1화 제품 매칭",
+     "detail": "곰곰 매콤한 불막창 (냉동) 160g×2 · 11,480원 (20% 할인)"
     },
     {
-      "id": "plan",
-      "short": "기획",
-      "name": "콘텐츠 기획",
-      "who": "🧠 콘텐츠 기획자",
-      "state": "done",
-      "note": "이슈와 상품을 잇는 훅(Hook) 3개를 만들었어요."
+     "title": "단축 링크 발급",
+     "detail": "https://link.coupang.com/a/iIv9xtxOPA · 상품 페이지 연결 확인"
     },
     {
-      "id": "write",
-      "short": "집필",
-      "name": "원고 집필",
-      "who": "✍️ 스레드 작가",
-      "state": "done",
-      "note": "광고 티 뺀 구어체 본문 + 첫 댓글 분리형 원고 3건."
-    },
-    {
-      "id": "approve",
-      "short": "승인",
-      "name": "체리 팀장 최종 승인",
-      "who": "🍒 체리 팀장",
-      "state": "done",
-      "note": "단축 링크·공정위 수수료 고지 검수 후 승인 완료!"
-    },
-    {
-      "id": "publish",
-      "short": "발행",
-      "name": "스레드 발행",
-      "who": "배호진 대표님",
-      "state": "running",
-      "note": "3건 중 1건 발행 확인 · 나머지 2건 발행 대기."
+     "title": "승인 대기 등록",
+     "detail": "체리 팀장 검수 후 호진 님 승인 대기 보드로 넘김"
     }
-  ],
-  "team": [
+   ]
+  },
+  {
+   "id": "planner",
+   "emoji": "🧠",
+   "name": "콘텐츠 기획자",
+   "role": "100부작 회차 흐름 · 첫 컷 훅 · 업로드 타이밍 · 해시태그 · 수익 동선",
+   "note": "회차가 쌓여도 안 질리게 흐름을 잡고, 첫 컷에서 손이 멈추게 만듭니다.",
+   "doing": "1화 업로드 시간대와 해시태그 세트를 정리하는 중",
+   "tasks": [
     {
-      "id": "trend",
-      "emoji": "🔍",
-      "name": "트렌드 탐색가",
-      "role": "오늘 날씨 · 실시간 이슈 · 로켓/할인 상품 탐색",
-      "note": "리포트는 3종 후보와 할인율까지 정리해 기획자에게 넘깁니다.",
-      "doing": "오늘 3종 포착을 마치고 보드에 후보를 붙이는 중",
-      "tasks": [
-        {
-          "title": "겨울 날씨 맞춤템 포착",
-          "detail": "스피디 양면발열 손난로 8,990원 (69% · 로켓배송)"
-        },
-        {
-          "title": "트렌드·가성비 테크템 포착",
-          "detail": "지오맥스 맥세이프 보조배터리 17,860원 (74% · 로켓배송)"
-        },
-        {
-          "title": "겨울 먹거리 포착",
-          "detail": "비비고 슈크림 붕어빵 4,990원 (50% · 로켓프레시)"
-        }
-      ]
+     "title": "100부작 흐름",
+     "detail": "야간 근무 → 혼술 → 회사 사람들 → 첫 외출 순으로 감정선 설계"
     },
     {
-      "id": "planner",
-      "emoji": "🧠",
-      "name": "콘텐츠 기획자",
-      "role": "이슈 + 상품 연결 훅(Hook) 기획",
-      "note": "첫 줄에서 손이 멈추게 만드는 공감 훅을 먼저 잡습니다.",
-      "doing": "훅 후보 5개 중 3개를 골라 보드에 정리하는 중",
-      "tasks": [
-        {
-          "title": "1번 훅 · 손 시린 계절",
-          "detail": "아침저녁 손 시릴 때 딱인 8,990원 가성비템"
-        },
-        {
-          "title": "2번 훅 · 케이블 스트레스",
-          "detail": "선 주렁주렁 싫어서 찾는 초슬림 맥세이프"
-        },
-        {
-          "title": "3번 훅 · 붕어빵 고민",
-          "detail": "겨울엔 집에서 굽는 슈붕이죠"
-        }
-      ]
+     "title": "1화 첫 컷 훅",
+     "detail": "“남들 잘 때 출근하고, 출근할 때 마신다”"
     },
     {
-      "id": "writer",
-      "emoji": "✍️",
-      "name": "스레드 작가",
-      "role": "광고 티 뺀 구어체 본문 + 첫 댓글 분리형 원고",
-      "note": "본문에는 링크를 넣지 않고, 링크와 수수료 고지는 첫 댓글로 분리합니다.",
-      "doing": "본문 3건을 다듬고 첫 댓글 고지 문구를 확인하는 중",
-      "tasks": [
-        {
-          "title": "본문 3건 집필",
-          "detail": "짧은 후크 + 솔직한 한 줄 + 링크는 첫 댓글 안내"
-        },
-        {
-          "title": "첫 댓글 3건 정리",
-          "detail": "파트너스 단축 링크 + 공정위 수수료 고지 문구"
-        }
-      ]
-    },
-    {
-      "id": "lead",
-      "emoji": "🍒",
-      "name": "체리 팀장",
-      "role": "최종 승인자 · 단축 링크·공정위 고지 검수",
-      "note": "링크가 대표님 전용 단축 링크인지, 고지 문구가 빠지지 않았는지 확인한 뒤 도장을 찍습니다.",
-      "doing": "3건 모두 승인 완료 · 발행 대기함에 올려 둠",
-      "tasks": [
-        {
-          "title": "단축 링크 검수",
-          "detail": "3건 모두 link.coupang.com 단축 링크 확인"
-        },
-        {
-          "title": "공정위 고지 검수",
-          "detail": "수수료 고지 문구 누락 없음"
-        },
-        {
-          "title": "승인 완료!",
-          "detail": "3건 승인 도장 · 발행 대기로 이동"
-        }
-      ]
+     "title": "업로드·수익 동선",
+     "detail": "퇴근 시간대 업로드(오전 7~8시) · 해시태그 5종 · 링크는 첫 댓글"
     }
-  ],
-  "todayPicks": [
+   ]
+  },
+  {
+   "id": "writer",
+   "emoji": "✍️",
+   "name": "스레드 작가",
+   "role": "호진 님 스토리에 감정선 · 대사 · 컷 흐름 살 붙이기",
+   "note": "호진 님이 칠판에 적은 이야기를 12컷 대사와 나레이션으로 풀어냅니다.",
+   "doing": "2화 스토리 칠판 메모를 기다리는 중",
+   "tasks": [
     {
-      "id": "handwarmer",
-      "rank": 1,
-      "emoji": "🧤",
-      "short": "스피디 손난로",
-      "name": "스피디 양면발열 손난로 겸용 보조배터리 5200mAh",
-      "price": 8990,
-      "discount": "69%",
-      "badge": "로켓배송",
-      "approved": true,
-      "approve_label": "승인 완료!",
-      "publish_label": "발행 확인",
-      "link": "https://link.coupang.com/a/iHyvNlUFXg",
-      "hook": "아침저녁 손 시릴 때 딱인 8,990원 가성비템",
-      "body": "아침에 손 시려서 주머니에 손 넣고 다니는 계절이 왔네요 🥶\n\n양면으로 발열되는 손난로인데 보조배터리까지 된다고 해서 써봤어요. 5,200mAh라 출퇴근길 내내 따뜻하고, 만 원도 안 해서 부담도 없네요.\n\n링크는 첫 댓글에 남겨둘게요.",
-      "comment": "👉 https://link.coupang.com/a/iHyvNlUFXg\n\n이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다."
+     "title": "1화 12컷 대본",
+     "detail": "밤 7시 출근부터 아침 7시 건배까지 나레이션 정리"
     },
     {
-      "id": "magsafe",
-      "rank": 2,
-      "emoji": "🔋",
-      "short": "지오맥스 보조배터리",
-      "name": "지오맥스 초슬림 맥세이프 마그네틱 유무선 보조배터리 10000mAh",
-      "price": 17860,
-      "discount": "74%",
-      "badge": "로켓배송",
-      "approved": true,
-      "approve_label": "승인 완료!",
-      "publish_label": "발행 대기",
-      "link": "https://link.coupang.com/a/iHyxUAvOQ9",
-      "hook": "케이블 주렁주렁 달기 싫은 날",
-      "body": "케이블 주렁주렁 달고 다니는 거 저만 불편했던 거 아니죠 🔋\n\n맥세이프로 착 붙는 초슬림 보조배터리인데 10,000mAh에 유선까지 됩니다. 가방 앞주머니에 쏙 들어가서 요즘 제일 자주 집는 물건이에요.\n\n링크는 첫 댓글에 남겨둘게요.",
-      "comment": "👉 https://link.coupang.com/a/iHyxUAvOQ9\n\n이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다."
-    },
-    {
-      "id": "bungeoppang",
-      "rank": 3,
-      "emoji": "🐟",
-      "short": "비비고 붕어빵",
-      "name": "비비고 슈크림 붕어빵 (냉동) 300g",
-      "price": 4990,
-      "discount": "50%",
-      "badge": "로켓프레시",
-      "approved": true,
-      "approve_label": "승인 완료!",
-      "publish_label": "발행 대기",
-      "link": "https://link.coupang.com/a/iHyzYmtRro",
-      "hook": "겨울엔 집에서 굽는 슈붕이",
-      "body": "겨울만 되면 붕어빵 앞에서 고민하잖아요 🐟\n\n집에서 에어프라이어에 몇 분만 돌리면 그 맛이 나는 슈크림 붕어빵이에요. 반값이라 한 봉지 사두면 밤에 하나씩 꺼내 먹기 딱이에요.\n\n링크는 첫 댓글에 남겨둘게요.",
-      "comment": "👉 https://link.coupang.com/a/iHyzYmtRro\n\n이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다."
+     "title": "말풍선 문구",
+     "detail": "짧고 담백하게 · 광고 문구는 넣지 않음"
     }
+   ]
+  },
+  {
+   "id": "webtoon",
+   "emoji": "🎨",
+   "name": "웹툰 작가",
+   "role": "콘티 · 컷 이미지 · 말풍선 제작",
+   "note": "기획자 훅과 탐색가 상품을 받아 콘티를 짜고, 12컷을 그려 6장 페이지로 합칩니다.",
+   "doing": "1화 6장 완성 · 체리 팀장 검수 통과",
+   "tasks": [
+    {
+     "title": "1화 콘티 12컷",
+     "detail": "출근 → 새벽 고속도로 → 퇴근 → 혼술 → 꿀잠"
+    },
+    {
+     "title": "컷 이미지 제작",
+     "detail": "호진 님 캐릭터 그림체 유지 · 컷마다 말풍선 배치"
+    },
+    {
+     "title": "6장 페이지 합성",
+     "detail": "1080×1350 · 2컷씩 세로 배치 · 제목 헤더 포함"
+    }
+   ]
+  },
+  {
+   "id": "lead",
+   "emoji": "🍒",
+   "name": "체리 팀장",
+   "role": "전체 검수 · 승인 대기 보드·책장 등록",
+   "note": "글자 깨짐·그림체·상품 매칭을 먼저 보고, 통과한 작업만 호진 님 보드에 올립니다.",
+   "doing": "1화 검수 통과 → 승인 대기 보드·책장 1번째 칸에 등록",
+   "tasks": [
+    {
+     "title": "글자·그림체 검수",
+     "detail": "6장 모두 글자 깨짐 없음 · 캐릭터 그림체 동일"
+    },
+    {
+     "title": "상품 매칭 검수",
+     "detail": "불막창 상품·단축 링크 일치 확인"
+    },
+    {
+     "title": "보드·책장 등록",
+     "detail": "승인 대기 보드 1건 · 책장 1/100화"
+    }
+   ]
+  }
+ ],
+ "todayPicks": [
+  {
+   "id": "humidifier",
+   "rank": 1,
+   "emoji": "💧",
+   "short": "신일 초음파 가습기",
+   "name": "신일 초음파 가습기, SUH-S240GE, 화이트",
+   "price": 28400,
+   "discount": "64%",
+   "badge": "로켓배송",
+   "approved": true,
+   "approve_label": "승인 완료!",
+   "publish_label": "발행 대기",
+   "link": "https://link.coupang.com/a/iIeP7LwP5o",
+   "hook": "목요일 수능 한파 온다는데 자고 일어나면 목부터 칼칼해요",
+   "body": "이번 주 목요일부터 6년 만에 수능 한파 온다던데 아침마다 목부터 칼칼하네요 💧\n\n유명한 신일 초음파 가습기인데 64% 세일 중이라 2만 원대 후반으로 내려왔더라고요. 화이트라 어디 둬도 깔끔하고 로켓배송이라 내일 바로 받아볼 수 있어요.\n\n링크는 첫 댓글에 남겨둘게요.",
+   "comment": "👉 https://link.coupang.com/a/iIeP7LwP5o\n\n이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다."
+  },
+  {
+   "id": "tumbler",
+   "rank": 2,
+   "emoji": "☕",
+   "short": "락앤락 메트로카페 텀블러",
+   "name": "락앤락 메트로카페 세라믹 텀블러, 다크초코라떼, 650ml",
+   "price": 24570,
+   "discount": "45%",
+   "badge": "로켓배송",
+   "approved": true,
+   "approve_label": "승인 완료!",
+   "publish_label": "발행 대기",
+   "link": "https://link.coupang.com/a/iIeSoSZtEi",
+   "hook": "아침 출근길 따뜻한 커피가 금방 식는 계절",
+   "body": "월요일 아침부터 추워지니까 따뜻한 아메리카노가 간절하네요 ☕\n\n스텐 텀블러 특유의 쇠맛 싫어하시는 분들한테 딱인 안쪽 세라믹 코팅 텀블러예요. 650ml 넉넉한 사이즈에 45% 할인 중이라 요즘 데일리로 들고 다니기 좋더라고요.\n\n링크는 첫 댓글에 남겨둘게요.",
+   "comment": "👉 https://link.coupang.com/a/iIeSoSZtEi\n\n이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다."
+  },
+  {
+   "id": "hoppang",
+   "rank": 3,
+   "emoji": "🥟",
+   "short": "삼립 발효미종 호빵",
+   "name": "삼립 호빵 발효미종 단팥 + 야채, 97g, 12개입",
+   "price": 11090,
+   "discount": "9%",
+   "badge": "로켓프레시",
+   "approved": true,
+   "approve_label": "승인 완료!",
+   "publish_label": "발행 대기",
+   "link": "https://link.coupang.com/a/iIeUvRs0zI",
+   "hook": "편의점 호빵 보이면 겨울 시작이잖아요",
+   "body": "편의점 앞에 빨간 호빵 찜기 보이면 진짜 겨울 시작이잖아요 🥟\n\n단팥이랑 야채 반반 12개 세트라 집에서 하나씩 쪄 먹기 딱이에요. 로켓프레시로 11,090원이면 간식값 부담도 훨씬 덜하네요.\n\n링크는 첫 댓글에 남겨둘게요.",
+   "comment": "👉 https://link.coupang.com/a/iIeUvRs0zI\n\n이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다."
+  }
+ ],
+ "roles": [
+  {
+   "e": "🖐",
+   "name": "호진 님 · 스토리 칠판",
+   "desc": "실제 이야기를 씁니다. 다음 화나 넣고 싶은 제품을 칠판에 적어 주세요.",
+   "note": "칠판 메모는 이 기기 브라우저에 저장됩니다"
+  },
+  {
+   "e": "✍️",
+   "name": "작가",
+   "desc": "호진 님 스토리에 감정선·대사·컷 흐름을 살 붙입니다."
+  },
+  {
+   "e": "🔍",
+   "name": "탐색가",
+   "desc": "스토리에 딱 맞는 쿠팡 제품을 찾아 단축 링크를 만들고 승인 대기에 올립니다."
+  },
+  {
+   "e": "📊",
+   "name": "기획자 (기획팀)",
+   "desc": "100부작 회차 흐름 · 첫 컷 제목(훅) · 업로드 타이밍 · 해시태그 · 수익 전환 동선을 설계합니다."
+  },
+  {
+   "e": "🎨",
+   "name": "웹툰 작가 (웹툰 직원)",
+   "desc": "콘티와 제품에 맞춰 웹툰 컷 이미지와 말풍선을 제작합니다."
+  },
+  {
+   "e": "🍒",
+   "name": "체리 팀장",
+   "desc": "전체를 검수하고 통과한 작업만 승인 대기 보드·책장에 등록합니다."
+  }
+ ],
+ "webtoonQueue": [
+  {
+   "id": "ep1",
+   "ep": 1,
+   "label": "[1화]",
+   "title": "남들 잘 때 출근하고, 출근할 때 마신다",
+   "status": "승인 대기",
+   "author": "✍️ 스레드 작가 · 🎨 웹툰 작가",
+   "reviewed_by": "🍒 체리 팀장",
+   "reviewed_at": "2026-11-16 13:00",
+   "date": "2026-11-16",
+   "pages": 6,
+   "images": [
+    "webtoon/ep1/page-1.png",
+    "webtoon/ep1/page-2.png",
+    "webtoon/ep1/page-3.png",
+    "webtoon/ep1/page-4.png",
+    "webtoon/ep1/page-5.png",
+    "webtoon/ep1/page-6.png"
+   ],
+   "product": "곰곰 매콤한 불막창 (냉동), 160g, 2개",
+   "price": 11480,
+   "discount": "20%",
+   "badge": "로켓프레시",
+   "link": "https://link.coupang.com/a/iIv9xtxOPA",
+   "thread": "[1화] 남들 잘 때 출근하고, 출근할 때 마신다\n\n밤 7시. 남들 퇴근할 때 내 하루는 시작된다.\n\nGS 물류 공산 기사. 오늘 밤도 만차다.\n박스 하나하나 실을 때마다 허리에서 소리가 난다.\n\n새벽 3시 고속도로엔 라디오 소리 말고는 아무도 없다.\n졸려도 하나하나, 실수 없이. 이게 내 밥벌이다.\n\n창밖이 밝아오는 아침 6시 반, 마지막 코스까지 끝내고\n아침 7시, 출근길 정체 뚫고 집으로 간다.\n\n샤워하고 냉장고에서 캔 하나 꺼내는 이 순간.\n남들에겐 아침인데, 내겐 금요일 밤이다.\n\n야간 근무 끝나고 먹는 낮술엔 매콤한 불막창이 딱이지.\n크으… 이 맛에 또 밤새 달린다.\n\n다음 화 예고 — 혼자가 익숙해질 무렵\n\n그림은 6장으로 이어집니다. 링크는 첫 댓글에 남겨둘게요.",
+   "comment": "👉 https://link.coupang.com/a/iIv9xtxOPA\n\n이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
+   "checks": [
+    "6장 순서와 말풍선 글자 깨짐 없음",
+    "호진 님 캐릭터 그림체가 1화 내내 동일",
+    "상품 매칭 — 곰곰 매콤한 불막창 (냉동) 160g × 2",
+    "본문에 링크 없음 · 첫 댓글에 단축 링크 + 수수료 고지",
+    "🍒 체리 팀장 1차 검수 통과 → 호진 님 승인 대기"
+   ],
+   "note": "야간 물류 기사 호진 님의 하루 — 밤 7시 출근, 아침 7시 퇴근, 그 뒤 한 잔."
+  }
+ ],
+ "webtoonBookshelf": {
+  "title": "웹툰 책장 · 100부작 시리즈",
+  "total": 100,
+  "filled": 1,
+  "updated_label": "11월 16일",
+  "note": "2화부터는 호진 님 승인까지 끝난 화만 한 권씩 꽂힙니다.",
+  "books": [
+   {
+    "id": "ep1",
+    "ep": 1,
+    "label": "[1화]",
+    "title": "남들 잘 때 출근하고, 출근할 때 마신다",
+    "status": "승인 대기",
+    "author": "✍️ 스레드 작가 · 🎨 웹툰 작가",
+    "reviewed_by": "🍒 체리 팀장",
+    "reviewed_at": "2026-11-16 13:00",
+    "date": "2026-11-16",
+    "pages": 6,
+    "images": [
+     "webtoon/ep1/page-1.png",
+     "webtoon/ep1/page-2.png",
+     "webtoon/ep1/page-3.png",
+     "webtoon/ep1/page-4.png",
+     "webtoon/ep1/page-5.png",
+     "webtoon/ep1/page-6.png"
+    ],
+    "product": "곰곰 매콤한 불막창 (냉동), 160g, 2개",
+    "price": 11480,
+    "discount": "20%",
+    "badge": "로켓프레시",
+    "link": "https://link.coupang.com/a/iIv9xtxOPA",
+    "thread": "[1화] 남들 잘 때 출근하고, 출근할 때 마신다\n\n밤 7시. 남들 퇴근할 때 내 하루는 시작된다.\n\nGS 물류 공산 기사. 오늘 밤도 만차다.\n박스 하나하나 실을 때마다 허리에서 소리가 난다.\n\n새벽 3시 고속도로엔 라디오 소리 말고는 아무도 없다.\n졸려도 하나하나, 실수 없이. 이게 내 밥벌이다.\n\n창밖이 밝아오는 아침 6시 반, 마지막 코스까지 끝내고\n아침 7시, 출근길 정체 뚫고 집으로 간다.\n\n샤워하고 냉장고에서 캔 하나 꺼내는 이 순간.\n남들에겐 아침인데, 내겐 금요일 밤이다.\n\n야간 근무 끝나고 먹는 낮술엔 매콤한 불막창이 딱이지.\n크으… 이 맛에 또 밤새 달린다.\n\n다음 화 예고 — 혼자가 익숙해질 무렵\n\n그림은 6장으로 이어집니다. 링크는 첫 댓글에 남겨둘게요.",
+    "comment": "👉 https://link.coupang.com/a/iIv9xtxOPA\n\n이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
+    "checks": [
+     "6장 순서와 말풍선 글자 깨짐 없음",
+     "호진 님 캐릭터 그림체가 1화 내내 동일",
+     "상품 매칭 — 곰곰 매콤한 불막창 (냉동) 160g × 2",
+     "본문에 링크 없음 · 첫 댓글에 단축 링크 + 수수료 고지",
+     "🍒 체리 팀장 1차 검수 통과 → 호진 님 승인 대기"
+    ],
+    "note": "야간 물류 기사 호진 님의 하루 — 밤 7시 출근, 아침 7시 퇴근, 그 뒤 한 잔."
+   }
   ]
+ }
 };
 FALLBACK.coupangRoom = CP_SRC;
 
@@ -3214,6 +3488,37 @@ const CP_CHARS = {
     }),
     rows: CHARS.shopping.rows
   },
+  webtoon: {
+    name: "웹툰 작가", short: "🎨 웹툰 작가",
+    role: "콘티 · 컷 이미지 · 말풍선 제작",
+    accent: "#2f8fd8", split: 16,
+    pal: Object.assign({}, CHARS.shopping.pal, {
+      "H": "#5b3fae", "h": "#8f6bd8", "k": "#3d2a78", "a": "#8f6bd8", "L": "#2f8fd8", "j": "#66b6f0", "l": "#1c6aa8", "t": "#fffaf0", "w": "#ffffff", "v": "#e2d6bc", "N": "#ff8a5c", "n": "#ffd24a", "r": "#ffa8c0", "z": "#9fd8ff"
+    }),
+    rows: [
+      "......oooo......",
+      "....ooHHHHoo....",
+      "..ooHHhHHhHHoo..",
+      ".ooHHHHHHHHHHoo.",
+      ".oHHHHHHHHHHHHo.",
+      ".oHhHssssssHHho.",
+      ".oHHsXEssEXsHHo.",
+      ".ooHsEEssEEsHoo.",
+      "..oHbssssssbHo..",
+      "..oosssmmsssoo..",
+      "...osssssssso...",
+      "...oLjwLLwjLo...",
+      "...oLLNttNLLo...",
+      "...oLttttttLo...",
+      "...oLttzzttLo...",
+      "...osPPPPPPso...",
+      "...ooPPooPPoo...",
+      "....oPPooPPo....",
+      "...oopPooPpoo...",
+      "...oFFFooFFFo...",
+      "...oooooooooo..."
+    ]
+  },
   lead: {
     name: "체리 팀장", short: "🍒 체리 팀장",
     role: "최종 승인자 · 단축 링크·공정위 고지 검수",
@@ -3225,23 +3530,24 @@ const CP_CHARS = {
     rows: CHARS.hq.rows
   }
 };
-const CP_ORDER = ["trend", "planner", "writer", "lead"];
+const CP_ORDER = ["trend", "planner", "writer", "webtoon", "lead"];
 
 /* ---------------- 자리 · 동선 ---------------- */
 const CP_NODES = {
-  trend:  [308, 660],
-  planner:[638, 660],
-  writer: [968, 660],
+  trend:  [263, 660],
+  planner:[543, 660],
+  writer: [823, 660],
+  webtoon:[1095, 660],
   lead:   [960, 965],
   board:  [240, 1090],
   table:  [730, 1010],
-  A1: [450, 780], A2: [638, 780], A3: [968, 780],
+  A1: [450, 780], A2: [638, 780], A3: [900, 780], A4: [1095, 780],
   M1: [520, 1120], M2: [730, 1120], M3: [1010, 1120]
 };
 const CP_LINKS = [
-  ["trend","A1"], ["planner","A2"], ["writer","A3"],
-  ["A1","A2"], ["A2","A3"],
-  ["A1","M1"], ["A3","M3"], ["A3","lead"],
+  ["trend","A1"], ["planner","A2"], ["writer","A3"], ["webtoon","A4"],
+  ["A1","A2"], ["A2","A3"], ["A3","A4"],
+  ["A1","M1"], ["A3","M3"], ["A4","M3"], ["A3","lead"],
   ["M1","board"], ["M1","M2"], ["M2","M3"], ["M2","table"], ["M3","lead"]
 ];
 const CP_ADJ = {};
@@ -3278,44 +3584,55 @@ function cpFindPath(from, to){
 const CP_VENUE = {
   trend: {
     seat:  { w: 7, lines: [
-      ["오늘 최저 4도!","손난로 각이에요"],
-      ["실시간 이슈 3건","포착 완료"],
-      ["로켓할인 훑는 중","8,990원 발견!"]
+      ["스토리에 어울릴", "제품 찾는 중"],
+      ["불막창 링크", "승인 대기에 올렸어요"],
+      ["2화 소재", "훑어보는 중"]
     ]},
-    board: { w: 3, lines: [["이슈 + 상품","연결해 볼까요?"],["오늘 3종 후보","보드에 붙였어요"]] },
-    table: { w: 2, lines: [["날씨·이슈 브리핑","공유할게요"]] },
-    approve:{ w: 1, lines: [["탐색 완료 보고!","3종 후보입니다"]] }
+    board: { w: 3, lines: [["제품 + 링크", "칠판에 붙였어요"],["단축 링크", "확인 완료!"]] },
+    table: { w: 2, lines: [["상품·가격 브리핑", "공유할게요"]] },
+    approve:{ w: 1, lines: [["링크 검수 요청!", "불막창 11,480원"]] }
   },
   planner: {
     seat:  { w: 6, lines: [
-      ["훅 후보 5개","만들었어요"],
-      ["심심한 광고 말고","공감 한 줄부터"]
+      ["100부작 흐름", "짜는 중"],
+      ["첫 컷 훅", "이걸로 갑시다"],
+      ["해시태그 5종", "정리 완료"]
     ]},
-    board: { w: 2, lines: [["훅 구조 정리","보드에 붙이는 중"]] },
-    table: { w: 3, lines: [["이슈 → 상품","연결 그림 그렸어요"]] },
-    approve:{ w: 1, lines: [["기획안 검수","부탁드려요!"]] }
+    board: { w: 2, lines: [["회차 로드맵", "칠판에 정리"]] },
+    table: { w: 3, lines: [["업로드 타이밍", "오전 7~8시!"]] },
+    approve:{ w: 1, lines: [["기획안 검수", "부탁드려요!"]] }
   },
   writer: {
     seat:  { w: 6, lines: [
-      ["광고 티 빼고","구어체로 썼어요"],
-      ["링크는 본문 말고","첫 댓글에!"]
+      ["감정선 살 붙이는 중", "한 줄만 더"],
+      ["대사는 짧게", "광고 티 빼고"]
     ]},
-    board: { w: 2, lines: [["문장 다듬는 중","한 줄만 더"]] },
-    table: { w: 3, lines: [["원고 3건","읽어봐 주세요"]] },
-    approve:{ w: 2, lines: [["원고 3건","검수 부탁드려요"],["첫 댓글 고지","빠짐없이 넣었어요"]] }
+    board: { w: 2, lines: [["2화 스토리", "칠판 메모 대기 중"]] },
+    table: { w: 3, lines: [["12컷 대본", "읽어봐 주세요"]] },
+    approve:{ w: 2, lines: [["1화 대본", "검수 통과!"],["2화 대본", "준비 중"]] }
+  },
+  webtoon: {
+    seat:  { w: 7, lines: [
+      ["1화 12컷 완성!", "6장으로 합쳤어요"],
+      ["불막창 클로즈업", "군침 도네요"],
+      ["2화 콘티", "짜는 중"]
+    ]},
+    board: { w: 3, lines: [["컷 순서", "칠판에 붙였어요"],["말풍선 위치", "확인 중"]] },
+    table: { w: 2, lines: [["6장 만화", "공유할게요!"]] },
+    approve:{ w: 2, lines: [["1화 완성본", "검수 부탁드려요"],["6장 만화", "올렸습니다!"]] }
   },
   lead: {
     seat:  { w: 6, lines: [
-      ["단축 링크 OK","공정위 고지 OK"],
-      ["승인 완료!","발행 대기 3건"],
-      ["최종 검수 중","도장 준비!"]
+      ["글자·그림체 OK", "상품 매칭 OK"],
+      ["검수 통과!", "보드·책장 등록"],
+      ["최종 검수 중", "호진 님 승인만!"]
     ]},
-    board: { w: 1, lines: [["파이프라인 점검","중입니다"]] },
-    table: { w: 2, lines: [["3종 전부 통과","도장 찍었어요"]] },
-    approve:{ w: 3, lines: [["승인 완료!","쿵! 도장!"]] }
+    board: { w: 1, lines: [["책장 1/100화", "꽂았어요"]] },
+    table: { w: 2, lines: [["1화 전부 통과", "보드에 올렸어요"]] },
+    approve:{ w: 3, lines: [["검수 완료!", "호진 님 차례!"]] }
   }
 };
-const CP_PLACE_LABEL = { seat: "내 자리", board: "보드", table: "회의 테이블", approve: "승인 데스크" };
+const CP_PLACE_LABEL = { seat: "내 자리", board: "칠판", table: "회의 테이블", approve: "승인 데스크" };
 function cpNodeFor(id, place){
   if(place === "seat") return id;
   if(place === "approve") return "lead";
@@ -3677,10 +3994,14 @@ function cpProps(){
   push(524, side);
 
   /* 세 사람의 자리 — 의자 + 책상 (캐릭터는 책상 뒤에 서서 앉은 모습) */
-  push(642, cpChair(88, 664) + cpChair(418, 664) + cpChair(748, 664));
-  push(700, cpDesk(230, 700, 260, TINT, "🔍 트렌드 탐색가", "#17b98a"));
-  push(700, cpDesk(560, 700, 260, TINT, "🧠 콘텐츠 기획자", "#7d5fd8"));
-  push(700, cpDesk(890, 700, 260, TINT, "✍️ 스레드 작가", "#e8892b"));
+  push(642, cpChair(43, 664) + cpChair(323, 664) + cpChair(603, 664) + cpChair(883, 664));
+  push(700, cpDesk(185, 700, 220, TINT, "🔍 트렌드 탐색가", "#17b98a"));
+  push(700, cpDesk(465, 700, 220, TINT, "🧠 콘텐츠 기획자", "#7d5fd8"));
+  push(700, cpDesk(745, 700, 220, TINT, "✍️ 스레드 작가", "#e8892b"));
+  push(700, cpArtistDesk(1015, 700, 220, TINT, "🎨 웹툰 작가", "#2f8fd8"));
+
+  /* 📚 웹툰 책장 — 100부작이 한 권씩 꽂히는 자리 */
+  push(496, cpBookshelf(1150, 374, 170, 326));
 
   /* 체리 팀장 승인 데스크 */
   let leadExtra = '';
@@ -3721,7 +4042,7 @@ function cpProps(){
   push(962, tbl);
 
   /* 보드 */
-  push(1060, cpBoardSvg());
+  push(1060, cpChalkboardSvg());
 
   /* 소품 */
   push(1024, cpParcel(64, 1024));
@@ -3731,21 +4052,87 @@ function cpProps(){
   return P;
 }
 
-function cpBoardSvg(){
+function cpChalkboardSvg(){
   const x = 100, y = 805, w = 280, h = 190;
   let s = '';
   s += '<ellipse cx="' + (x+w/2) + '" cy="' + (y+h+62) + '" rx="150" ry="14" fill="rgba(120,86,46,.13)"/>';
-  s += '<rect x="' + (x+24) + '" y="' + (y+h-10) + '" width="13" height="70" fill="#b18a5c"/>';
-  s += '<rect x="' + (x+w-37) + '" y="' + (y+h-10) + '" width="13" height="70" fill="#b18a5c"/>';
-  s += '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" rx="10" fill="#f8fbff" stroke="#9fb4c7" stroke-width="6"/>';
-  s += '<rect x="' + (x+12) + '" y="' + (y+12) + '" width="' + (w-24) + '" height="' + (h-24) + '" rx="6" fill="#fff"/>';
-  s += '<text x="' + (x+w/2) + '" y="' + (y+46) + '" text-anchor="middle" font-size="21" font-weight="800" fill="#2f5d7c">오늘 파이프라인</text>';
-  const notes = [[x+26, y+64, "#ffe08a", "날씨 4도"], [x+106, y+64, "#bfe9d6", "이슈 3건"], [x+186, y+64, "#ffd1d8", "로켓할인"]];
-  notes.forEach(function(n){
-    s += '<rect x="' + n[0] + '" y="' + n[1] + '" width="72" height="56" rx="4" fill="' + n[2] + '" stroke="rgba(150,120,70,.35)" stroke-width="2"/>';
-    s += '<text x="' + (n[0]+36) + '" y="' + (n[1]+34) + '" text-anchor="middle" font-size="14" font-weight="700" fill="#5a4a34">' + esc(n[3]) + '</text>';
-  });
-  s += '<text x="' + (x+w/2) + '" y="' + (y+h-30) + '" text-anchor="middle" font-size="15" font-weight="700" fill="#7b8fa1">탐색 → 기획 → 집필 → 승인</text>';
+  s += '<rect x="' + (x+24) + '" y="' + (y+h-10) + '" width="13" height="70" fill="#a9763f" stroke="#7a4f26" stroke-width="2"/>';
+  s += '<rect x="' + (x+w-37) + '" y="' + (y+h-10) + '" width="13" height="70" fill="#a9763f" stroke="#7a4f26" stroke-width="2"/>';
+  /* 나무 테두리 + 분필판 */
+  s += '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" rx="10" fill="#a9763f" stroke="#7a4f26" stroke-width="3"/>';
+  s += '<rect x="' + (x+12) + '" y="' + (y+12) + '" width="' + (w-24) + '" height="' + (h-34) + '" rx="6" fill="#37584a" stroke="rgba(24,44,34,.6)" stroke-width="2"/>';
+  s += '<rect x="' + (x+12) + '" y="' + (y+12) + '" width="' + (w-24) + '" height="' + (h-34) + '" rx="6" fill="url(#cpChalkG)"/>';
+  s += '<text x="' + (x+w/2) + '" y="' + (y+40) + '" text-anchor="middle" font-size="17" font-weight="900" fill="#f7f3e4">스토리 칠판</text>';
+  s += '<path d="M ' + (x+36) + ' ' + (y+51) + ' H ' + (x+w-36) + '" stroke="rgba(247,243,228,.45)" stroke-width="2" stroke-dasharray="7 6"/>';
+  s += '<text x="' + (x+26) + '" y="' + (y+78) + '" font-size="13" font-weight="700" fill="#eaf4de">1화 · 완성 ✓</text>';
+  s += '<text x="' + (x+26) + '" y="' + (y+100) + '" font-size="13" font-weight="700" fill="#eaf4de">2화 · 혼자가 익숙해질 무렵</text>';
+  s += '<text x="' + (x+26) + '" y="' + (y+122) + '" font-size="13" fill="rgba(234,244,222,.62)">3화 · (호진 님 메모 대기)</text>';
+  s += '<text x="' + (x+26) + '" y="' + (y+146) + '" font-size="11.5" fill="rgba(234,244,222,.5)">넣고 싶은 제품도 여기에 적어 주세요</text>';
+  /* 분필 받침 · 분필 · 지우개 */
+  s += '<rect x="' + (x+16) + '" y="' + (y+h-22) + '" width="' + (w-32) + '" height="9" rx="3" fill="#c08f56" stroke="#8a5f37" stroke-width="1.5"/>';
+  s += '<rect x="' + (x+40) + '" y="' + (y+h-30) + '" width="22" height="8" rx="3" fill="#f7f3e4"/>';
+  s += '<rect x="' + (x+66) + '" y="' + (y+h-29) + '" width="14" height="7" rx="3" fill="#d8f0c8"/>';
+  s += '<rect x="' + (x+w-92) + '" y="' + (y+h-32) + '" width="36" height="12" rx="3" fill="#5f6b7a" stroke="#3d4650" stroke-width="1.5"/>';
+  return s;
+}
+
+function cpArtistDesk(cx, y, w, tint, label, accent){
+  const x = Math.round(cx - w/2), d = 22, slabH = 22, legH = 30;
+  const surf = y - legH - slabH;
+  let s = '';
+  s += '<ellipse cx="' + cx + '" cy="' + (y+3) + '" rx="' + Math.round(w*0.54) + '" ry="13" fill="rgba(120,86,46,.13)"/>';
+  s += '<rect x="' + (x+18) + '" y="' + (y-legH) + '" width="13" height="' + legH + '" fill="#b08a5c"/>';
+  s += '<rect x="' + (x+w-31) + '" y="' + (y-legH) + '" width="13" height="' + legH + '" fill="#b08a5c"/>';
+  s += cpBox(x, surf + slabH, w, slabH, d, tint);
+  /* 기울어진 제도판 */
+  s += '<polygon points="' + (cx-62) + ',' + (surf-2) + ' ' + (cx+52) + ',' + (surf-2) + ' ' + (cx+40) + ',' + (surf-56) + ' ' + (cx-50) + ',' + (surf-56) + '" fill="#fdfaf2" stroke="#8a6a42" stroke-width="3" stroke-linejoin="round"/>';
+  s += '<polygon points="' + (cx-50) + ',' + (surf-56) + ' ' + (cx+40) + ',' + (surf-56) + ' ' + (cx+34) + ',' + (surf-64) + ' ' + (cx-44) + ',' + (surf-64) + '" fill="#e8d3ae" stroke="rgba(160,125,80,.55)" stroke-width="2"/>';
+  /* 콘티 칸 + 스케치 */
+  s += '<g stroke="#c9bba3" stroke-width="1.6" fill="none">'
+    + '<path d="M' + (cx-30) + ' ' + (surf-48) + 'V' + (surf-10) + '"/>'
+    + '<path d="M' + (cx-6) + ' ' + (surf-52) + 'V' + (surf-10) + '"/>'
+    + '<path d="M' + (cx+18) + ' ' + (surf-50) + 'V' + (surf-10) + '"/>'
+    + '<path d="M' + (cx-42) + ' ' + (surf-34) + 'H' + (cx+30) + '"/></g>';
+  s += '<path d="M ' + (cx-38) + ' ' + (surf-20) + ' q 7 -13 14 0 q 7 11 14 -4" fill="none" stroke="#2f8fd8" stroke-width="2.5" stroke-linecap="round"/>';
+  s += '<rect x="' + (cx+2) + '" y="' + (surf-32) + '" width="15" height="15" rx="2" fill="#ffd24a" stroke="#c79a1f" stroke-width="1.5"/>';
+  /* 브러시 통 */
+  s += '<ellipse cx="' + (x+w-16) + '" cy="' + (surf-14) + '" rx="12" ry="5" fill="rgba(90,64,36,.16)"/>';
+  s += '<rect x="' + (x+w-27) + '" y="' + (surf-33) + '" width="21" height="19" rx="3" fill="#e4ecf3" stroke="#9fb2c2" stroke-width="2"/>';
+  s += '<path d="M ' + (x+w-23) + ' ' + (surf-33) + ' l -5 -14" stroke="#b0602c" stroke-width="3" stroke-dasharray="0" stroke-linecap="round"/>';
+  s += '<path d="M ' + (x+w-16) + ' ' + (surf-33) + ' l 1 -16" stroke="#3f9a60" stroke-width="3" stroke-linecap="round"/>';
+  s += '<path d="M ' + (x+w-9) + ' ' + (surf-33) + ' l 6 -12" stroke="#c0392b" stroke-width="3" stroke-linecap="round"/>';
+  /* 이름표 */
+  s += '<rect x="' + (x+16) + '" y="' + (surf+5) + '" width="120" height="14" rx="3" fill="#fffaf0" stroke="rgba(160,125,80,.4)" stroke-width="1.5"/>';
+  s += '<text x="' + (x+24) + '" y="' + (surf+16.5) + '" font-size="11.5" font-weight="800" fill="#8a6a42">' + esc(label) + '</text>';
+  s += '<rect x="' + (x+144) + '" y="' + (surf+5) + '" width="' + Math.max(12, w-162) + '" height="14" rx="3" fill="' + accent + '" opacity=".38"/>';
+  return s;
+}
+
+function cpBookshelf(x, y, w, h){
+  const bookCols = ["#e05c6a", "#3f9a60", "#2f8fd8", "#f0a93f", "#8f6bd8", "#e2735f", "#4fb0a5", "#c9784a", "#7fb3d5"];
+  let s = '';
+  s += '<ellipse cx="' + (x + w/2) + '" cy="' + (y + h + 4) + '" rx="' + Math.round(w*0.56) + '" ry="12" fill="rgba(120,86,46,.16)"/>';
+  s += '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" rx="5" fill="#d9a86e" stroke="#8a5f37" stroke-width="4"/>';
+  const shelfH = 92;
+  for(let r = 0; r < 2; r++){
+    const sy = y + 10 + r * shelfH;
+    s += '<rect x="' + (x+9) + '" y="' + sy + '" width="' + (w-18) + '" height="' + (shelfH-12) + '" rx="2" fill="#f3e4c9"/>';
+    let bx = x + 15, k = r * 4;
+    while(bx < x + w - 22){
+      const bw = 7 + (k % 3) * 2, bh = shelfH - 26 - (k % 2) * 6;
+      s += '<rect x="' + bx + '" y="' + (sy + (shelfH-12) - bh) + '" width="' + bw + '" height="' + bh + '" rx="1" fill="' + bookCols[k % bookCols.length] + '" stroke="rgba(43,33,24,.5)" stroke-width="1.2"/>';
+      bx += bw + 2; k++;
+    }
+    s += '<rect x="' + (x+5) + '" y="' + (sy + shelfH - 14) + '" width="' + (w-10) + '" height="8" rx="2" fill="#c08f56"/>';
+  }
+  /* 아래 수납장 + 1/100 표찰 */
+  const cy = y + 10 + shelfH * 2, ch = h - (cy - y) - 12;
+  s += '<rect x="' + (x+9) + '" y="' + cy + '" width="' + (w-18) + '" height="' + ch + '" rx="3" fill="#f0dcbb" stroke="rgba(140,100,60,.4)" stroke-width="2"/>';
+  s += '<rect x="' + (x+12) + '" y="' + (cy + ch/2) + '" width="' + (w-24) + '" height="2" fill="rgba(140,100,60,.35)"/>';
+  s += '<circle cx="' + (x + w/2 - 16) + '" cy="' + (cy + ch/2 - 8) + '" r="3" fill="#a5835a"/>';
+  s += '<circle cx="' + (x + w/2 + 16) + '" cy="' + (cy + ch/2 + 8) + '" r="3" fill="#a5835a"/>';
+  s += '<rect x="' + (x + w/2 - 38) + '" y="' + (cy + 6) + '" width="76" height="15" rx="3" fill="#fffaf0" stroke="rgba(120,86,46,.5)" stroke-width="1.5"/>';
+  s += '<text x="' + (x + w/2) + '" y="' + (cy + 17) + '" text-anchor="middle" font-size="10.5" font-weight="900" fill="#8a5f37">1 / 100화</text>';
   return s;
 }
 
@@ -3754,6 +4141,7 @@ function cpDefsSvg(){
     + '<linearGradient id="cpWallG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff9ec"/><stop offset="1" stop-color="#ffeecf"/></linearGradient>'
     + '<linearGradient id="cpFloorG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f8e9cb"/><stop offset="1" stop-color="#eed7b0"/></linearGradient>'
     + '<linearGradient id="cpSkyG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#bfe6ff"/><stop offset="1" stop-color="#eefaff"/></linearGradient>'
+    + '<linearGradient id="cpChalkG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff" stop-opacity=".09"/><stop offset=".55" stop-color="#ffffff" stop-opacity="0"/><stop offset="1" stop-color="#0b1a12" stop-opacity=".18"/></linearGradient>'
     + '<radialGradient id="cpLampG" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ffe3a6" stop-opacity=".5"/><stop offset="1" stop-color="#ffe3a6" stop-opacity="0"/></radialGradient>'
     + '<pattern id="cpTiles" width="120" height="120" patternUnits="userSpaceOnUse">'
     + '<rect x="0" y="0" width="60" height="60" fill="rgba(214,178,120,.16)"/>'
@@ -3871,6 +4259,10 @@ function cpWorkbench(d){
   h += '<div class="sec-title">팀 파이프라인 <span class="n">' + (d.level ? "Lv." + d.level : "") + '</span></div>';
   h += cpFlow(d.pipeline || []);
   h += cpGoal(d.goal || {}, d.level);
+  h += cpRoles(d);
+  h += cpStoryBoard();
+  h += cpReviewPanel(d);
+  h += cpBookshelfPanel(d);
   h += '<div class="sec-title">오늘의 추천 3종 <span class="n">' + ((d.todayPicks || []).length) + '건</span></div>';
   h += (d.todayPicks || []).map(cpPickCard).join("");
   h += '<div class="note">복사 버튼을 누르면 원고가 클립보드에 담깁니다. 스레드 앱에서 붙여넣기만 하면 돼요.</div>';
@@ -3878,7 +4270,356 @@ function cpWorkbench(d){
   return h;
 }
 
+/* ---------------- 📝 스토리 칠판 · 🔍 검수 보드 · 📚 책장 ---------------- */
+const LS_STORY = "al-office.story.v1";
+const LS_REVIEW = "al-office.review.v1";
+const STORY = { title: "", body: "", updated: "", timer: 0 };
+const REVIEW = {};
+const SLIDE = {};
+const SL_IMGS = {};
+let STORY_READY = false, REVIEW_READY = false;
+
+function lsRead(key){
+  try{ const raw = localStorage.getItem(key); return raw ? JSON.parse(raw) : null; }
+  catch(e){ return null; }
+}
+function lsWrite(key, val){
+  try{ localStorage.setItem(key, JSON.stringify(val)); return true; }
+  catch(e){ return false; }
+}
+function storyLoad(){
+  if(STORY_READY) return;
+  STORY_READY = true;
+  const v = lsRead(LS_STORY) || {};
+  STORY.title = (typeof v.title === "string") ? v.title : "";
+  STORY.body  = (typeof v.body  === "string") ? v.body  : "";
+  STORY.updated = v.updated || "";
+}
+function storyStampText(){
+  return STORY.updated
+    ? ("💾 " + STORY.updated + " 저장됨 · 이 기기 브라우저에만 보관")
+    : "아직 저장된 메모가 없어요 · 적어 두면 이 기기에 자동 저장됩니다";
+}
+function storySave(){
+  const t = document.getElementById("cpStoryTitle");
+  const b = document.getElementById("cpStoryBody");
+  if(t) STORY.title = t.value;
+  if(b) STORY.body = b.value;
+  const n = new Date();
+  const p2 = function(x){ return (x < 10 ? "0" : "") + x; };
+  STORY.updated = p2(n.getMonth() + 1) + "/" + p2(n.getDate()) + " " + p2(n.getHours()) + ":" + p2(n.getMinutes());
+  const ok = lsWrite(LS_STORY, { title: STORY.title, body: STORY.body, updated: STORY.updated });
+  const el = document.querySelector("[data-story-stamp]");
+  if(el) el.textContent = ok ? storyStampText() : "저장 실패 — 브라우저 저장 공간을 확인해 주세요";
+  return ok;
+}
+function storyTouch(){
+  const t = document.getElementById("cpStoryTitle");
+  const b = document.getElementById("cpStoryBody");
+  if(t) STORY.title = t.value;
+  if(b) STORY.body = b.value;
+  clearTimeout(STORY.timer);
+  STORY.timer = setTimeout(storySave, 700);
+}
+function storyCopyText(){
+  const t = (STORY.title || "").trim(), b = (STORY.body || "").trim();
+  if(!t && !b) return "";
+  let s = "📝 스토리 칠판 메모";
+  if(t) s += "\n제목: " + t;
+  s += "\n\n" + (b || "(내용 없음)");
+  s += "\n\n— 쿠파스팀 스토리 칠판에서 보냅니다.";
+  return s;
+}
+function storyCopy(btn){
+  const text = storyCopyText();
+  if(!text){
+    if(btn){
+      const label = btn.getAttribute("data-label") || "📋 체리에게 보낼 글 복사";
+      btn.classList.add("failed");
+      btn.textContent = "메모를 먼저 적어 주세요";
+      clearTimeout(btn.__t);
+      btn.__t = setTimeout(function(){ btn.classList.remove("failed"); btn.textContent = label; }, 2000);
+    }
+    return;
+  }
+  cpCopyText(text, btn);
+}
+
+function reviewLoad(){
+  if(REVIEW_READY) return;
+  REVIEW_READY = true;
+  const v = lsRead(LS_REVIEW);
+  if(v && typeof v === "object"){
+    Object.keys(v).forEach(function(k){ if(v[k]) REVIEW[k] = String(v[k]); });
+  }
+}
+function reviewStateOf(id, fallback){
+  return REVIEW[id] || fallback || "승인 대기";
+}
+function reviewSet(id, val){
+  if(REVIEW[id] === val) delete REVIEW[id];
+  else REVIEW[id] = val;
+  lsWrite(LS_REVIEW, REVIEW);
+}
+function reviewChipClass(st){
+  if(st.indexOf("수정") >= 0) return "fix";
+  if(st.indexOf("완료") >= 0) return "ok";
+  return "wait";
+}
+function cpRvSummaryText(d){
+  const list = (d || cpData()).webtoonQueue || [];
+  let wait = 0, ok = 0, fix = 0;
+  list.forEach(function(it){
+    const st = reviewStateOf(String(it.id), it.status);
+    if(st.indexOf("수정") >= 0) fix++;
+    else if(st.indexOf("완료") >= 0) ok++;
+    else wait++;
+  });
+  return "대기 " + wait + " · 승인 " + ok + " · 수정 " + fix;
+}
+function cpRvSummary(){
+  const el = document.querySelector("[data-rv-count]");
+  if(el) el.textContent = cpRvSummaryText();
+}
+
+function slImgsOf(item){
+  if(item && item.images && item.images.length) return item.images.slice();
+  const n = (item && item.pages) ? +item.pages : 0;
+  const out = [];
+  for(let i = 1; i <= n; i++) out.push("webtoon/ep1/page-" + i + ".png");
+  return out;
+}
+function slMarkup(scope, imgs, altBase){
+  if(!imgs.length) return '<div class="note">아직 이미지가 없습니다.</div>';
+  SL_IMGS[scope] = imgs;
+  const i = Math.min(SLIDE[scope] || 0, imgs.length - 1);
+  SLIDE[scope] = i;
+  let h = '<div class="sl">';
+  h += '<div class="sl-frame" data-sl-frame="' + scope + '">'
+    + '<img alt="' + esc(altBase + " " + (i + 1) + "장") + '" src="' + esc(imgs[i]) + '" data-sl-img="' + scope + '" loading="lazy">'
+    + '<div class="miss">이미지 준비 중<br><span>' + esc(imgs[i]) + '</span></div></div>';
+  h += '<div class="sl-bar">'
+    + '<button type="button" data-sl-prev="' + scope + '" aria-label="이전 장">‹</button>'
+    + '<span class="sl-count" data-sl-count="' + scope + '">' + (i + 1) + ' / ' + imgs.length + '</span>'
+    + '<button type="button" data-sl-next="' + scope + '" aria-label="다음 장">›</button></div>';
+  h += '<div class="sl-dots">';
+  imgs.forEach(function(_, j){
+    h += '<i data-sl-dot="' + scope + '" data-sl-i="' + j + '" class="' + (j === i ? "on" : "") + '"></i>';
+  });
+  h += '</div></div>';
+  return h;
+}
+function slPaint(scope, i){
+  const imgs = SL_IMGS[scope] || [];
+  if(!imgs.length) return;
+  SLIDE[scope] = i;
+  const img = document.querySelector('[data-sl-img="' + scope + '"]');
+  const frame = document.querySelector('[data-sl-frame="' + scope + '"]');
+  if(img){
+    img.setAttribute("src", imgs[i]);
+    img.setAttribute("alt", "웹툰 " + (i + 1) + "장");
+    if(frame) frame.classList.remove("missing");
+  }
+  const cnt = document.querySelector('[data-sl-count="' + scope + '"]');
+  if(cnt) cnt.textContent = (i + 1) + " / " + imgs.length;
+  const dots = document.querySelectorAll('[data-sl-dot="' + scope + '"]');
+  for(let k = 0; k < dots.length; k++) dots[k].classList.toggle("on", +dots[k].getAttribute("data-sl-i") === i);
+}
+function slGo(scope, dir){
+  const imgs = SL_IMGS[scope] || [];
+  if(imgs.length < 2) return;
+  slPaint(scope, ((SLIDE[scope] || 0) + dir + imgs.length) % imgs.length);
+}
+function slGoto(scope, i){
+  const imgs = SL_IMGS[scope] || [];
+  if(!imgs.length) return;
+  slPaint(scope, Math.max(0, Math.min(imgs.length - 1, i)));
+}
+
+function cpStoryBoard(){
+  storyLoad();
+  let h = '<div class="sec-title">📝 스토리 칠판 <span class="n">호진 님 전용</span></div>';
+  h += '<div class="cs">';
+  h += '<div class="cs-top"><span class="ic" aria-hidden="true">📝</span>'
+    + '<span class="cs-t"><b>다음 화 이야기를 적어 주세요</b>'
+    + '<span class="sub">2화·3화 이야기, 넣고 싶은 제품, 대사 한 줄</span></span>'
+    + '<span class="cs-badge">자동 저장</span></div>';
+  h += '<input class="cs-in" id="cpStoryTitle" type="text" maxlength="80" value="' + esc(STORY.title) + '" '
+    + 'placeholder="제목 · 예) 2화 — 혼자가 익숙해질 무렵">';
+  h += '<textarea class="cs-ta" id="cpStoryBody" rows="5" maxlength="2000" '
+    + 'placeholder="내용 · 쓰고 싶은 장면, 넣고 싶은 제품 이름, 하고 싶은 말…">' + esc(STORY.body) + '</textarea>';
+  h += '<div class="cs-act">'
+    + '<button class="cs-btn primary" type="button" data-story-save>💾 칠판에 저장</button>'
+    + '<button class="cs-btn" type="button" data-story-copy data-label="📋 체리에게 보낼 글 복사">📋 체리에게 보낼 글 복사</button>'
+    + '</div>';
+  h += '<div class="cs-stamp" data-story-stamp>' + esc(storyStampText()) + '</div>';
+  h += '<div class="cs-note">이 칠판은 지금 기기 브라우저에만 저장돼요. 체리에게 넘기려면 <b>복사</b>해서 채팅에 붙여넣어 주세요.</div>';
+  h += '</div>';
+  return h;
+}
+
+function cpRoles(d){
+  const roles = d.roles || [];
+  if(!roles.length) return "";
+  let h = '<div class="sec-title">팀 역할 분담 <span class="n">' + roles.length + '명</span></div>';
+  h += '<div class="tr-list">';
+  roles.forEach(function(r){
+    h += '<div class="tr-row"><span class="e" aria-hidden="true">' + esc(r.e || "•") + '</span>'
+      + '<span class="tx"><b>' + esc(r.name || "") + '</b><span class="d">' + esc(r.desc || "") + '</span></span></div>';
+  });
+  h += '</div>';
+  return h;
+}
+
+function cpReviewCard(item){
+  const id = String(item.id || ("ep" + item.ep));
+  const imgs = slImgsOf(item);
+  const st = reviewStateOf(id, item.status);
+  const cls = reviewChipClass(st);
+  const scope = "rv-" + id;
+  CP_SCRIPTS["wt:" + id + ":body"] = item.thread || "";
+  CP_SCRIPTS["wt:" + id + ":cm"] = item.comment || "";
+  let h = '<div class="rv-card" data-rv="' + esc(id) + '">';
+  h += '<button class="rv-head" type="button" data-rv-toggle="' + esc(id) + '" aria-expanded="false">'
+    + '<span class="rv-ic" aria-hidden="true">🎨</span>'
+    + '<span class="rv-main"><b>' + esc((item.label || ("[" + item.ep + "화]")) + " " + (item.title || "")) + '</b>'
+    + '<span class="rv-meta">' + esc(item.product || "")
+    + (item.pages ? " · " + item.pages + "장" : "") + (item.date ? " · " + item.date : "") + '</span></span>'
+    + '<span class="rv-chip ' + cls + '" data-rv-chip="' + esc(id) + '">' + esc(st) + '</span>'
+    + '<span class="rv-caret" aria-hidden="true">▾</span></button>';
+  h += '<div class="rv-body" data-rv-body="' + esc(id) + '" hidden>';
+  h += '<div class="rv-note">🍒 <b>체리 팀장 1차 검수 통과</b>'
+    + (item.reviewed_at ? " (" + esc(item.reviewed_at) + ")" : "") + ' · 호진 님 승인만 남았습니다.</div>';
+  h += slMarkup(scope, imgs, (item.label || "웹툰") + " 페이지");
+  if(item.product){
+    h += '<div class="rv-line"><b>' + esc(item.product) + '</b>'
+      + (item.price ? ' <span class="rv-price">' + won(item.price) + '원</span>' : "")
+      + (item.discount ? ' <span class="pick-off">' + esc(item.discount) + ' 할인</span>' : "")
+      + (item.badge ? ' <span class="pick-rocket">' + esc(item.badge) + '</span>' : "")
+      + '</div>';
+  }
+  if(item.link) h += '<a class="cp-link" href="' + esc(item.link) + '" target="_blank" rel="noopener">' + esc(item.link) + '</a>';
+  h += '<div class="script-lab"><span class="t">스레드 본문</span>'
+    + '<button class="cp-copy" type="button" data-copy="wt:' + esc(id) + ':body" data-label="본문 복사">본문 복사</button></div>';
+  h += '<pre class="script">' + esc(item.thread || "") + '</pre>';
+  h += '<div class="script-lab"><span class="t">첫 댓글 · 링크 + 수수료 고지</span>'
+    + '<button class="cp-copy" type="button" data-copy="wt:' + esc(id) + ':cm" data-label="첫 댓글 복사">첫 댓글 복사</button></div>';
+  h += '<pre class="script cm">' + esc(item.comment || "") + '</pre>';
+  if(item.checks && item.checks.length){
+    h += '<div class="rv-checks"><b>체리 팀장 검수 항목</b><ul>';
+    item.checks.forEach(function(c){ h += '<li>' + esc(c) + '</li>'; });
+    h += '</ul></div>';
+  }
+  h += '<div class="rv-act">'
+    + '<button class="rv-btn ok" type="button" data-rv-set="' + esc(id) + ':승인 완료" aria-pressed="' + (cls === "ok") + '">✓ 승인 완료</button>'
+    + '<button class="rv-btn fix" type="button" data-rv-set="' + esc(id) + ':수정 필요" aria-pressed="' + (cls === "fix") + '">✎ 수정 필요</button>'
+    + '</div>';
+  h += '<div class="rv-hint">표시는 이 기기에만 저장됩니다. 실제 발행·수정은 호진 님이 하시면 됩니다.</div>';
+  h += '</div></div>';
+  return h;
+}
+
+function cpReviewPanel(d){
+  const list = d.webtoonQueue || [];
+  let h = '<div class="sec-title">🔍 승인 대기 · 작업 검수 <span class="n" data-rv-count>' + esc(cpRvSummaryText(d)) + '</span></div>';
+  h += '<div class="rv-note">🍒 <b>체리 팀장이 글자·그림체·상품 매칭을 먼저 검수해 통과시킨 작업만</b> 이 보드에 올라옵니다. 카드를 눌러 6장과 원고를 확인하고 승인 완료 / 수정 필요를 표시해 주세요.</div>';
+  if(!list.length) h += '<div class="note">아직 체리 팀장 검수를 통과한 작업이 없습니다.</div>';
+  h += list.map(cpReviewCard).join("");
+  return h;
+}
+
+function cpBookshelfPanel(d){
+  const bs = d.webtoonBookshelf || {};
+  const books = bs.books || [];
+  const total = +bs.total || 100;
+  const filled = +bs.filled || books.length;
+  const pct = total > 0 ? Math.min(100, filled / total * 100) : 0;
+  let h = '<div class="sec-title">📚 웹툰 책장 <span class="n">' + filled + '/' + total + '화</span></div>';
+  h += '<div class="bs-meta"><span>' + esc(bs.title || "100부작 시리즈") + '</span>'
+    + '<span>' + (pct < 1 ? pct.toFixed(1) : Math.round(pct)) + '% · ' + esc(bs.updated_label || "") + '</span></div>';
+  h += '<div class="bs-bar"><i style="width:' + Math.max(pct, 1.2).toFixed(1) + '%"></i></div>';
+  h += '<div class="bs-wood"><div class="bs-row">';
+  for(let i = 1; i <= 10; i++){
+    const b = books.filter(function(x){ return +x.ep === i; })[0];
+    if(b){
+      h += '<button class="bs-book on" type="button" data-bs-open="' + esc(String(b.id || ("ep" + i))) + '" '
+        + 'title="' + esc((b.label || (i + "화")) + " " + (b.title || "")) + '">'
+        + '<span class="n">' + i + '</span>화</button>';
+    }else{
+      h += '<span class="bs-book ghost" aria-hidden="true"><span class="n">' + i + '</span>화</span>';
+    }
+  }
+  h += '</div><div class="bs-plank"></div></div>';
+  h += '<div class="bs-note">' + esc(bs.note || "승인 완료된 화부터 한 권씩 꽂힙니다.") + '</div>';
+  books.forEach(function(b){
+    const id = String(b.id || ("ep" + b.ep));
+    const scope = "bs-" + id;
+    const imgs = slImgsOf(b);
+    CP_SCRIPTS["bs:" + id + ":body"] = b.thread || "";
+    CP_SCRIPTS["bs:" + id + ":cm"] = b.comment || "";
+    h += '<div class="bs-view" data-bs-view="' + esc(id) + '" hidden>';
+    h += '<div class="bs-view-head"><b>' + esc((b.label || (b.ep + "화")) + " 「" + (b.title || "") + "」") + '</b>'
+      + '<span class="rv-chip ' + reviewChipClass(reviewStateOf(id, b.status)) + '" data-bs-view-head-chip>'
+      + esc(reviewStateOf(id, b.status)) + '</span></div>';
+    h += slMarkup(scope, imgs, (b.label || "웹툰") + " 페이지");
+    if(b.product) h += '<div class="rv-line"><b>' + esc(b.product) + '</b>'
+      + (b.price ? ' <span class="rv-price">' + won(b.price) + '원</span>' : "") + '</div>';
+    if(b.link) h += '<a class="cp-link" href="' + esc(b.link) + '" target="_blank" rel="noopener">' + esc(b.link) + '</a>';
+    h += '<div class="script-lab"><span class="t">스레드 본문</span>'
+      + '<button class="cp-copy" type="button" data-copy="bs:' + esc(id) + ':body" data-label="본문 복사">본문 복사</button></div>';
+    h += '<pre class="script">' + esc(b.thread || "") + '</pre>';
+    h += '<div class="script-lab"><span class="t">첫 댓글 · 링크 + 수수료 고지</span>'
+      + '<button class="cp-copy" type="button" data-copy="bs:' + esc(id) + ':cm" data-label="첫 댓글 복사">첫 댓글 복사</button></div>';
+    h += '<pre class="script cm">' + esc(b.comment || "") + '</pre>';
+    h += '</div>';
+  });
+  return h;
+}
+
+function cpToggleRv(id){
+  const card = document.querySelector('[data-rv="' + id + '"]');
+  if(!card) return;
+  const body = card.querySelector("[data-rv-body]");
+  const head = card.querySelector("[data-rv-toggle]");
+  if(!body) return;
+  const open = body.hasAttribute("hidden");
+  if(open) body.removeAttribute("hidden"); else body.setAttribute("hidden", "");
+  card.classList.toggle("open", open);
+  if(head) head.setAttribute("aria-expanded", String(open));
+}
+function cpSetRv(spec){
+  const i = spec.indexOf(":");
+  if(i < 0) return;
+  const id = spec.slice(0, i), val = spec.slice(i + 1);
+  reviewSet(id, val);
+  const item = (cpData().webtoonQueue || []).filter(function(x){ return String(x.id) === id; })[0] || {};
+  const st = reviewStateOf(id, item.status);
+  const card = document.querySelector('[data-rv="' + id + '"]');
+  if(card){
+    const chip = card.querySelector("[data-rv-chip]");
+    if(chip){ chip.textContent = st; chip.className = "rv-chip " + reviewChipClass(st); }
+    const btns = card.querySelectorAll("[data-rv-set]");
+    for(let k = 0; k < btns.length; k++){
+      const v = btns[k].getAttribute("data-rv-set");
+      btns[k].setAttribute("aria-pressed", String(v.slice(v.indexOf(":") + 1) === st));
+    }
+  }
+  const bv = document.querySelector('[data-bs-view="' + id + '"] [data-bs-view-head-chip]');
+  if(bv){ bv.textContent = st; bv.className = "rv-chip " + reviewChipClass(st); }
+  cpRvSummary();
+}
+function cpToggleBook(id){
+  const v = document.querySelector('[data-bs-view="' + id + '"]');
+  if(!v) return;
+  const open = v.hasAttribute("hidden");
+  if(open) v.removeAttribute("hidden"); else v.setAttribute("hidden", "");
+  const b = document.querySelector('[data-bs-open="' + id + '"]');
+  if(b) b.classList.toggle("pressed", open);
+  if(open && v.scrollIntoView) v.scrollIntoView({ block: "nearest", behavior: "smooth" });
+}
+
 function renderCpPanel(){
+  storyLoad(); reviewLoad();
   const d = cpData();
   const sub = document.getElementById("cpSub");
   if(sub) sub.textContent = (d.today_label || "") + " · " + (d.updated_label || "") + " 기준";
@@ -3998,11 +4739,36 @@ function bindCpEvents(){
   const body = document.getElementById("cpBody");
   if(body){
     body.addEventListener("click", function(e){
-      const b = e.target.closest("[data-copy]");
-      if(!b) return;
-      const key = b.getAttribute("data-copy");
-      cpCopyText(CP_SCRIPTS[key] || "", b);
+      const cpBtn = e.target.closest("[data-copy]");
+      if(cpBtn){ cpCopyText(CP_SCRIPTS[cpBtn.getAttribute("data-copy")] || "", cpBtn); return; }
+      const stCopy = e.target.closest("[data-story-copy]");
+      if(stCopy){ storyCopy(stCopy); return; }
+      const stSave = e.target.closest("[data-story-save]");
+      if(stSave){ storySave(); return; }
+      const rvT = e.target.closest("[data-rv-toggle]");
+      if(rvT){ cpToggleRv(rvT.getAttribute("data-rv-toggle")); return; }
+      const rvS = e.target.closest("[data-rv-set]");
+      if(rvS){ cpSetRv(rvS.getAttribute("data-rv-set")); return; }
+      const slP = e.target.closest("[data-sl-prev]");
+      if(slP){ slGo(slP.getAttribute("data-sl-prev"), -1); return; }
+      const slN = e.target.closest("[data-sl-next]");
+      if(slN){ slGo(slN.getAttribute("data-sl-next"), 1); return; }
+      const slD = e.target.closest("[data-sl-dot]");
+      if(slD){ slGoto(slD.getAttribute("data-sl-dot"), +slD.getAttribute("data-sl-i")); return; }
+      const bk = e.target.closest("[data-bs-open]");
+      if(bk){ cpToggleBook(bk.getAttribute("data-bs-open")); return; }
     });
+    body.addEventListener("input", function(e){
+      const t = e.target;
+      if(t && (t.id === "cpStoryTitle" || t.id === "cpStoryBody")) storyTouch();
+    });
+    body.addEventListener("error", function(e){
+      const t = e.target;
+      if(t && t.tagName === "IMG" && t.hasAttribute("data-sl-img")){
+        const f = t.closest(".sl-frame");
+        if(f) f.classList.add("missing");
+      }
+    }, true);
   }
   const refresh = document.getElementById("cpRefresh");
   if(refresh){
