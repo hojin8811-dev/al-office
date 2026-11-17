@@ -510,7 +510,25 @@
         "state": "waiting",
         "need": "실적 쌓기"
       }
-    ]
+    ],
+    "dashboard": {
+      "title": "쿠팡 파트너스 대시보드",
+      "checked_at": "2026-11-17 09:00",
+      "source_note": "파트너스 대시보드 최근 업데이트 2026-11-16 기준",
+      "daily": {
+        "label": "11/16",
+        "clicks": 0,
+        "orders": 0,
+        "revenue": 0
+      },
+      "month": {
+        "label": "2026년 11월",
+        "clicks": 0,
+        "orders": 0,
+        "revenue": 0
+      },
+      "note": "아직 클릭·구매가 하나도 잡히지 않았습니다. 11/16 웹툰 1·2화 링크 반응도 0입니다."
+    }
   },
   "completed": [
     {
@@ -903,9 +921,9 @@
   "coupangRoom": {
     "title": "🚀 쿠파스팀 워크벤치",
     "subtitle": "칠판 → 작가 → 탐색가 → 기획자 → 웹툰 작가 → 체리 팀장 검수 → 호진 님 승인",
-    "today": "2026-11-16",
-    "today_label": "11월 16일 웹툰 4화",
-    "updated_label": "11월 16일 19:17 기준",
+    "today": "2026-11-17",
+    "today_label": "2026-11-17",
+    "updated_label": "11월 17일 09:05 기준",
     "level": 2,
     "goal": {
       "label": "최종 승인 목표",
@@ -1107,55 +1125,58 @@
     ],
     "todayPicks": [
       {
-        "id": "humidifier",
+        "id": "electric-blanket",
         "rank": 1,
-        "emoji": "💧",
-        "short": "신일 초음파 가습기",
-        "name": "신일 초음파 가습기, SUH-S240GE, 화이트",
-        "price": 28400,
-        "discount": "64%",
+        "emoji": "🛌",
+        "short": "듀플렉스 무자계 전기요",
+        "name": "듀플렉스 무자계 열선 전기요, 아이보리, SS(1050 x 1800 mm)",
+        "price": 52800,
+        "discount": "72%",
         "badge": "로켓배송",
-        "approved": true,
-        "approve_label": "승인 완료!",
-        "publish_label": "발행 대기",
-        "link": "https://link.coupang.com/a/iIeP7LwP5o",
-        "hook": "목요일 수능 한파 온다는데 자고 일어나면 목부터 칼칼해요",
-        "body": "이번 주 목요일부터 6년 만에 수능 한파 온다던데 아침마다 목부터 칼칼하네요 💧\n\n유명한 신일 초음파 가습기인데 64% 세일 중이라 2만 원대 후반으로 내려왔더라고요. 화이트라 어디 둬도 깔끔하고 로켓배송이라 내일 바로 받아볼 수 있어요.\n\n링크는 첫 댓글에 남겨둘게요.",
-        "comment": "👉 https://link.coupang.com/a/iIeP7LwP5o\n\n이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다."
+        "approved": false,
+        "approve_label": "승인 대기",
+        "publish_label": "승인 후 발행",
+        "link": "https://link.coupang.com/a/iJUf7HBPYO",
+        "image": "browser/coupang-20261117-01-electric-blanket.jpg",
+        "hook": "목요일 수능날 아침 영하래요, 이불만 덮고 자면 새벽에 발이 얼음장",
+        "body": "오늘 오후부터 비 온다길래 우산 챙기면서도 생각난 게, 방 온도였어요\n목요일(수능날) 아침엔 영하권이라는데 이불만 덮고 자면 새벽에 발부터 얼음장이 되더라고요\n\n듀플렉스 전기요는 무자계 열선이라 머리맡에 둬도 찜찜하지 않고, 세탁기에 그대로 돌릴 수 있어서 좋아요. 지금 72% 빠져서 5만 원대 초반이고 로켓배송이라 내일 바로 와요. 리뷰도 1,900개 넘게 쌓인 걸 보고 골랐어요.\n한 가지 흠은 두툼한 이불 밑에 깔면 온기가 좀 덜 온다는 건데, 그건 전기요 다 똑같더라고요\n\n링크는 첫 댓글에 남겨둘게요.",
+        "comment": "👉 https://link.coupang.com/a/iJUf7HBPYO\n\n이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다."
       },
       {
-        "id": "tumbler",
+        "id": "kettle",
         "rank": 2,
         "emoji": "☕",
-        "short": "락앤락 메트로카페 텀블러",
-        "name": "락앤락 메트로카페 세라믹 텀블러, 다크초코라떼, 650ml",
-        "price": 24570,
-        "discount": "45%",
+        "short": "키친아트 솔리드 전기주전자",
+        "name": "키친아트 솔리드 전기주전자, KAEK-B1500FT (1.5L, 스테인리스, 자동전원차단)",
+        "price": 10400,
+        "discount": "59%",
         "badge": "로켓배송",
-        "approved": true,
-        "approve_label": "승인 완료!",
-        "publish_label": "발행 대기",
-        "link": "https://link.coupang.com/a/iIeSoSZtEi",
-        "hook": "아침 출근길 따뜻한 커피가 금방 식는 계절",
-        "body": "월요일 아침부터 추워지니까 따뜻한 아메리카노가 간절하네요 ☕\n\n스텐 텀블러 특유의 쇠맛 싫어하시는 분들한테 딱인 안쪽 세라믹 코팅 텀블러예요. 650ml 넉넉한 사이즈에 45% 할인 중이라 요즘 데일리로 들고 다니기 좋더라고요.\n\n링크는 첫 댓글에 남겨둘게요.",
-        "comment": "👉 https://link.coupang.com/a/iIeSoSZtEi\n\n이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다."
+        "approved": false,
+        "approve_label": "승인 대기",
+        "publish_label": "승인 후 발행",
+        "link": "https://link.coupang.com/a/iJUjRdNzGe",
+        "image": "browser/coupang-20261117-02-kettle.jpg",
+        "hook": "새벽에 라면 하나 먹자고 냄비에 물 받고 불 앞에 서 있기, 은근 귀찮잖아요",
+        "body": "야간 근무 끝나고 새벽에 라면 하나 먹으려고 냄비에 물 받고 불 앞에 서 있는 그 3분이 은근 귀찮아요\n그래서 전기포트를 샀는데, 진작 살 걸 그랬어요\n\n키친아트 이 주전자는 1.5L에 물 끓으면 알아서 꺼지고, 스테인리스라 오래 써도 냄새가 덜 배요. 리뷰 2만 4천 개 넘게 달린 걸 보면 다들 비슷한 이유로 사는 것 같고요. 59% 빠져서 만 원대예요.\n단점은 물을 끝까지 채우면 생각보다 묵직해서 손목이 좀 아파요\n\n링크는 첫 댓글에 남겨둘게요.",
+        "comment": "👉 https://link.coupang.com/a/iJUjRdNzGe\n\n이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다."
       },
       {
-        "id": "hoppang",
+        "id": "tteokbokki",
         "rank": 3,
-        "emoji": "🥟",
-        "short": "삼립 발효미종 호빵",
-        "name": "삼립 호빵 발효미종 단팥 + 야채, 97g, 12개입",
-        "price": 11090,
-        "discount": "9%",
+        "emoji": "🍜",
+        "short": "두끼 즉석 떡볶이",
+        "name": "두끼 즉석 떡볶이 (냉동), 560g, 2개",
+        "price": 11740,
+        "discount": "-",
         "badge": "로켓프레시",
-        "approved": true,
-        "approve_label": "승인 완료!",
-        "publish_label": "발행 대기",
-        "link": "https://link.coupang.com/a/iIeUvRs0zI",
-        "hook": "편의점 호빵 보이면 겨울 시작이잖아요",
-        "body": "편의점 앞에 빨간 호빵 찜기 보이면 진짜 겨울 시작이잖아요 🥟\n\n단팥이랑 야채 반반 12개 세트라 집에서 하나씩 쪄 먹기 딱이에요. 로켓프레시로 11,090원이면 간식값 부담도 훨씬 덜하네요.\n\n링크는 첫 댓글에 남겨둘게요.",
-        "comment": "👉 https://link.coupang.com/a/iIeUvRs0zI\n\n이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다."
+        "approved": false,
+        "approve_label": "승인 대기",
+        "publish_label": "승인 후 발행",
+        "link": "https://link.coupang.com/a/iJT45m2owe",
+        "image": "browser/coupang-20261117-03-tteokbokki.jpg",
+        "hook": "비 오는 날 야식은 결국 국물 있는 걸로 가게 되네요",
+        "body": "오늘 오후부터 비 온다니까 벌써부터 야식 생각이 나네요\n새벽에 들어와서 불 앞에 오래 서 있기 싫은 날엔 이거 하나 데우면 끝이에요\n\n두끼 떡볶이는 매장에서 먹던 그 맛이라 집에서 끓여도 실패가 없어요. 560g씩 두 팩이라 한 번에 한 팩만 끓이면 되고, 1만 원대라 부담도 없어요. 로켓프레시라 냉동실에 쟁여두기 좋고요.\n다만 떡이 금방 불어서 물 양은 조금 신경 써야 해요\n\n링크는 첫 댓글에 남겨둘게요.",
+        "comment": "👉 https://link.coupang.com/a/iJT45m2owe\n\n이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다."
       }
     ],
     "roles": [
